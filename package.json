@@ -1,0 +1,23 @@
+{
+  "name": "leomouraire",
+  "version": "1.0.0",
+  "description": "portfolio website",
+  "author": "leochocolat",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "gsap": "^2.1.3",
+    "hammerjs": "^2.0.8",
+    "node-sass": "^4.13.1",
+    "nuxt": "^2.0.0",
+    "sass-loader": "^8.0.2",
+    "three": "^0.114.0",
+    "underscore": "^1.9.2"
+  },
+  "devDependencies": {}
+}

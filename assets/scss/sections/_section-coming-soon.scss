@@ -1,0 +1,108 @@
+.section-coming-soon {
+    position: relative;
+
+    height: 90vh;
+    
+    box-sizing: border-box;
+
+    padding-top: 250px;
+
+    opacity: 0;
+}
+
+.section-coming-soon__list {
+    margin: auto;
+}
+
+.section-coming-soon__list-item {
+    position: relative;
+
+    font-size: 140px;
+    line-height: 120px;
+
+    text-align: right;
+
+    white-space: nowrap;
+
+    &:nth-child(1) {
+        margin-right: 200px;
+    }
+
+    &:nth-child(2) {
+        margin-right: 410px;
+
+        &:after {
+            position: absolute;
+
+            font-weight: 100;
+            opacity: 0;
+
+            content: '©';
+        }
+
+        &.isInView {
+            &:after {
+                transition: opacity 1s ease-in-out;
+                opacity: 0.8;
+            }
+        }
+    }
+
+    &:nth-child(3) {
+        &:after {
+            position: absolute;
+            right: 10px;
+            top: 100%;
+
+            font-size: 10px;
+            line-height: 10px;
+            font-weight: 100;
+
+            opacity: 0;
+
+            content: 'Like really'
+        }
+
+        &.isInView {
+            &:after {
+                transition: opacity .5s ease-in-out;
+                opacity: 0.8;
+            }
+        }
+    }
+
+    span:not(.js-extra-span-container) {
+        transform-origin: left bottom;
+        transform: rotateX(90deg);
+        opacity: 0;
+        
+        transition:
+            opacity 1.5s cubic-bezier(.16,1.01,.41,.99) 0.1s,
+            transform 1.5s cubic-bezier(.16,1.01,.41,.99) 0.1s;
+
+        &.animate {
+            transform: rotateX(0);
+            opacity: 1;
+
+            width: auto;
+        }
+    }
+
+    span.js-animated-s {
+        transition-duration: 0s;
+
+        &.animate {
+            transition-duration: 1.5s;
+        }
+    }
+
+    span.js-extra-span-container {
+        position: relative;
+        width: 0;
+
+        span {
+            position: absolute;
+            right: 0;
+        }
+    }
+}

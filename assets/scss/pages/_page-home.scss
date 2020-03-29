@@ -1,0 +1,34 @@
+.page-home {
+    padding-top: 40px;
+}
+
+.page-home__container {
+    position: relative;
+}
+
+.page-home__loading {
+    font-weight: 100;
+    text-transform: uppercase;
+
+    opacity: 1;
+
+    &.remove {
+        opacity: 0;
+    }
+
+    &.blink {
+        animation: blink .5s infinite;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

@@ -190,7 +190,6 @@ class ComingSoonComponent {
 
     _scrollDownHandler() {
         const value = this._roundedScrollPosition;
-        console.log('down', value);
         if (value >= this._scrollStep * INTERVAL) {            
             if (this._scrollStep >= this._soonStep * SOON_INTERVAL && this._soonStep <= this._soons.length) {
                 this._soonStep++;
@@ -204,7 +203,6 @@ class ComingSoonComponent {
 
     _scrollUpHandler() {
         const value = this._roundedScrollPosition;
-        console.log('up', value);
         if (value < this._scrollStep * INTERVAL) {
             if (this._scrollStep < this._soonStep * SOON_INTERVAL && this._soonStep > 0) {
                 this._soonStep--;

@@ -5,7 +5,7 @@
         <span class="page-home__loading js-loading blink">loading</span>
         <Navbar />
         <SectionComingSoon />
-        <SectionProject />
+        <SectionProject :projects="projects" />
       </div>
     </div>
   </div>
@@ -19,6 +19,9 @@ import SectionProject from '~/components/sections/SectionProject';
 import ScrollModule from '~/assets/javascript/modules/ScrollModule';
 import ComingSoonComponent from '~/assets/javascript/components/ComingSoonComponent';
 import NavbarComponent from '~/assets/javascript/components/NavbarComponent';
+
+import { createClient } from '~/plugins/contentful.js';
+const client = createClient();
 
 export default {
   props: {
@@ -60,18 +63,31 @@ export default {
 
     setTimeout(() => {
       uiLoading.classList.remove('blink');
-    }, 2000);
+    }, 1500);
 
     setTimeout(() => {
       uiLoading.classList.add('remove');
       this.start();
-    }, 2800);
+    }, 2000);
 
-
+    //unquote for dev session
+    // this.start();
   },
   beforeDestroy() {
     this.destroy();
-  }
+  },
+  asyncData () {
+    return Promise.all([
+      client.getEntries({
+        'content_type': 'project',
+        order: 'sys.createdAt'
+      })
+    ]).then(([projects]) => {
+      return {
+        projects: projects.items,
+      }
+    }).catch(console.error)
+  },
 }
 </script>
 

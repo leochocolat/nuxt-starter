@@ -1,3 +1,4 @@
+const config = require('./.contentful.json');
 
 export default {
   mode: 'universal',
@@ -49,5 +50,12 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  env: {
+    /*
+    ** Contenful
+    */
+    CTF_SPACE_ID: config.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN,
   }
 }

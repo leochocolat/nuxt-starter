@@ -6,17 +6,8 @@
              Projects
          </h2>
          <ul class="section-project__list">
-             <li class="section-project__list-item" data-scroll data-scroll-offset="150">
-                 <ProjectListItem />
-             </li>
-             <li class="section-project__list-item" data-scroll data-scroll-offset="150">
-                 <ProjectListItem />
-             </li>
-             <li class="section-project__list-item" data-scroll data-scroll-offset="150">
-                 <ProjectListItem />
-             </li>
-             <li class="section-project__list-item" data-scroll data-scroll-offset="150">
-                 <ProjectListItem />
+             <li v-for="(project, index) in projects" :key="index" class="section-project__list-item" data-scroll data-scroll-offset="150">
+                 <ProjectListItem :project="project" />
              </li>
          </ul>
      </div>
@@ -26,9 +17,13 @@
 <script>
 import ProjectListItem from '~/components/partials/ProjectListItem';
 
+
 export default {
   props: {
-
+    projects: {
+        type: Array,
+        required: true
+    },
   },
   components: {
       ProjectListItem
@@ -39,6 +34,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.projects);
     this.setup();
   }
 }

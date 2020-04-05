@@ -3,6 +3,7 @@ import ResizeManager from '../managers/ResizeManager';
 import { TweenMax, Power3, TweenLite } from 'gsap';
 import bindAll from '../utils/bindAll';
 import mod from '../utils/mod';
+import lerp from '../utils/lerp';
 
 const INTERVAL = 20;
 const SOON_INTERVAL = 5;
@@ -24,6 +25,8 @@ class ComingSoonComponent {
 
         this._soonStep = 1;
         this._scrollStep = 1;
+
+        this._scrollPosition = 0;
 
         this._setup();
     }
@@ -114,10 +117,8 @@ class ComingSoonComponent {
 
     _resetTransitionDuration() {
         for (let i = 0; i < this._soons.length; i++) {
-            TweenLite.set(this._soons[i].s, {
-                transitionDuration: '2s',
-                transitionTiming: 'linear',
-            });
+            this._soons[i].s.transitionDuration = '2s';
+            this._soons[i].s.transitionTimingFunction = 'linear';
         }
         ScrollManager.enable();
     }
@@ -189,9 +190,9 @@ class ComingSoonComponent {
 
     _scrollDownHandler() {
         const value = this._roundedScrollPosition;
-        if (value >= this._scrollStep * INTERVAL) {
-            
-            if (this._scrollStep > this._soonStep * SOON_INTERVAL && this._soonStep <= this._soons.length) {
+        console.log('down', value);
+        if (value >= this._scrollStep * INTERVAL) {            
+            if (this._scrollStep >= this._soonStep * SOON_INTERVAL && this._soonStep <= this._soons.length) {
                 this._soonStep++;
             }
             
@@ -203,8 +204,9 @@ class ComingSoonComponent {
 
     _scrollUpHandler() {
         const value = this._roundedScrollPosition;
-        if (value <= this._scrollStep * INTERVAL) {
-            if (this._scrollStep < this._soonStep * SOON_INTERVAL && this._soonStep >= 1) {
+        console.log('up', value);
+        if (value < this._scrollStep * INTERVAL) {
+            if (this._scrollStep < this._soonStep * SOON_INTERVAL && this._soonStep > 0) {
                 this._soonStep--;
             }
             

@@ -1,18 +1,18 @@
 <template>
     <div class="project-list-item">
-        <a href="" target="_blank" class="project-list-item__link">
-            Mediatonic
+        <a :href="project.fields.link" target="_blank" class="project-list-item__link">
+            {{ project.fields.name }}
         </a>
         <div class="project-list-item__content">
             <h3 class="project-list-item__project-name">
-                Mediatonic
+                {{ project.fields.name }}
             </h3>
             <div class="project-list-item__project-infos">
-                Corporate<br>
-                /2019
+                {{ project.fields.projectType }}<br>
+                /{{ project.fields.date }}
             </div>
-            <a href="" class="project-list-item__project-link">
-                (See it live)
+            <a :href="project.fields.link" class="project-list-item__project-link">
+                ({{ project.fields.buttonLabel }})
             </a>
         </div>
     </div>
@@ -22,7 +22,10 @@
 
 export default {
   props: {
-
+      project: {
+          type: Object,
+          required: true
+      }
   },
   components: {
 

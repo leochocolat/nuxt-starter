@@ -4,3 +4,9 @@
 
     margin: auto;
 }
+
+@include mq-extra-narrow {
+    .container {
+        width: calc(100% - 40px);
+    }
+}

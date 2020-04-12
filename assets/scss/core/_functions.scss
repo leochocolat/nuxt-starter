@@ -1,0 +1,3 @@
+@function size($col, $col-amount) {
+    @return ($col / $col-amount) * 100%
+};

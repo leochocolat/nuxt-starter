@@ -1,0 +1,38 @@
+.arrow {
+    position: relative;
+
+    width: 24px;
+    height: 24px;
+
+    border-radius: 50%;
+
+    background-color: $brownGrey;
+
+    svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+
+        width: 8px;
+        height: 8px;
+
+        margin: auto;
+    }
+
+    .cls-1 {
+        fill: $darkGrey
+    }
+
+    &--bottom {
+        transform: rotate(90deg);
+    }
+}
+
+@include mq-extra-narrow {
+    .arrow {
+        width: 20px;
+        height: 20px;
+    }
+}

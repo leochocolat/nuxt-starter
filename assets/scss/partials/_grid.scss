@@ -1,0 +1,33 @@
+.grid {
+    position: fixed;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+
+    height: 100vh;
+
+    display: none;
+
+    &.enable {
+        display: block;
+    }
+
+    div {
+        position: absolute;
+        top: 0;
+
+        height: 100%;
+        width: 0px;
+
+        font-size: 0px;
+
+        border-left: solid 1px red;
+
+        @for $i from 0 to 25 {
+            &:nth-child(#{$i + 1}) {
+                left: size($i, 24);
+            }
+        }
+    }
+}

@@ -1,4 +1,68 @@
 .heading {
-    font-size: 110px;
+    font-family: $regular;
+    font-size: rem(102px);
+    line-height: rem(86px);
+    letter-spacing: -7.12px;
     text-transform: uppercase;
+}
+
+.tiny-word {
+    font-family: $regular;
+    font-size: rem(8px);
+    letter-spacing: 0;
+    line-height: rem(10px);
+    text-transform: uppercase;
+
+    color: $brownGrey;
+}
+
+.paragraph {
+    font-family: $regular;
+    font-size: rem(18px);
+    letter-spacing: 0;
+    line-height: rem(24px);
+    text-transform: uppercase;
+
+    &--small {
+        font-size: rem(14px);
+        line-height: rem(20px);
+    }
+}
+
+.footer-text {
+    font-family: $regular;
+    font-size: rem(11px);
+    letter-spacing: 0;
+    line-height: rem(14px);
+    text-transform: uppercase;
+
+    color: $brownGrey;
+}
+
+@include mq-extra-narrow {
+    .heading {
+        font-size: rem(41px);
+        line-height: rem(41px);
+        letter-spacing: -2.5px;
+    }
+    
+    .tiny-word {
+        font-size: rem(7px);
+        line-height: rem(7px);
+    }
+    
+    .paragraph {
+        font-size: rem(11px);
+        line-height: rem(16px);
+    
+        &--small {
+            font-size: rem(11px);
+            line-height: rem(15px);
+        }
+    }
+    
+    .footer-text {
+        font-size: rem(8px);
+        line-height: rem(10px);
+    }
 }

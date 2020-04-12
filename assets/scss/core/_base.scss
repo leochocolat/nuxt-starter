@@ -1,5 +1,5 @@
 body {
-    background-color: $darkDray;
+    background-color: $darkGrey;
     color: $white;
 
     overflow-y: hidden;
@@ -8,6 +8,8 @@ body {
     &.isScrollEnable {
         overflow-y: scroll;
     }
+
+    font-family: $regular;
 }
 
 .js-scroll-content {

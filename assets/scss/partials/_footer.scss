@@ -1,0 +1,119 @@
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    height: 108px;
+}
+
+.footer-arrows {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    height: 24px;
+
+    margin: auto;
+}
+
+.footer-arrow {
+    display: inline-block;
+}
+
+.footer-list {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
+.footer-list-item {
+    position: relative;
+
+    display: inline-block;
+    vertical-align: top;
+
+    &:nth-child(1) {
+        width: size(5, 24);
+    }
+
+    &:nth-child(2) {
+        width: size(5, 24);
+    }
+
+    &:nth-child(3) {
+        width: size(8, 24);
+    }
+
+    &:nth-child(4) {
+        width: size(6, 24);
+    }
+}
+
+.footer-list-arrow {
+    position: absolute;
+    left: -15px;
+    top: 3px;
+
+    width: 8px;
+    height: 8px;
+    
+    .cls-1 {
+        fill: $brownGrey;
+    }
+}
+
+.footer-text {
+    max-width: 170px;
+}
+
+.footer-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background-color: $brownGrey;
+}
+
+@include mq-extra-narrow {
+    .footer {
+        height: 64px;
+    }
+
+    .footer-list-item {    
+        &:nth-child(1) {
+            width: size(2, 8);
+        }
+    
+        &:nth-child(2) {
+            width: size(3, 8);
+        }
+    
+        &:nth-child(3) {
+            width: size(3, 8);
+        }
+    
+        &:nth-child(4) {
+            display: none;
+        }
+    }
+
+    .footer-text {
+        width: calc(100% - 15px);
+    }
+
+    .footer-arrow {
+        &:first-child {
+            display: none;
+        }
+    }
+}

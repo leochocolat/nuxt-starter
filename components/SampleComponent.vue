@@ -1,11 +1,10 @@
 <template>
   <div>
-    <h1>Sample Component</h1>
+    
   </div>
 </template>
 
 <script>
-
 export default {
   props: {
 
@@ -13,14 +12,15 @@ export default {
   components: {
 
   },
+  computed: {
+
+  },
   methods: {
-    setup: () => {
-      
-    }
+
   },
   mounted() {
-    this.setup();
-  }
+    
+  },
 }
 </script>
 

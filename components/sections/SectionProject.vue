@@ -34,7 +34,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.projects);
     this.setup();
   }
 }

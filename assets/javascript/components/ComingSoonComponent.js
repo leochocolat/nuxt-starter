@@ -1,9 +1,9 @@
 import ScrollManager from '../managers/ScrollManager';
-import ResizeManager from '../managers/ResizeManager';
 import { TweenMax, Power3, TweenLite } from 'gsap';
 import bindAll from '../utils/bindAll';
 import mod from '../utils/mod';
 import lerp from '../utils/lerp';
+import Emitter from '../events/Emitter';
 
 const INTERVAL = 20;
 const SOON_INTERVAL = 5;
@@ -160,7 +160,8 @@ class ComingSoonComponent {
 
     _setupEventListeners() {
         ScrollManager.addEventListener('scroll', this._scrollHandler);
-        ResizeManager.addEventListener('resize:end', this._resizeHandler);
+
+        Emitter.on('RESIZE:END', this._resizeHandler);
         TweenLite.ticker.addEventListener('tick', this._tickHandler);
     }
     

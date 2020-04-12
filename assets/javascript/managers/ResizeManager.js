@@ -17,12 +17,6 @@ class ResizeManager extends EventDispatcher {
     }   
 
     _setup() {
-        // this._getViewportSize();
-        // this._getDocumentSize();
-        // this._setupEventListeners();
-    }
-    
-    start() {
         this._getViewportSize();
         this._getDocumentSize();
         this._setupEventListeners();

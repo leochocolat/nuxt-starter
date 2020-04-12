@@ -30,6 +30,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/listeners.client',
   ],
   /*
   ** Nuxt.js dev-modules

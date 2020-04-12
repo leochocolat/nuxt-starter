@@ -2,7 +2,7 @@ import bindAll from '../utils/bindAll';
 
 import ScrollManager from '../managers/ScrollManager';
 import ScrollTriggerManager from '../managers/ScrollTriggerManager';
-import ResizeManager from '../managers/ResizeManager';
+import Emitter from '../events/Emitter';
 
 import { TweenLite } from 'gsap';
 
@@ -40,7 +40,6 @@ class ScrollModule {
         ScrollTriggerManager.start({ el: this.container });
     }
 
-
     enable() {
         this._setupEventListeners();
         this._setStyleProps();
@@ -56,7 +55,6 @@ class ScrollModule {
     */
     _setup() {
         ScrollManager.start();
-        ResizeManager.start();
 
         if (this.smooth) {
             ScrollManager.enableSmoothScroll();
@@ -117,8 +115,8 @@ class ScrollModule {
         ScrollTriggerManager.addEventListener('call', this._callHandler);
 
         document.addEventListener('readystatechange', this._readyStateChangeHandler);
-        ResizeManager.addEventListener('resize', this._resizeHandler);
-        ResizeManager.addEventListener('resize:end', this._resizeEndHandler);
+        Emitter.on('RESIZE', this._resizeHandler);
+        Emitter.on('RESIZE:END', this._resizeEndHandler);
     }
 
     _removeEventListeners() {
@@ -129,8 +127,7 @@ class ScrollModule {
         ScrollTriggerManager.removeEventListeners();
 
         document.removeEventListener('readystatechange', this._readyStateChangeHandler);
-        ResizeManager.removeEventListener('resize', this._resizeHandler);
-        ResizeManager.removeEventListener('resize:end', this._resizeEndHandler);
+        // TODO: REMOVE RESIZE FROM EMITTER
     }
 
     _scrollHandler(e) {

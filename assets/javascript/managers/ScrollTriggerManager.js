@@ -1,6 +1,6 @@
 import EventDispatcher from '../events/EventDispatcher';
 import ScrollManager from './ScrollManager';
-import ResizeManager from './ResizeManager';
+import Emitter from '../events/Emitter';
 
 import bindAll from '../utils/bindAll';
 import lerp from '../utils/lerp';
@@ -47,7 +47,7 @@ class ScrollTriggerManager extends EventDispatcher {
         ScrollManager.removeEventListeners('scroll', this._scrollHandler);
         ScrollManager.removeEventListeners('scroll:end', this._scrollEndHandler);
 
-        ResizeManager.removeEventListeners('resize:end', this._resizeEndHandler);
+        //TODO: Remove event listener of emitter
     }
 
     /**
@@ -241,7 +241,7 @@ class ScrollTriggerManager extends EventDispatcher {
         ScrollManager.addEventListener('scroll', this._scrollHandler);
         ScrollManager.addEventListener('scroll:end', this._scrollEndHandler);
 
-        ResizeManager.addEventListener('resize:end', this._resizeEndHandler);
+        Emitter.on('RESIZE:END', this._resizeEndHandler);
     }
 
     _scrollHandler() {

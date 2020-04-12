@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ThreeCanvas />
+    <!-- <ThreeCanvas /> -->
     <nuxt />
   </div>
 </template>
@@ -9,11 +9,11 @@
 </style>
 
 <script>
-import ThreeCanvas from '~/components/ThreeCanvas';
+// import ThreeCanvas from '~/components/ThreeCanvas';
 
 export default {
   components: {
-    ThreeCanvas
+    // ThreeCanvas
   },
   mounted() {
     

@@ -44,7 +44,7 @@
     }
 
     &:nth-child(2) {
-        width: size(5, 24);
+        width: size(11, 24);
     }
 
     &:nth-child(3) {
@@ -52,6 +52,7 @@
     }
 
     &:nth-child(4) {
+        display: none;
         width: size(6, 24);
     }
 }
@@ -82,6 +83,27 @@
     height: 1px;
 
     background-color: $brownGrey;
+}
+
+@include mq-regular {
+    .footer-list-item {    
+        &:nth-child(1) {
+            width: size(5, 24);
+        }
+    
+        &:nth-child(2) {
+            width: size(5, 24);
+        }
+    
+        &:nth-child(3) {
+            width: size(8, 24);
+        }
+    
+        &:nth-child(4) {
+            display: inline-block;
+            width: size(6, 24);
+        }
+    }
 }
 
 @include mq-extra-narrow {

@@ -77,7 +77,39 @@
     }
 }
 
-@media (max-width: 1030px) {
+@include mq-narrow {
+    .header-home__row {
+        @for $i from 1 to 24 {
+            &--#{$i} {
+                top: #{($i - 1) * rem(60px)};
+            }
+        }
+    
+        @for $i from 1 to 24 {
+            &--right-#{$i} {
+                top: #{($i - 1) * rem(60px) + (2 * rem(60px))};
+            }
+        }
+    }
+}
+
+@include mq-regular {
+    .header-home__row {
+        @for $i from 1 to 24 {
+            &--#{$i} {
+                top: #{($i - 1) * rem(86px)};
+            }
+        }
+    
+        @for $i from 1 to 24 {
+            &--right-#{$i} {
+                top: #{($i - 1) * rem(86px)};
+            }
+        }
+    }
+}
+
+@media (min-width: $bp-regular) and (max-width: 1030px) {
     .header-home__row {
         @for $i from 1 to 24 {
             &--right-#{$i} {

@@ -1,8 +1,8 @@
 .heading {
     font-family: $regular;
-    font-size: rem(102px);
-    line-height: rem(86px);
-    letter-spacing: -7.12px;
+    font-size: rem(71px);
+    line-height: rem(60px);
+    letter-spacing: -4.9px;
     text-transform: uppercase;
 }
 
@@ -39,6 +39,14 @@
     color: $brownGrey;
 }
 
+@include mq-regular {
+    .heading {
+        font-size: rem(102px);
+        line-height: rem(86px);
+        letter-spacing: -7.12px;
+    }
+}
+
 @include mq-extra-narrow {
     .heading {
         font-size: rem(41px);
@@ -66,3 +74,8 @@
         line-height: rem(10px);
     }
 }
+
+//RATIOS PER SCREEN SIZE
+//Regular *1
+//Narrow *0.7
+//ExtraNarrow *0.5

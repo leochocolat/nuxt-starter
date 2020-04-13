@@ -34,16 +34,19 @@
 }
 
 .project-list-item__project-name {
-    width: size(18, 24) - 1;
+    width: size(16, 24) - 1;
 
-    font-size: rem(54px);
-    line-height: rem(48px);
-    letter-spacing: -2.7px;
+    padding-right: 10px;
+    box-sizing: border-box;
+
+    font-size: rem(38px);
+    line-height: rem(34px);
+    letter-spacing: -1.9px;
     text-transform: uppercase;
 }
 
 .project-list-item__project-infos {
-    width: size(6, 24);
+    width: size(8, 24);
 
     font-size: rem(11px);
     line-height: rem(16px);
@@ -98,6 +101,12 @@
 @include mq-regular {
     .project-list-item__project-name {
         width: size(13, 19);
+
+        padding-right: 0;
+
+        font-size: rem(54px);
+        line-height: rem(48px);
+        letter-spacing: -2.7px;
     }
 
     .project-list-item__project-infos {

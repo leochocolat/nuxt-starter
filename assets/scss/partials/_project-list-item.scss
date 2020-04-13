@@ -1,16 +1,16 @@
+.section-projects__list-item {
+    &:last-child {
+        .project-list-item__border--bottom {    
+            display: block;
+        }
+    }
+}
+
 .project-list-item {
     position: relative;
 
-    padding-top: 20px;
-    box-sizing: border-box;
-    
-    height: 100px;
-
-    text-transform: uppercase;
-}
-
-.project-list-item__content {
     width: 100%;
+    height: 140px;
 }
 
 .project-list-item__link {
@@ -21,34 +21,99 @@
     width: 100%;
     height: 100%;
 
-    opacity: 0;
+    color: transparent;
+}
+
+.project-list-item__content {
+    padding-top: 20px;
+
+    & > * {
+        vertical-align: top;
+        display: inline-block;
+    }
 }
 
 .project-list-item__project-name {
-    display: inline-block;
-    vertical-align: top;
-    
-    width: 40%;
+    width: size(13, 19);
 
-    font-size: 28px;
-    font-weight: 100;
+    font-size: rem(54px);
+    line-height: rem(48px);
+    letter-spacing: -2.7px;
+    text-transform: uppercase;
 }
 
 .project-list-item__project-infos {
-    display: inline-block;
-    vertical-align: top;
+    width: size(5, 19);
 
-    width: 33%;
+    font-size: rem(11px);
+    line-height: rem(16px);
+    text-transform: uppercase;
 
-    font-size: 12px;
-    font-weight: 100;
 }
 
 .project-list-item__project-link {
-    vertical-align: top;
+    position: absolute;
+    top: 0;
+    right: 0;
 
-    font-size: 12px;
-    font-weight: 100;
+    width: 100px;
+    height: 100%;
 
-    border-bottom: 1px solid $white;
+    svg {
+        position: absolute;
+        top: 23px;
+        right: 0;
+
+
+        width: 7px;
+        height: auto;
+
+        transform: scaleY(-1);
+
+        path {
+            fill: $white
+        }
+    }
+}
+
+.project-list-item__border {
+    position: absolute;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background-color: $white;
+
+    &--top {
+        top: 0;
+    }
+
+    &--bottom {
+        display: none;
+
+        bottom: 0;
+    }
+}
+
+@include mq-extra-narrow {
+    .project-list-item {
+        height: 100px;
+    }
+
+    .project-list-item__project-name {
+        width: #{size(5, 8) - 1};
+    
+        font-size: rem(27px);
+        line-height: rem(25px);
+        letter-spacing: -1.35px;;
+    }
+    
+    .project-list-item__project-infos {
+        width: #{size(3, 8) - 1};
+    
+        font-size: rem(8px);
+        line-height: rem(10px);
+        text-transform: uppercase;
+    }
 }

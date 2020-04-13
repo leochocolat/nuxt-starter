@@ -1,0 +1,15 @@
+.section-about {
+    
+}
+
+.section-about__container {
+    padding-top: 160px;
+    padding-bottom: 240px;
+}
+
+@include mq-extra-narrow {
+    .section-about__container {
+        padding-top: 75px;
+        padding-bottom: 120px;
+    }
+}

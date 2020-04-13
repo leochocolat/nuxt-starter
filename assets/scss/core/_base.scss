@@ -2,7 +2,7 @@ body {
     background-color: $darkGrey;
     color: $white;
 
-    overflow-y: hidden;
+    // overflow-y: hidden;
     overscroll-behavior-y: none;
 
     &.isScrollEnable {

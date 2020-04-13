@@ -15,7 +15,6 @@
 /**
 * Partials
 */
-@import './partials/grid';//utils
 @import './partials/navbar';
 @import './partials/project-list-item';
 @import './partials/arrow';
@@ -29,11 +28,15 @@
 /**
 * Sections
 */
-@import './sections/section-coming-soon';
-@import './sections/section-project';
+@import './sections/section-projects';
+@import './sections/section-about';
 
 /**
  * Pages
  */
 @import './pages/page-coming-soon';
 
+/**
+ * Utils
+ */
+@import './partials/grid';

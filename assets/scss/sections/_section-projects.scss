@@ -1,0 +1,27 @@
+.section-projects {
+
+}
+
+.section-projects__container {
+    padding-top: 200px;
+}
+
+.section-projects__list {
+    width: 100%;
+
+    margin-left: 0;
+}
+
+@include mq-regular {
+    .section-projects__list {
+        width: size(19, 24);
+    
+        margin-left: size(5, 24);
+    }
+}
+
+@include mq-extra-narrow {
+    .section-projects__container {
+        padding-top: 75px;
+    }
+}

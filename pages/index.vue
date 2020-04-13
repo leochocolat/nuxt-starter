@@ -6,6 +6,7 @@
       <SectionAbout :title="home.fields.descriptionTitle" :description="home.fields.description" :email="home.fields.email" :twitter="home.fields.twitter" :linkedin="home.fields.linkedin" />
       <Footer :name="'home'" :position="'top'" :first="home.fields.footerCredits" :second="home.fields.footerMessage" :third="home.fields.footerDesignCredits"  />
     </div>
+    <!-- <LoadingScreen /> -->
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import HeaderHome from '~/components/headers/HeaderHome';
 import SectionProjects from '~/components/sections/SectionProjects';
 import SectionAbout from '~/components/sections/SectionAbout';
 import Footer from '~/components/partials/Footer';
+import LoadingScreen from '~/components/partials/LoadingScreen';
 
 import { createClient } from '~/plugins/contentful.js';
 const client = createClient();
@@ -29,7 +31,8 @@ export default {
     HeaderHome,
     SectionProjects,
     SectionAbout,
-    Footer
+    Footer,
+    LoadingScreen
   },
   computed: {
 

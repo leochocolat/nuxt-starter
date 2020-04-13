@@ -7,8 +7,8 @@
                 <div class="paragraph rich-text section-about__paragraph">
                   <RichTextRenderer :document="description" />
                 </div>
-              </div>
-              <ul class="section-about__socials">
+              </div
+              ><ul class="section-about__socials">
                   <li class="section-about__socials-item">
                       <a target="_blank" :href="`mailto:${email}`" class="section-about__socials-link">
                         Email

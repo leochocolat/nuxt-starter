@@ -26,6 +26,10 @@ class ScrollModule {
         this._previousScroll = {};
         this._offsetY = 0;
 
+        this.ui = {
+            scrollTo: document.querySelectorAll('[data-scroll-to]')
+        }
+
         setInterval(() => {
             this._allowContentHeightCheck = true;
         }, 2000);
@@ -62,9 +66,20 @@ class ScrollModule {
         }
         
         this._setupEventListeners();
+        this._setupScrollTo();
         this._setStyleProps();
         this._resize();
         ScrollTriggerManager.setContainerElement(this.container)
+    }
+
+    _setupScrollTo() {
+        for (let i = 0; i < this.ui.scrollTo.length; i++) {
+            this.ui.scrollTo[i].addEventListener('click', () => {
+                const target = this.ui.scrollTo[i].dataset.scrollTo;
+                const offset = this.ui.scrollTo[i].dataset.scrollToOffset;
+                ScrollManager.scrollTo(target, offset);
+            });
+        }
     }
 
     _setStyleProps() {

@@ -34,7 +34,7 @@
 }
 
 .project-list-item__project-name {
-    width: size(16, 24) - 1;
+    width: size(16, 24);
 
     padding-right: 10px;
     box-sizing: border-box;
@@ -120,7 +120,7 @@
     }
 
     .project-list-item__project-name {
-        width: #{size(5, 8) - 1};
+        width: #{size(5, 8)};
     
         font-size: rem(27px);
         line-height: rem(25px);
@@ -128,7 +128,7 @@
     }
     
     .project-list-item__project-infos {
-        width: #{size(3, 8) - 1};
+        width: #{size(3, 8)};
     
         font-size: rem(8px);
         line-height: rem(10px);

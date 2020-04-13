@@ -3,7 +3,7 @@
     <div class="js-scroll-content main__content">
         <div class="container page-project__container">
             <div class="page-project__content">
-                <Arrow class="page-project__arrow" :direction="`left`" :color="`black`" />
+                <Arrow class="page-project__arrow" :direction="`left`" :color="`black`" :link="'/'" />
                 <div class="page-project__description-container">
                     <div class="page-project__title">
                         {{ project.fields.name }}

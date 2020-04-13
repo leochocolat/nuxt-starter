@@ -1,21 +1,10 @@
 .page-home {
     position: relative;
+
+    & * {
+        @include custom-selection {
+            background-color: $white;
+            color: $black;
+        }
+    }
 }
-
-// @include mq-regular {
-//     .page-home {
-//         background-color: red;
-//     }
-// }
-
-// @include mq-wide {
-//     .page-home {
-//         background-color: green;
-//     }
-// }
-
-// @include mq-extra-wide {
-//     .page-home {
-//         background-color: blue;
-//     }
-// }

@@ -1,17 +1,17 @@
 <template>
     <div class="project-list-item">
-        <a :href="project.fields.link" target="_blank" class="project-list-item__link">
+        <a :href="`/projects/${index}`" class="project-list-item__link">
             {{ project.fields.name }}
         </a>
         <div class="project-list-item__content">
             <h3 class="project-list-item__project-name">
                 {{ project.fields.name }}
-            </h3>
-            <div class="project-list-item__project-infos">
+            </h3
+            ><div class="project-list-item__project-infos">
                 {{ project.fields.projectType }}<br>
                 /{{ project.fields.date }}
-            </div>
-            <a :href="project.fields.link" class="project-list-item__project-link"> 
+            </div
+            ><a :href="project.fields.link" class="project-list-item__project-link"> 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384.67 384.67"><g data-name="Layer 2"><path fill="#fff" fill-rule="evenodd" d="M0 45.26l276.05 276.05H22.63v63.36h362.04V22.63h-63.36v253.42L45.26 0 0 45.26z" data-name="Layer 1"/></g></svg>
             </a>
         </div>
@@ -26,6 +26,10 @@ export default {
   props: {
       project: {
           type: Object,
+          required: true
+      },
+      index: {
+          type: Number,
           required: true
       }
   },

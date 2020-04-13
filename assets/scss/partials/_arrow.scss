@@ -46,6 +46,17 @@
     }
 }
 
+.arrow__button {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+    
+    cursor: pointer;
+}
+
 @include mq-extra-narrow {
     .arrow {
         width: 20px;

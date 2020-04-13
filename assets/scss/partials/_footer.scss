@@ -52,6 +52,7 @@
     vertical-align: top;
 
     &:nth-child(1) {
+        pointer-events: none;
         width: size(5, 24);
     }
 

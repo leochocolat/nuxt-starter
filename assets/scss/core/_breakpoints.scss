@@ -35,7 +35,3 @@ $bp-wide: 1440px;
         @content;
     }
 }
-
-@include mq-extra-narrow {
-    $is-extra-narrow: 1
-}

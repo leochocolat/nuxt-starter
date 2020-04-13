@@ -15,3 +15,13 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+@mixin custom-selection {
+    &::selection {
+        @content;
+    }
+
+    &::-moz-selection {
+        @content;
+    }
+}

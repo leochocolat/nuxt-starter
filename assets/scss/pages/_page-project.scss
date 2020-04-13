@@ -3,6 +3,13 @@
 
     background-color: $white;
     color: $black;
+
+    & * {
+        @include custom-selection {
+            background-color: $black;
+            color: $white;
+        }
+    }
 }
 
 .page-project__container {
@@ -199,7 +206,7 @@
     }
 }
 
-@media (max-width: 1000px) and (min-width: $bp-regular) {
+@media (max-width: 1000px) and (min-width: $bp-regular + 1) {
     .page-project__content {
         display: flex;
         flex-direction: column-reverse;

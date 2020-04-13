@@ -1,8 +1,8 @@
 <template>
     <div class="container footer" :class="`footer--${name}`">
         <div class="footer-arrows">
-            <Arrow class="footer-arrow" :direction="position"/>
-            <Arrow class="footer-arrow" :direction="position" />
+            <Arrow class="footer-arrow" :scrollTo="position == 'bottom' ? '.footer--header' : 'body'" :direction="position"/>
+            <Arrow class="footer-arrow" :scrollTo="position == 'bottom' ? '.footer--header' : 'body'" :direction="position" />
         </div>
         <ul class="footer-list">
             <li class="footer-list-item"></li>

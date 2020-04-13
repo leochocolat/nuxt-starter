@@ -75,6 +75,11 @@
     &--top {
         top: 4px
     }
+
+    @include custom-selection {
+        background-color: $white;
+        color: $darkGrey;
+    }
 }
 
 @include mq-narrow {
@@ -109,7 +114,7 @@
     }
 }
 
-@media (min-width: $bp-regular) and (max-width: 1030px) {
+@media (min-width: $bp-regular + 1) and (max-width: 1030px) {
     .header-home__row {
         @for $i from 1 to 24 {
             &--right-#{$i} {

@@ -2,6 +2,9 @@
   <header class="header-home">
     <div class="container header-home__container">
         <h1 class="heading header-home__heading">
+            <!-- <span class="header-home__row header-home__row--1">
+                <span class="header-home__word header-home__word--0">Loading</span> 
+            </span> -->
             <span class="header-home__row header-home__row--1">
                 <span class="header-home__word header-home__word--0">Léo Mouraire</span> 
             </span>

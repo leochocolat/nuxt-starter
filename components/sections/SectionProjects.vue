@@ -3,7 +3,7 @@
     <div class="container section-projects__container">
         <ul class="section-projects__list">
             <li v-for="(project, index) in projects" :key="index" class="section-projects__list-item">
-                <ProjectListItem :project="project" />
+                <ProjectListItem :index="index" :project="project" />
             </li>
         </ul>
     </div>

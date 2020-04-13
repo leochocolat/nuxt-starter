@@ -28,6 +28,10 @@
     &--bottom {
         transform: rotate(90deg);
     }
+
+    &--top {
+        transform: rotate(-90deg);
+    }
 }
 
 @include mq-extra-narrow {

@@ -1,6 +1,11 @@
 <template>
   <div class="container grid">
-    <div v-for="item in 25" :key="item"></div>
+    <div class="grid-regular">
+      <div class="regular" v-for="item in 25" :key="item"></div>
+    </div>
+    <div class="grid-narrow">
+      <div class="narrow" v-for="item in 9" :key="item"></div>
+    </div>
   </div>
 </template>
 

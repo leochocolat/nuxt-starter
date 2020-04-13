@@ -4,7 +4,6 @@
         <h1 class="heading header-home__heading">
             <span class="header-home__row header-home__row--1">
                 <span class="header-home__word header-home__word--0">Léo Mouraire</span> 
-                <!-- <span class="header-home__word header-home__word--4">Mouraire</span> -->
             </span>
             <span class="header-home__row header-home__row--2">
                 Creative
@@ -32,11 +31,8 @@
                 </span>
             </span>
         </h1>
-        <!-- <h2 class="heading header-home__subheading">
-            Projects
-        </h2> -->
     </div>
-    <Footer />
+    <Footer :name="'header'" :position="'bottom'" :first="data.fields.currentPosition" :second="data.fields.previousPosition" :third="data.fields.message" />
   </header>
 </template>
 
@@ -45,7 +41,10 @@ import Footer from '~/components/partials/Footer';
 
 export default {
   props: {
-
+      data: {
+          type: Object,
+          required: false
+      }
   },
   components: {
       Footer
@@ -57,7 +56,7 @@ export default {
 
   },
   mounted() {
-    
+      console.log(this.data.fields.currentPosition)
   },
 }
 </script>

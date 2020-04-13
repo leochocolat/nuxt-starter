@@ -9,6 +9,18 @@
     align-items: center;
 
     height: 108px;
+
+    &--header {
+        .footer-list-arrow {
+            visibility: visible;
+        }
+    }
+
+    &--home {
+        .footer-list-arrow {
+            visibility: hidden;
+        }
+    }
 }
 
 .footer-arrows {

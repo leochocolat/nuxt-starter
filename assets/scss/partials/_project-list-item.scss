@@ -34,7 +34,7 @@
 }
 
 .project-list-item__project-name {
-    width: size(13, 19);
+    width: size(18, 24) - 1;
 
     font-size: rem(54px);
     line-height: rem(48px);
@@ -43,12 +43,11 @@
 }
 
 .project-list-item__project-infos {
-    width: size(5, 19);
+    width: size(6, 24);
 
     font-size: rem(11px);
     line-height: rem(16px);
     text-transform: uppercase;
-
 }
 
 .project-list-item__project-link {
@@ -93,6 +92,16 @@
         display: none;
 
         bottom: 0;
+    }
+}
+
+@include mq-regular {
+    .project-list-item__project-name {
+        width: size(13, 19);
+    }
+
+    .project-list-item__project-infos {
+        width: size(5, 19);
     }
 }
 

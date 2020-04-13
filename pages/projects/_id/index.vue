@@ -16,6 +16,7 @@
                     </div>
                 </div
                 ><div class="page-project__video-wrapper">
+                    <img class="page-project__video" src="https://i.picsum.photos/id/670/1920/1080.jpg" alt="">
                 </div>
             </div>
             <FooterProject :project="project.fields" />

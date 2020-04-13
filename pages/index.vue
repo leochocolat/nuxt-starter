@@ -1,9 +1,11 @@
 <template>
   <div class="main page-home js-scroll-container">
-    <HeaderHome />
-    <SectionProjects :projects="projects" />
-    <SectionAbout />
-    <!-- <Footer /> -->
+    <div class="js-scroll-content">
+      <HeaderHome />
+      <SectionProjects :projects="projects" />
+      <SectionAbout />
+      <Footer />
+    </div>
   </div>
 </template>
 
@@ -15,6 +17,8 @@ import Footer from '~/components/partials/Footer';
 
 import { createClient } from '~/plugins/contentful.js';
 const client = createClient();
+
+import ScrollModule from '~/assets/javascript/modules/ScrollModule';
 
 export default {
   props: {
@@ -33,7 +37,13 @@ export default {
 
   },
   mounted() {
-
+    let scrollModule = new ScrollModule({
+      container: document.querySelector('.js-scroll-container'),
+      content: document.querySelector('.js-scroll-content'),
+      smooth: true,
+      smoothValue: 0.1
+    });
+    scrollModule.start();
   },
   asyncData () {
     return Promise.all([

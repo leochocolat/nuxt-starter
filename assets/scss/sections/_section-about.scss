@@ -4,7 +4,7 @@
 
 .section-about__container {
     padding-top: 160px;
-    padding-bottom: 240px;
+    padding-bottom: 380px;
 }
 
 .section-about__content {
@@ -87,7 +87,7 @@
 @include mq-extra-narrow {
     .section-about__container {
         padding-top: 75px;
-        padding-bottom: 120px;
+        padding-bottom: 190px;
     }
 
     .section-about__socials {

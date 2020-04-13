@@ -29,6 +29,14 @@
     }
 }
 
+.rich-text {
+    a {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
 .footer-text {
     font-family: $regular;
     font-size: rem(11px);

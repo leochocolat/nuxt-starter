@@ -15,10 +15,11 @@
 /**
 * Partials
 */
+@import './partials/arrow';
 @import './partials/navbar';
 @import './partials/project-list-item';
-@import './partials/arrow';
 @import './partials/footer';
+@import './partials/footer-project';
 
 /**
 * Headers
@@ -35,6 +36,7 @@
  * Pages
  */
 @import './pages/page-home';
+@import './pages/page-project';
 
 /**
  * Utils

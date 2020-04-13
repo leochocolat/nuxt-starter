@@ -32,6 +32,18 @@
     &--top {
         transform: rotate(-90deg);
     }
+
+    &--left {
+        transform: rotate(180deg);
+    }
+
+    &--black {
+        background-color: $black;
+
+        .cls-1 {
+            fill: $white
+        }
+    }
 }
 
 @include mq-extra-narrow {

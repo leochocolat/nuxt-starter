@@ -46,6 +46,7 @@ export default {
     });
     scrollModule.start();
 
+    this.$store.dispatch('projects/setProjects', this.projects);
     // let scalable = new Scalable({
     //   el: document.querySelector('.js-scroll-content')
     // });

@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- <ThreeCanvas /> -->
-    <Grid />
     <nuxt />
+    <Grid />
   </div>
 </template>
 

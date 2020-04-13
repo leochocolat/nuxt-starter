@@ -1,0 +1,79 @@
+.page-project {
+    position: relative;
+
+    background-color: $white;
+    color: $black;
+}
+
+.page-project__container {
+    position: relative;
+
+    height: 100vh;
+    
+    box-sizing: border-box;
+    padding-top: 40px;
+}
+
+.page-project__content {
+    position: relative;
+
+    width: 100%;
+
+    white-space: nowrap;
+
+    & > * {
+        box-sizing: border-box;
+        display: inline-block;
+        vertical-align: bottom;
+    }
+}
+
+.page-project__arrow {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.page-project__description-container {
+    width: size(6, 24);
+
+    white-space: normal;
+}
+
+.page-project__description, .page-project__title {
+    width: size(5, 6);
+}
+
+.page-project__title {
+    margin-bottom: 9px;
+
+    font-family: $medium;
+    font-size: rem(14px);
+    line-height: rem(22px);
+    text-transform: uppercase;
+}
+
+.page-project__date {
+    font-size: rem(8px);
+    line-height: rem(8px);
+    text-transform: uppercase;
+}
+
+.page-project__video-wrapper {
+    position: relative;
+
+    width: size(18, 24);
+    max-height: calc(100vh - 108px - 100px);
+    height: 100%;
+
+    //TO REMOVE
+    height: 66vh;
+
+    background-color: $black;
+}
+
+@include mq-extra-narrow {
+    .page-project__container {
+        padding-top: 20px;
+    }
+}

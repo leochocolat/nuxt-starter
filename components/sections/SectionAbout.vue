@@ -4,9 +4,9 @@
           <div class="section-about__content">
               <div class="section-about__introduction">
                 <span class="tiny-word section-about__introduction-title">({{ title }})</span>
-                <p class="paragraph section-about__paragraph">
+                <div class="paragraph rich-text section-about__paragraph">
                   <RichTextRenderer :document="description" />
-                </p>
+                </div>
               </div>
               <ul class="section-about__socials">
                   <li class="section-about__socials-item">
@@ -37,6 +37,9 @@
 import RichTextRenderer from 'contentful-rich-text-vue-renderer';
 
 export default {
+  components: {
+    RichTextRenderer
+  },
   props: {
     title: {
       type: String,
@@ -58,9 +61,6 @@ export default {
       type: String,
       required: false
     },
-  },
-  components: {
-    RichTextRenderer
   },
   computed: {
 

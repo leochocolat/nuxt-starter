@@ -16,7 +16,7 @@
                     </div>
                 </div
                 ><div class="page-project__video-wrapper">
-                    <img class="page-project__video" src="https://i.picsum.photos/id/670/1920/1080.jpg" alt="">
+                    <img class="page-project__video js-poster" :src="project.fields.videoPoster.fields.file.url" alt="">
                 </div>
             </div>
             <FooterProject :project="project.fields" />
@@ -51,6 +51,9 @@ export default {
 
     },
     mounted() {
+        document.body.classList.add('is-ready');
+        this.$el.querySelector('.js-poster').classList.add('is-active');
+
         let scrollModule = new ScrollModule({
         container: document.querySelector('.js-scroll-container'),
         content: document.querySelector('.js-scroll-content'),
@@ -58,6 +61,8 @@ export default {
         smoothValue: 0.1
         });
         scrollModule.start();
+
+        // console.log(project.fields.videoPoster);
     },
     asyncData ({ env, params }) {
         return Promise.all([
@@ -66,9 +71,9 @@ export default {
             order: 'sys.createdAt'
         }),
         ]).then(([projects]) => {
-        return {
-            project: projects.items[params.id],
-        }
+            return {
+                project: projects.items[params.id],
+            }
         }).catch(console.error)
     },
     validate ({ params }) {

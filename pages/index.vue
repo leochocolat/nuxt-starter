@@ -41,6 +41,8 @@ export default {
 
   },
   mounted() {
+    document.body.classList.add('is-ready');
+
     let scrollModule = new ScrollModule({
       container: document.querySelector('.js-scroll-container'),
       content: document.querySelector('.js-scroll-content'),

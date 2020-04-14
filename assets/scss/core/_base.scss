@@ -12,6 +12,13 @@ body {
     }
 
     font-family: $regular;
+
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+
+    &.is-ready {
+        opacity: 1;
+    }
 }
 
 .js-scroll-content {

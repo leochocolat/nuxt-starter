@@ -25,6 +25,8 @@ class ResizeManager extends EventDispatcher {
     _getViewportSize() {
         this._viewportWidth = Math.min(window.innerWidth || 0);
         this._viewportHeight = Math.min(window.innerHeight || 0);
+
+        document.documentElement.style.setProperty('--vh', `${this._viewportHeight * 0.01}px`);
     }
 
     _getDocumentSize() {

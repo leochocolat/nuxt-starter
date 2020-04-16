@@ -1,4 +1,5 @@
 import bindAll from '../utils/bindAll';
+import DeviceUtils from '../utils/DeviceUtils';
 
 import ScrollManager from '../managers/ScrollManager';
 import ScrollTriggerManager from '../managers/ScrollTriggerManager';
@@ -14,7 +15,8 @@ class ScrollModule {
             '_readyStateChangeHandler',
             '_resizeHandler',
             '_resizeEndHandler',
-            '_callHandler'
+            '_callHandler',
+            '_tickHandler'
         );
 
         this.container = options.container;
@@ -83,6 +85,8 @@ class ScrollModule {
     }
 
     _setStyleProps() {
+        if (DeviceUtils.isTouch()) return;
+
         document.querySelector('html').classList.add('hasSmoothScroll');
         
         this.content.style.willChange = 'transform';
@@ -102,6 +106,8 @@ class ScrollModule {
     }
 
     _setOffset() {
+        if (DeviceUtils.isTouch()) return;
+
         const position = ScrollManager.getPosition();
         const y = this._offsetY + - position.y;
 
@@ -132,6 +138,8 @@ class ScrollModule {
         document.addEventListener('readystatechange', this._readyStateChangeHandler);
         Emitter.on('RESIZE', this._resizeHandler);
         Emitter.on('RESIZE:END', this._resizeEndHandler);
+
+        TweenLite.ticker.addEventListener('tick', this._tickHandler);
     }
 
     _removeEventListeners() {
@@ -142,6 +150,7 @@ class ScrollModule {
         ScrollTriggerManager.removeEventListeners();
 
         document.removeEventListener('readystatechange', this._readyStateChangeHandler);
+        TweenLite.ticker.removeEventListener('tick', this._tickHandler);
         // TODO: REMOVE RESIZE FROM EMITTER
     }
 
@@ -167,6 +176,10 @@ class ScrollModule {
 
     _resizeEndHandler() {
         this._resize();
+    }
+
+    _tickHandler() {
+        this.update();
     }
 }
 

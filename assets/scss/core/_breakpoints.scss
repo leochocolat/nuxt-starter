@@ -1,3 +1,4 @@
+$bp-little: 320px;
 $bp-narrow: 480px;
 $bp-regular: 768px;
 $bp-wide: 1440px;
@@ -6,6 +7,12 @@ $bp-wide: 1440px;
 /**
  * User MediaQueries
  */
+@mixin mq-extra-little {
+   @media (max-width: $bp-little) {
+       @content;
+   }
+}
+
 @mixin mq-extra-narrow {
    @media (max-width: $bp-narrow) {
        @content;

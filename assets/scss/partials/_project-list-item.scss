@@ -25,7 +25,7 @@
 }
 
 .project-list-item__content {
-    padding-top: 20px;
+    padding-top: 30px;
 
     & > * {
         vertical-align: top;
@@ -55,25 +55,33 @@
 
 .project-list-item__project-link {
     position: absolute;
-    top: 0;
+    top: 33px;
     right: 0;
 
-    width: 100px;
-    height: 100%;
+    width: 7px;
+    height: 7px;
+
+    font-size: 0;
+
+    background-color: transparent;
+    border-radius: 50%;
+
+    transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out;;
 
     svg {
         position: absolute;
-        top: 23px;
+        left: 0;
+        top: 0;
+        bottom: 0;
         right: 0;
 
-
         width: 7px;
-        height: auto;
+        height: 7px;
 
-        transform: scaleY(-1);
+        margin: auto;
 
         path {
-            fill: $white
+            fill: $white;
         }
     }
 }
@@ -105,7 +113,7 @@
         padding-right: 0;
 
         font-size: rem(54px);
-        line-height: rem(48px);
+        line-height: rem(45px);
         letter-spacing: -2.7px;
     }
 
@@ -116,7 +124,7 @@
 
 @include mq-extra-narrow {
     .project-list-item {
-        height: 100px;
+        height: 70px;
     }
 
     .project-list-item__project-name {
@@ -133,5 +141,31 @@
         font-size: rem(8px);
         line-height: rem(10px);
         text-transform: uppercase;
+    }
+
+    .project-list-item__content {
+        padding-top: 15px;
+    }
+
+    .project-list-item__project-link {
+        top: auto;
+        
+        svg {    
+            width: 6px;
+            height: auto;
+        }
+    }    
+}
+
+@include mq-extra-little {
+    .project-list-item__project-name {
+        font-size: rem(25px);
+        line-height: rem(23px);
+        letter-spacing: -1px;;
+    }
+
+    .project-list-item__project-infos {    
+        font-size: rem(8px);
+        line-height: rem(10px);
     }
 }

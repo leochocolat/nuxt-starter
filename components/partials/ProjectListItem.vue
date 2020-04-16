@@ -1,8 +1,8 @@
 <template>
     <div class="project-list-item">
-        <a :href="`/projects/${index}`" class="project-list-item__link">
+        <nuxt-link :to="`/projects/${index}`" class="project-list-item__link">
             {{ project.fields.name }}
-        </a>
+        </nuxt-link>
         <div class="project-list-item__content">
             <h3 class="project-list-item__project-name">
                 {{ project.fields.name }}
@@ -23,27 +23,27 @@
 <script>
 
 export default {
-  props: {
-      project: {
-          type: Object,
-          required: true
-      },
-      index: {
-          type: Number,
-          required: true
-      }
-  },
-  components: {
+    props: {
+        project: {
+            type: Object,
+            required: true
+        },
+        index: {
+            type: Number,
+            required: true
+        }
+    },
+    components: {
 
-  },
-  methods: {
-    setup: () => {
-      
+    },
+    methods: {
+        setup: () => {
+        
+        }
+    },
+    mounted() {
+        this.setup();
     }
-  },
-  mounted() {
-    this.setup();
-  }
 }
 </script>
 

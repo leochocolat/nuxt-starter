@@ -24,15 +24,20 @@
             </span>
             <span class="header-home__row header-home__row--right-3">
                 <span class="header-home__word header-home__date header-home__word--right-3">
-                    2017
-                    <span class="tiny-word header-home__tiny-word header-home__tiny-word--bottom">+2018</span>
-                </span>
-            </span>
-            <span class="header-home__row header-home__row--right-4">
-                <span class="header-home__word header-home__word--right-3">
                     2019
+                    <span class="tiny-word header-home__tiny-word header-home__tiny-word--bottom">+2018</span>
+                    <span class="header-home__second-date">
+                        2020
+                    </span>
                 </span>
+                <!-- <span class="header-home__word header-home__word--right-3">
+                </span> -->
             </span>
+            <!-- <span class="header-home__row header-home__row--right-4">
+                <span class="header-home__word header-home__word--right-3">
+                    2020
+                </span>
+            </span> -->
         </h1>
     </div>
     <Footer :name="'header'" :position="'bottom'" :first="data.fields.currentPosition" :second="data.fields.previousPosition" :third="data.fields.message" />
@@ -43,24 +48,24 @@
 import Footer from '~/components/partials/Footer';
 
 export default {
-  props: {
-      data: {
-          type: Object,
-          required: false
-      }
-  },
-  components: {
-      Footer
-  },
-  computed: {
+    props: {
+        data: {
+            type: Object,
+            required: false
+        }
+    },
+    components: {
+        Footer
+    },
+    computed: {
 
-  },
-  methods: {
+    },
+    methods: {
 
-  },
-  mounted() {
-      console.log(this.data.fields.currentPosition)
-  },
+    },
+    mounted() {
+        
+    },
 }
 </script>
 

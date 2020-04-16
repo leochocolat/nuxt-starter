@@ -61,11 +61,11 @@
     }
 
     &:nth-child(3) {
+        display: none;
         width: size(8, 24);
     }
 
     &:nth-child(4) {
-        display: none;
         width: size(6, 24);
     }
 }
@@ -109,11 +109,11 @@
         }
     
         &:nth-child(3) {
+            display: inline-block;
             width: size(8, 24);
         }
     
         &:nth-child(4) {
-            display: inline-block;
             width: size(6, 24);
         }
     }
@@ -134,11 +134,11 @@
         }
     
         &:nth-child(3) {
-            width: size(3, 8);
+            display: none;
         }
     
         &:nth-child(4) {
-            display: none;
+            width: size(3, 8);
         }
     }
 

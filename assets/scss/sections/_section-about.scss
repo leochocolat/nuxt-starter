@@ -97,4 +97,20 @@
         line-height: rem(20px);
         text-transform: uppercase;
     }
+
+    .section-about__paragraph {
+        max-width: size(7, 8);
+    }
+
+    .section-about__socials-link {    
+        svg {
+            position: absolute;
+            left: calc(100% + 5px);
+            top: 3px;
+            bottom: auto;
+    
+            width: 5px;
+            height: auto;
+        }
+    }
 }

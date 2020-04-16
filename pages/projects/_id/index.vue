@@ -1,6 +1,6 @@
 <template>
-  <div class="main page-project js-scroll-container">
-    <div class="js-scroll-content main__content">
+  <div class="main page-project">
+    <div class="main__content">
         <div class="container page-project__container">
             <div class="page-project__content">
                 <Arrow class="page-project__arrow" :direction="`left`" :color="`black`" :link="'/'" />
@@ -11,16 +11,20 @@
                             /{{ project.fields.date }}
                         </span>
                     </div>
-                    <div class="page-project__description paragraph paragraph--small">
+                    <div class="page-project__description paragraph paragraph--small rich-text">
                         <RichTextRenderer :document="project.fields.description" />
                     </div>
                 </div
                 ><div class="page-project__video-wrapper">
-                    <img class="page-project__video js-poster" :src="project.fields.videoPoster.fields.file.url" alt="">
+                    <img class="page-project__video js-poster" :src="project.fields.videoPoster.fields.file.url"
+                    :width="project.fields.videoPoster.fields.file.details.image.width"
+                    :height="project.fields.videoPoster.fields.file.details.image.height"
+                    alt="">
                 </div>
             </div>
             <FooterProject :project="project.fields" />
         </div>
+        <div class="transition-overlay js-transition-overlay"></div>
     </div>
   </div>
 </template>
@@ -33,7 +37,7 @@ import RichTextRenderer from 'contentful-rich-text-vue-renderer';
 import { createClient } from '~/plugins/contentful.js';
 const client = createClient();
 
-import ScrollModule from '~/assets/javascript/modules/ScrollModule';
+import { TimelineLite, Power4 } from 'gsap';
 
 export default {
     props: {
@@ -53,16 +57,6 @@ export default {
     mounted() {
         document.body.classList.add('is-ready');
         this.$el.querySelector('.js-poster').classList.add('is-active');
-
-        let scrollModule = new ScrollModule({
-        container: document.querySelector('.js-scroll-container'),
-        content: document.querySelector('.js-scroll-content'),
-        smooth: true,
-        smoothValue: 0.1
-        });
-        scrollModule.start();
-
-        // console.log(project.fields.videoPoster);
     },
     asyncData ({ env, params }) {
         return Promise.all([

@@ -1,6 +1,8 @@
 .page-home {
     position: relative;
 
+    background-color: $darkGrey;
+
     & * {
         @include custom-selection {
             background-color: $white;

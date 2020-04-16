@@ -28,27 +28,17 @@ import ScrollModule from '~/assets/javascript/modules/ScrollModule';
 import { TimelineLite, Power4 } from 'gsap';
 
 export default {
-  // transition: {
-  //   mode: 'out-in',
-  //   name: 'test',
-  //   css: false,
-  //   leave(el, done) {
-  //     const content = el.querySelector('.main__content');
-  //     const overlay = el.querySelector('.js-transition-overlay');
-      
-  //     const tl = new TimelineLite({
-  //       onComplete: () => {
-  //         done();
-  //       }
-  //     });
-
-  //     tl.to(content, 1.1, { y: -300, ease: Power4.easeInOut }, 0);
-  //     tl.to(overlay, 1, { y: 0, ease: Power4.easeInOut }, 0);
-  //   },
-  //   enter() {
-  //     console.log('enter');
-  //   }
-  // },
+  transition: {
+    mode: 'out-in',
+    name: 'test',
+    leave(el, done) {
+      const content = el.querySelector('.main__content');
+      const overlay = el.querySelector('.js-transition-overlay');
+      const tl = new TimelineLite({ onComplete: () => done()});
+      tl.to(content, 1.1, { y: -300, ease: Power4.easeInOut }, 0);
+      tl.to(overlay, 1, { y: 0, ease: Power4.easeInOut }, 0);
+    },
+  },
   props: {
 
   },

@@ -14,59 +14,57 @@
 </template>
 
 <script>
-import HeaderHome from '~/components/headers/HeaderHome';
-import SectionProjects from '~/components/sections/SectionProjects';
-import SectionAbout from '~/components/sections/SectionAbout';
-import Footer from '~/components/partials/Footer';
-import LoadingScreen from '~/components/partials/LoadingScreen';
-
+//vendors
+import { mapGetters } from 'vuex';
 import { createClient } from '~/plugins/contentful.js';
 const client = createClient();
 
-import ScrollModule from '~/assets/javascript/modules/ScrollModule';
+//mixins
+import page from '~/assets/javascript/mixins/page';
 
-import { TimelineLite, Power4 } from 'gsap';
+//modules
+import ScrollModule from '~/assets/javascript/modules/ScrollModule';
+import { transitionOutHome, transitionInHome } from '~/assets/javascript/transitions/transition';
 
 export default {
+  mixins: [ page ],
+  components: {
+    HeaderHome: () => import('~/components/headers/HeaderHome'),
+    SectionProjects: () => import('~/components/sections/SectionProjects'),
+    SectionAbout: () => import('~/components/sections/SectionAbout'),
+    Footer: () => import('~/components/partials/Footer'),
+    LoadingScreen: () => import('~/components/partials/LoadingScreen'),
+  },
+  methods: {
+    setup() {
+      document.body.classList.add('is-ready');
+      this.setupSmoothScroll();
+    },
+    setupSmoothScroll() {
+      let scrollModule = new ScrollModule({
+        container: document.querySelector('.js-scroll-container'),
+        content: document.querySelector('.js-scroll-content'),
+        smooth: true,
+        smoothValue: 0.1
+      });
+      scrollModule.start();
+
+      scrollModule.scrollTo(this.scrollPosition.y);
+      console.log(this.scrollPosition.y);
+
+      this.$store.dispatch('projects/setProjects', this.projects);
+    }
+  },
+  computed: {
+    ...mapGetters({
+      scrollPosition: ['scroll/position'],
+    }),
+  },
   transition: {
     mode: 'out-in',
     name: 'test',
-    leave(el, done) {
-      const content = el.querySelector('.main__content');
-      const overlay = el.querySelector('.js-transition-overlay');
-      const tl = new TimelineLite({ onComplete: () => done()});
-      tl.to(content, 1.1, { y: -300, ease: Power4.easeInOut }, 0);
-      tl.to(overlay, 1, { y: 0, ease: Power4.easeInOut }, 0);
-    },
-  },
-  props: {
-
-  },
-  components: {
-    HeaderHome,
-    SectionProjects,
-    SectionAbout,
-    Footer,
-    LoadingScreen
-  },
-  computed: {
-
-  },
-  methods: {
-
-  },
-  mounted() {
-    document.body.classList.add('is-ready');
-
-    let scrollModule = new ScrollModule({
-      container: document.querySelector('.js-scroll-container'),
-      content: document.querySelector('.js-scroll-content'),
-      smooth: true,
-      smoothValue: 0.1
-    });
-    scrollModule.start();
-
-    this.$store.dispatch('projects/setProjects', this.projects);
+    leave(el, done) { transitionOutHome(el, done) },
+    enter(el, done) { transitionInHome(el, done) }
   },
   asyncData () {
     return Promise.all([

@@ -30,43 +30,34 @@
 </template>
 
 <script>
-import Arrow from '~/components/partials/Arrow';
-import FooterProject from '~/components/partials/FooterProject';
+//vendors
 import RichTextRenderer from 'contentful-rich-text-vue-renderer';
-
 import { createClient } from '~/plugins/contentful.js';
 const client = createClient();
 
-import { TimelineLite, Power4 } from 'gsap';
+//mixins
+import page from '~/assets/javascript/mixins/page';
+
+//module
+import { transitionOutProject, transitionInProject } from '~/assets/javascript/transitions/transition';
 
 export default {
-    transition: {
-        name: 'test1',
-        leave(el, done) {
-            const content = el.querySelector('.main__content');
-            const overlay = el.querySelector('.js-transition-overlay');
-            const tl = new TimelineLite({ onComplete: () => done()});
-            tl.to(content, 1.1, { y: 300, ease: Power4.easeInOut }, 0);
-            tl.to(overlay, 1, { y: 0, ease: Power4.easeInOut }, 0);
-        },
-    },
-    props: {
-
-    },
     components: {
         RichTextRenderer,
-        FooterProject,
-        Arrow
-    },
-    computed: {
-
+        Arrow: () => import('~/components/partials/Arrow'),
+        FooterProject: () => import('~/components/partials/FooterProject'),
     },
     methods: {
-
+        setup() {
+            document.body.classList.add('is-ready');
+            this.$el.querySelector('.js-poster').classList.add('is-active');
+        }
     },
-    mounted() {
-        document.body.classList.add('is-ready');
-        this.$el.querySelector('.js-poster').classList.add('is-active');
+    transition: {
+        mode: 'out-in',
+        name: 'test1',
+        leave(el, done) { transitionOutProject(el, done) },
+        enter(el, done) { transitionInProject(el, done) },
     },
     asyncData ({ env, params }) {
         return Promise.all([

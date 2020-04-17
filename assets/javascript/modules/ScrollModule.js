@@ -1,9 +1,9 @@
 import bindAll from '../utils/bindAll';
 import DeviceUtils from '../utils/DeviceUtils';
 
+import Emitter from '../events/Emitter';
 import ScrollManager from '../managers/ScrollManager';
 import ScrollTriggerManager from '../managers/ScrollTriggerManager';
-import Emitter from '../events/Emitter';
 
 import { TweenLite } from 'gsap';
 
@@ -54,6 +54,10 @@ class ScrollModule {
     disable() {
         this._removeEventListeners();
         this._removeStyleProps();
+    }
+
+    scrollTo(value) {
+        ScrollManager.scrollTo(value);
     }
 
     /**
@@ -160,6 +164,7 @@ class ScrollModule {
 
     _scrollEndHandler(e) {
         this._setOffset();
+        Emitter.emit('SCROLL:END', e);
     }
 
     _callHandler(e) {

@@ -1,12 +1,3 @@
-body {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-
-    &.is-active {
-        opacity: 1;
-    }
-}
-
 .transition-overlay {
     position: fixed;
     left: 0;
@@ -17,7 +8,7 @@ body {
 }
 
 .main__content {
-    transition: opacity .5s;
+    transition: opacity 1s ease-in-out;
 }
 
 .page-home {
@@ -36,14 +27,14 @@ body {
     }
 }
 
-// .test-enter {
-//     .main__content {
-//         opacity: 0;
-//     }
-// }
+.test-enter {
+    .main__content {
+        opacity: 0;
+    }
+}
 
-// .test1-enter {
-//     .main__content {
-//         opacity: 0;
-//     }
-// }
+.test1-enter {
+    .main__content {
+        opacity: 0;
+    }
+}

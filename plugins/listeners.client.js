@@ -1,6 +1,7 @@
 import DeviceUtils from '~/assets/javascript/utils/DeviceUtils';
 import Emitter from '~/assets/javascript/events/Emitter';
 import ResizeManager from '~/assets/javascript/managers/ResizeManager';
+import ScrollManager from '../assets/javascript/managers/ScrollManager';
 
 export default ({ store }) => {
     function setup() {
@@ -19,6 +20,7 @@ export default ({ store }) => {
     function setupEventListener () {
         ResizeManager.addEventListener('resize', resizeHandler);
         ResizeManager.addEventListener('resize:end', resizeEndHandler);
+        ScrollManager.addEventListener('scroll:end', scrollEndHandler)
     }
 
     function resizeHandler(e) {
@@ -32,6 +34,13 @@ export default ({ store }) => {
             width: e.viewportWidth,
             height: e.viewportWidth,
             breakpoint: ''
+        });
+    }
+
+    function scrollEndHandler(e) {
+        store.dispatch('scroll/setPosition', {
+            x: e.x,
+            y: e.y,
         });
     }
 

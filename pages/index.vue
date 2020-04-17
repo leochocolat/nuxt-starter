@@ -27,6 +27,7 @@ import ScrollModule from '~/assets/javascript/modules/ScrollModule';
 import { transitionOutHome, transitionInHome } from '~/assets/javascript/transitions/transition';
 
 export default {
+  data () { return { name: 'home' } },
   mixins: [ page ],
   components: {
     HeaderHome: () => import('~/components/headers/HeaderHome'),
@@ -39,6 +40,7 @@ export default {
     setup() {
       document.body.classList.add('is-ready');
       this.setupSmoothScroll();
+      this.setupStore();
     },
     setupSmoothScroll() {
       let scrollModule = new ScrollModule({
@@ -48,12 +50,12 @@ export default {
         smoothValue: 0.1
       });
       scrollModule.start();
-
       scrollModule.scrollTo(this.scrollPosition.y);
-      console.log(this.scrollPosition.y);
-
+    },
+    setupStore() {
       this.$store.dispatch('projects/setProjects', this.projects);
-    }
+      this.$store.dispatch('page/setCurrent', this.name);
+    },
   },
   computed: {
     ...mapGetters({

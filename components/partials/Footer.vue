@@ -6,23 +6,23 @@
         </div>
         <ul class="footer-list">
             <li class="footer-list-item"></li>
-            <li class="footer-list-item">
+            <li class="footer-list-item js-footer-item">
                 <div class="footer-text footer-text rich-text">
                     <RichTextRenderer :document="first" />
                 </div>
-                <svg class="footer-list-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><style>.cls-1{fill:#fff;fill-rule:evenodd;}</style></defs><title>arrow-right</title><g><g><polygon class="cls-1" points="0 288 390.4 288 211.2 467.2 256 512 512 256 256 0 211.2 44.8 390.4 224 0 224 0 288"/></g></g></svg>
+                <svg class="footer-list-arrow js-footer-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><style>.cls-1{fill:#fff;fill-rule:evenodd;}</style></defs><title>arrow-right</title><g><g><polygon class="cls-1" points="0 288 390.4 288 211.2 467.2 256 512 512 256 256 0 211.2 44.8 390.4 224 0 224 0 288"/></g></g></svg>
             </li>
-            <li class="footer-list-item">
+            <li class="footer-list-item js-footer-item">
                 <div class="footer-text footer-text rich-text">
                     <RichTextRenderer :document="second" />
                 </div>
-                <svg class="footer-list-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><style>.cls-1{fill:#fff;fill-rule:evenodd;}</style></defs><title>arrow-right</title><g><g><polygon class="cls-1" points="0 288 390.4 288 211.2 467.2 256 512 512 256 256 0 211.2 44.8 390.4 224 0 224 0 288"/></g></g></svg>
+                <svg class="footer-list-arrow js-footer-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><style>.cls-1{fill:#fff;fill-rule:evenodd;}</style></defs><title>arrow-right</title><g><g><polygon class="cls-1" points="0 288 390.4 288 211.2 467.2 256 512 512 256 256 0 211.2 44.8 390.4 224 0 224 0 288"/></g></g></svg>
             </li>
-            <li class="footer-list-item">
+            <li class="footer-list-item js-footer-item">
                 <div class="footer-text footer-text rich-text">
                     <RichTextRenderer :document="third" />
                 </div>
-                <svg class="footer-list-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><style>.cls-1{fill:#fff;fill-rule:evenodd;}</style></defs><title>arrow-right</title><g><g><polygon class="cls-1" points="0 288 390.4 288 211.2 467.2 256 512 512 256 256 0 211.2 44.8 390.4 224 0 224 0 288"/></g></g></svg>
+                <svg class="footer-list-arrow js-footer-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><style>.cls-1{fill:#fff;fill-rule:evenodd;}</style></defs><title>arrow-right</title><g><g><polygon class="cls-1" points="0 288 390.4 288 211.2 467.2 256 512 512 256 256 0 211.2 44.8 390.4 224 0 224 0 288"/></g></g></svg>
             </li>
         </ul>
         <span class="footer-line"></span>
@@ -30,14 +30,12 @@
 </template>
 
 <script>
-import Arrow from '~/components/partials/Arrow';
+//vendor
 import RichTextRenderer from 'contentful-rich-text-vue-renderer';
 
+import FooterHoverComponent from '~/assets/javascript/components/FooterHoverComponent';
+
 export default {
-    components: {
-        RichTextRenderer,
-        Arrow
-    },    
     props: {
         name: {
             type: String,
@@ -60,14 +58,18 @@ export default {
             required: false
         }
     },
-    computed: {
-
-    },
+    components: {
+        Arrow: () =>  import('~/components/partials/Arrow'),
+        RichTextRenderer,
+    }, 
     methods: {
 
     },
-    mounted() {
+    computed: {
         
+    },
+    mounted() {
+        new FooterHoverComponent({ el: this.$el });
     },
 }
 </script>

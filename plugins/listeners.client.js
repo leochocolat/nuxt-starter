@@ -1,3 +1,4 @@
+import MediaQueriesUtils from '~/assets/javascript/utils/MediaQueriesUtils';
 import DeviceUtils from '~/assets/javascript/utils/DeviceUtils';
 import Emitter from '~/assets/javascript/events/Emitter';
 import ResizeManager from '~/assets/javascript/managers/ResizeManager';
@@ -11,7 +12,7 @@ export default ({ store }) => {
         store.dispatch('device/setSize', {
             width: window.innerWidth,
             height: window.innerHeight,
-            breakpoint: ''
+            breakpoint: MediaQueriesUtils.getBreakpoint({ width: window.innerWidth, height: window.innerHeight }),
         });
 
         setupEventListener();
@@ -32,8 +33,8 @@ export default ({ store }) => {
 
         store.dispatch('device/setSize', {
             width: e.viewportWidth,
-            height: e.viewportWidth,
-            breakpoint: ''
+            height: e.viewportHeight,
+            breakpoint: MediaQueriesUtils.getBreakpoint({ width: e.viewportWidth, height: e.viewportHeight }),
         });
     }
 

@@ -45,10 +45,13 @@ class ScrollManager extends EventDispatcher {
     enable() {
         if (document.body.classList.contains('isScrollEnable')) return;
         document.body.classList.add('isScrollEnable');
+        document.querySelector('html').classList.add('isScrollEnable');
     }
 
     disable() {
+        if (!document.body.classList.contains('isScrollEnable')) return;
         document.body.classList.remove('isScrollEnable');
+        document.querySelector('html').classList.remove('isScrollEnable');
     }
 
     enableSmoothScroll() {

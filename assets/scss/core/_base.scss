@@ -1,7 +1,9 @@
-body {
+html, body {
     position: relative;
 
     overflow-y: hidden;
+    overflow-x: hidden;
+
     overscroll-behavior-y: none;
     overscroll-behavior-block: none;
     
@@ -10,6 +12,7 @@ body {
     }
     
     color: $white;
+    background-color: $darkGrey;
     font-family: $regular;
 }
 

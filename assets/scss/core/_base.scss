@@ -1,14 +1,15 @@
 body {
-    color: $white;
+    position: relative;
 
-    // overflow-y: hidden;
+    overflow-y: hidden;
     overscroll-behavior-y: none;
     overscroll-behavior-block: none;
-
+    
     &.isScrollEnable {
         overflow-y: scroll;
     }
-
+    
+    color: $white;
     font-family: $regular;
 }
 

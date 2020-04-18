@@ -23,6 +23,7 @@ const client = createClient();
 import page from '~/assets/javascript/mixins/page';
 
 //modules
+import ScrollManager from '~/assets/javascript/managers/ScrollManager';
 import ScrollModule from '~/assets/javascript/modules/ScrollModule';
 import { transitionOutHome, transitionInHome } from '~/assets/javascript/transitions/transition';
 
@@ -51,6 +52,7 @@ export default {
       });
       scrollModule.start();
       scrollModule.scrollTo(this.scrollPosition.y);
+      ScrollManager.enable();
     },
     setupStore() {
       this.$store.dispatch('projects/setProjects', this.projects);

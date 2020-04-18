@@ -43,6 +43,13 @@ export default {
   modules: [
   ],
   /*
+  ** Server
+  */
+  server: {
+    port: 3000, // par défaut: 3000
+    host: '0.0.0.0' // par défaut: localhost
+  },
+  /*
   ** Build configuration
   */
   build: {

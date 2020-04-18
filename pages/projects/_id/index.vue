@@ -12,14 +12,19 @@
                         </span>
                     </div>
                     <div class="page-project__description paragraph paragraph--small rich-text">
-                        <RichTextRenderer :document="project.fields.description" />
+                        <RichTextRenderer :document="getDescription()" />
                     </div>
                 </div
                 ><div class="page-project__video-wrapper">
-                    <img class="page-project__video js-poster" :src="project.fields.videoPoster.fields.file.url"
-                    :width="project.fields.videoPoster.fields.file.details.image.width"
-                    :height="project.fields.videoPoster.fields.file.details.image.height"
-                    alt="">
+                    <img class="page-project__video js-poster"
+                        :src="project.fields.images[2].fields.file.url"
+                        :srcset="`${project.fields.images[0].fields.file.url} 2000w,
+                                ${project.fields.images[1].fields.file.url}  1000w,
+                                ${project.fields.images[2].fields.file.url}  500w`"
+                        :width="project.fields.images[1].fields.file.details.image.width"
+                        :height="project.fields.images[1].fields.file.details.image.height"
+                        :alt="project.fields.images[0].fields.title"
+                    >
                 </div>
             </div>
             <FooterProject :project="project.fields" />
@@ -31,6 +36,7 @@
 
 <script>
 //vendors
+import { mapGetters } from 'vuex';
 import RichTextRenderer from 'contentful-rich-text-vue-renderer';
 import { createClient } from '~/plugins/contentful.js';
 const client = createClient();
@@ -51,7 +57,22 @@ export default {
         setup() {
             document.body.classList.add('is-ready');
             this.$el.querySelector('.js-poster').classList.add('is-active');
+        },
+        getDescription() {
+            let description = '';
+            if (this.device.breakpoint === 'extra-narrow') {
+                description = this.project.fields.descriptionMobile;
+            } else {
+                description = this.project.fields.description;
+            }
+
+            return description;
         }
+    },
+    computed: {
+        ...mapGetters({
+            device: ['device/viewportSize'],
+        }),
     },
     transition: {
         mode: 'out-in',

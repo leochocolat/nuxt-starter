@@ -16,15 +16,19 @@
                     </div>
                 </div
                 ><div class="page-project__video-wrapper">
-                    <img class="page-project__video js-poster"
-                        :src="project.fields.images[2].fields.file.url"
-                        :srcset="`${project.fields.images[0].fields.file.url} 2000w,
-                                ${project.fields.images[1].fields.file.url}  1000w,
-                                ${project.fields.images[2].fields.file.url}  500w`"
-                        :width="project.fields.images[1].fields.file.details.image.width"
-                        :height="project.fields.images[1].fields.file.details.image.height"
-                        :alt="project.fields.images[0].fields.title"
-                    >
+                    <picture class="page-project__video js-poster">
+                        <source type="image/webp"
+                            :srcset="`${project.fields.images[0].fields.file.url} 2000w,
+                                    ${project.fields.images[1].fields.file.url}  1000w,
+                                    ${project.fields.images[2].fields.file.url}  500w`"
+                        >
+                        <img
+                            :src="project.fields.images[3].fields.file.url"
+                            :width="project.fields.images[1].fields.file.details.image.width"
+                            :height="project.fields.images[1].fields.file.details.image.height"
+                            :alt="project.fields.images[0].fields.title"
+                        >
+                    </picture>
                 </div>
             </div>
             <FooterProject :project="project.fields" />
@@ -55,8 +59,15 @@ export default {
     },
     methods: {
         setup() {
-            document.body.classList.add('is-ready');
-            this.$el.querySelector('.js-poster').classList.add('is-active');
+            this.setupSession();
+        },
+        setupSession() {
+            if (!this.session) {
+                this.startLoading();
+                this.$store.dispatch('session/setSession', Date.now());
+            } else {
+                this.removeLoading();
+            }
         },
         getDescription() {
             let description = '';
@@ -72,6 +83,7 @@ export default {
     computed: {
         ...mapGetters({
             device: ['device/viewportSize'],
+            session: ['session/session'],
         }),
     },
     transition: {

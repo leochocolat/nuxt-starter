@@ -18,7 +18,7 @@ class LoaderComponent {
     }
 
     start() {
-
+        
     }
 
     transitionOut() {
@@ -27,7 +27,7 @@ class LoaderComponent {
     }
 
     remove() {
-        this.ui.loader.remove();
+        this.ui.loader.style.display = 'none';
         ScrollManager.enable();
     } 
 
@@ -40,7 +40,7 @@ class LoaderComponent {
     }
 
     _transitionendHandler() {
-        this.remove();
+        this.ui.loader.style.display = 'none';
     }
 }
 

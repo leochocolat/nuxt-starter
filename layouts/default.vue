@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <ThreeCanvas /> -->
     <nuxt />
     <Grid />
   </div>
@@ -10,13 +9,10 @@
 </style>
 
 <script>
-// import ThreeCanvas from '~/components/ThreeCanvas';
-import Grid from '~/components/Grid';
-
 export default {
   components: {
-    Grid
-    // ThreeCanvas
+    Grid: () => import('~/components/Grid'),
+    ThreeCanvas: () => import('~/components/ThreeCanvas'),
   },
   mounted() {
     

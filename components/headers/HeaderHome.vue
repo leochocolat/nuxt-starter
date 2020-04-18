@@ -2,9 +2,6 @@
   <header class="header-home">
     <div class="container header-home__container">
         <h1 class="heading header-home__heading">
-            <!-- <span class="header-home__row header-home__row--1">
-                <span class="header-home__word header-home__word--0">Loading</span> 
-            </span> -->
             <span class="header-home__row header-home__row--1">
                 <span class="header-home__word header-home__word--0">Léo Mouraire</span> 
             </span>
@@ -30,14 +27,7 @@
                         2020
                     </span>
                 </span>
-                <!-- <span class="header-home__word header-home__word--right-3">
-                </span> -->
             </span>
-            <!-- <span class="header-home__row header-home__row--right-4">
-                <span class="header-home__word header-home__word--right-3">
-                    2020
-                </span>
-            </span> -->
         </h1>
     </div>
     <Footer :name="'header'" :position="'bottom'" :first="data.fields.currentPosition" :second="data.fields.previousPosition" :third="data.fields.message" />

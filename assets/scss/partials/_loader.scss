@@ -1,0 +1,34 @@
+.loader {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background-color: $darkGrey;
+
+    transition: opacity 1s ease-in-out;
+
+    &.transition-out {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+.loader__container {
+    position: relative;
+
+    padding-top: 40px;
+}
+
+.loader__heading {
+    overflow: hidden;
+
+    span {
+        display: inline-block;
+
+        will-change: transform;
+        // transform: translateY(100%);
+    }
+}

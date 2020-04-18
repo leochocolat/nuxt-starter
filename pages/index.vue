@@ -8,8 +8,8 @@
         <Footer :name="'home'" :position="'top'" :first="home.fields.footerCredits" :second="home.fields.footerMessage" :third="home.fields.footerDesignCredits"  />
       </div>
     </div>
-    <!-- <LoadingScreen /> -->
     <div class="transition-overlay js-transition-overlay"></div>
+    <Loader />
   </div>
 </template>
 
@@ -23,9 +23,9 @@ const client = createClient();
 import page from '~/assets/javascript/mixins/page';
 
 //modules
-import ScrollManager from '~/assets/javascript/managers/ScrollManager';
 import ScrollModule from '~/assets/javascript/modules/ScrollModule';
 import { transitionOutHome, transitionInHome } from '~/assets/javascript/transitions/transition';
+import LoaderComponent from '~/assets/javascript/components/LoaderComponent';
 
 export default {
   data () { return { name: 'home' } },
@@ -35,13 +35,26 @@ export default {
     SectionProjects: () => import('~/components/sections/SectionProjects'),
     SectionAbout: () => import('~/components/sections/SectionAbout'),
     Footer: () => import('~/components/partials/Footer'),
-    LoadingScreen: () => import('~/components/partials/LoadingScreen'),
+    Loader: () => import('~/components/partials/Loader'),
   },
   methods: {
     setup() {
+      this.setupLoading();
+      this.setupSession();
       document.body.classList.add('is-ready');
       this.setupSmoothScroll();
       this.setupStore();
+    },
+    setupLoading() {
+      this.loader = new LoaderComponent({ el: this.$el });
+    },
+    setupSession() {
+      if (!this.session) {
+        this.startLoading();
+        this.$store.dispatch('session/setSession', Date.now());
+      } else {
+        this.removeLoading();
+      }
     },
     setupSmoothScroll() {
       let scrollModule = new ScrollModule({
@@ -52,16 +65,22 @@ export default {
       });
       scrollModule.start();
       scrollModule.scrollTo(this.scrollPosition.y);
-      ScrollManager.enable();
     },
     setupStore() {
       this.$store.dispatch('projects/setProjects', this.projects);
       this.$store.dispatch('page/setCurrent', this.name);
     },
+    startLoading() {
+      this.loader.transitionOut();
+    },
+    removeLoading() {
+      this.loader.remove();
+    }
   },
   computed: {
     ...mapGetters({
       scrollPosition: ['scroll/position'],
+      session: ['session/session'],
     }),
   },
   transition: {

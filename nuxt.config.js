@@ -65,6 +65,10 @@ export default {
       }),
     ],
     extend (config, ctx) {
+      config.module.rules.push({
+        test: /\.(glsl|vs|fs)$/,
+        loader: 'raw-loader'
+      })
     }
   },
   env: {

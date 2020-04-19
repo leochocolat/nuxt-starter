@@ -19,6 +19,7 @@
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
     "postprocessing": "^6.13.3",
+    "raw-loader": "^4.0.1",
     "sass-loader": "^8.0.2",
     "three": "^0.114.0",
     "underscore": "^1.9.2"

@@ -1,14 +1,9 @@
 import { TweenLite, Power3 } from 'gsap';
 import bindAll from '../utils/bindAll';
 
-import { EffectComposer, EffectPass, RenderPass } from "postprocessing";
-
-// import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
-// import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
-// import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
-
-const DRAGDISTANCE = 500;
-const DURATION = 1.5;
+import { EffectComposer, RenderPass, ShaderPass } from "postprocessing";
+import vertex from '../shaders/afterImage/vertex.glsl';
+import fragment from '../shaders/afterImage/fragment.glsl';
 
 class ThreeScene {
     constructor(el) {
@@ -25,24 +20,31 @@ class ThreeScene {
     }
 
     _setup() {
+        this._setupDeltaTime();
         this._setupThree();
-        // this._createCylinder();
+        this._setupLights();
+        this._createCylinder();
         this._resize();
         this._setupEventListeners();
+    }
+
+    _setupDeltaTime() {
+        this._dateNow = Date.now()
+        this._lastTime = this._dateNow;
+        this._deltaTime = 16;
     }
 
     _resize() {
         this._width = window.innerWidth;
         this._height = window.innerHeight;
 
+        this._uniforms.iResolution.value.set(this._width, this._height, 1);
         this._renderer.setSize(this._width, this._height);
         this._renderer.setPixelRatio(window.devicePixelRatio);
+        this._composer.setSize(this._width, this._height);
 
         this._camera.aspect = this._width/this._height;
         this._camera.updateProjectionMatrix();
-
-        // this._composer = new EffectComposer(this._renderer);
-        // console.log(EffectComposer);
     }
 
     _setupThree() {
@@ -52,14 +54,40 @@ class ThreeScene {
             canvas: this.canvas,
             alpha: true
         });
-        
+
+        this._uniforms = {
+            tDiffuse: { value: new THREE.Uniform(null) },
+            iChannel1: { value: new THREE.Uniform(null) },
+            opacity: { value: 1 },
+            u_delta_time: { value: 0 },
+            iResolution: { value: new THREE.Vector3() },
+        }
+
+        this._shaderMaterial = new THREE.ShaderMaterial({
+            uniforms: this._uniforms,
+            vertexShader: vertex,
+            fragmentShader: fragment
+        });
+
         this._renderer.setSize(window.innerWidth,window.innerHeight);
         this._renderer.setPixelRatio(window.devicePixelRatio);
+        this._uniforms.iResolution.value.set(window.innerWidth,window.innerHeight, 1);
+        
+        this._composer = new EffectComposer(this._renderer);
+        this._composer.addPass(new RenderPass(this._scene, this._camera));        
+        this._shaderPass = new ShaderPass(this._shaderMaterial, 'tDiffuse');
+        this._composer.addPass(this._shaderPass);
+    }
+
+    _setupLights() {
+        this._light = new THREE.DirectionalLight(0xffffff, 1);
+        this._light.position.z = 10;
+        this._scene.add(this._light);
     }
 
     _createCylinder() {
-        let cylinderGeometry = new THREE.CylinderGeometry(5, 5, 50, 32);
-        let cylinderMaterial = new THREE.MeshBasicMaterial({ color: 0xE31543 });
+        let cylinderGeometry = new THREE.CylinderGeometry(3, 3, 40, 32);
+        let cylinderMaterial = new THREE.MeshLambertMaterial({ color: 0xE31543 });
         this._cylinderMesh = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
         this._cylinderMesh.position.z = -30;
         this._cylinderMesh.rotation.z = Math.PI/2;
@@ -67,8 +95,18 @@ class ThreeScene {
         this._scene.add(this._cylinderMesh);
     }
 
+    _updateDeltaTime() {
+        this._dateNow = Date.now();
+        this._deltaTime = this._dateNow - this._lastTime;
+        this._uniforms.u_delta_time.value = this._deltaTime;
+        this._lastTime = this._dateNow;
+    }
+
     _tick() {
-        this._renderer.render(this._scene, this._camera);
+        this._updateDeltaTime();
+        this._cylinderMesh.rotation.z += 0.01;
+        
+        this._composer.render();
     }
 
     _setupEventListeners() {

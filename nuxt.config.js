@@ -49,7 +49,7 @@ export default {
   ** Server
   */
   server: {
-    port: 8000, // par défaut: 3000
+    port: 3000, // par défaut: 3000
     host: '0.0.0.0' // par défaut: localhost
   },
   /*

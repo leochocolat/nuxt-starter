@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ThreeScene from '~/assets/javascript/components/ThreeScene';
+import ThreeCanvasComponent from '~/assets/javascript/components/ThreeCanvasComponent';
 
 export default {
   props: {
@@ -14,7 +14,7 @@ export default {
   },
   methods: {
       setup() {
-        this.threeScene = new ThreeScene(this.$el);
+        this.threeScene = new ThreeCanvasComponent({ el: this.$el });
       }
   },
   mounted() {

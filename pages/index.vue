@@ -27,21 +27,23 @@ import ScrollModule from '~/assets/javascript/modules/ScrollModule';
 import { transitionOutHome, transitionInHome } from '~/assets/javascript/transitions/transition';
 import LoaderComponent from '~/assets/javascript/components/LoaderComponent';
 
+//components
+import Loader from '~/components/partials/Loader';
+
 export default {
   data () { return { name: 'home' } },
   mixins: [ page ],
   components: {
+    Loader,
     HeaderHome: () => import('~/components/headers/HeaderHome'),
     SectionProjects: () => import('~/components/sections/SectionProjects'),
     SectionAbout: () => import('~/components/sections/SectionAbout'),
     Footer: () => import('~/components/partials/Footer'),
-    Loader: () => import('~/components/partials/Loader'),
   },
   methods: {
     setup() {
       this.setupLoading();
       this.setupSession();
-      document.body.classList.add('is-ready');
       this.setupSmoothScroll();
       this.setupStore();
     },

@@ -1,4 +1,7 @@
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
+
 const config = require('./.contentful.json');
+const webpack = require('webpack');
 
 export default {
   mode: 'universal',
@@ -56,6 +59,11 @@ export default {
     /*
     ** You can extend webpack config here
     */
+    plugins: [
+      new webpack.ProvidePlugin({
+        THREE: 'three',
+      }),
+    ],
     extend (config, ctx) {
     }
   },

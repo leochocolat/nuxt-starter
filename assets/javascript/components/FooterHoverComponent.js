@@ -85,7 +85,7 @@ class FooterHoverComponent {
         const arrow = this.ui.items[index].querySelector('.js-footer-arrow');
         if (!arrow) return;
 
-        TweenLite.to(arrow, 0.5, { y: 0 });
+        // TweenLite.to(arrow, 0.5, { y: 0 });
     }
 
     _resizeHandler() {
@@ -97,8 +97,7 @@ class FooterHoverComponent {
     }
 
     _scrollEndHandler() {
-        // this._scrollPosition.y = ScrollManager.getPosition().y;
-        // this._setupItemPositions();
+        
     }
 }
 

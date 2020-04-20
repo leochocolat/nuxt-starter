@@ -23,6 +23,10 @@ class ThreeCanvasComponent {
         this._setup();
     }
 
+    destroy() {
+        this._removeEventListeners();
+    }
+
     _setup() {
         this._setupDeltaTime();
         this._resize();
@@ -74,6 +78,12 @@ class ThreeCanvasComponent {
         window.addEventListener('resize', this._resizeHandler);
         TweenLite.ticker.addEventListener('tick', this._tickHandler);
         ScrollManager.addEventListener('scroll', this._scrollHandler);
+    }
+
+    _removeEventListeners() {
+        window.removeEventListener('resize', this._resizeHandler);
+        TweenLite.ticker.removeEventListener('tick', this._tickHandler);
+        ScrollManager.removeEventListener('scroll', this._scrollHandler);
     }
 
     _tickHandler() {

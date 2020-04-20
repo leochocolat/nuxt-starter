@@ -1,11 +1,17 @@
-uniform float opacity;
+uniform vec3 iResolution;
+uniform float iTime;
+uniform float iTimeDelta;
+uniform float iFrame;
 
-uniform sampler2D u_texture;
+uniform float u_texture;
 
 varying vec2 vUv;
 
+void mainImage(out vec4 fragColor, in vec2 fragCoord)
+{    
+	fragColor = texture2D(u_texture, vUv);
+}
+
 void main() {
-	vec4 texel = texture2D(u_texture, vUv);
-	// gl_FragColor = vec4(1., 1., 0., 1.);
-	gl_FragColor = texel;
+	mainImage(gl_FragColor, gl_FragCoord.xy);
 }

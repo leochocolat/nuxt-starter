@@ -1,7 +1,7 @@
 <template>
   <div>
     <ThreeCanvas />
-    <!-- <nuxt /> -->
+    <nuxt />
     <Grid />
   </div>
 </template>

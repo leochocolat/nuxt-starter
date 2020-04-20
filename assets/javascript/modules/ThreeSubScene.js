@@ -47,7 +47,9 @@ class ThreeSubScene {
         this._camera.position.set(0, 0, PESPECTIVE);
         
         this._scene = new THREE.Scene();
-        this._scene.background = new THREE.Color(0x000000);
+        // this._scene.background = new THREE.Color(0x1d1b1c);
+        // this._scene.background = new THREE.Color(0x000000);
+        this._scene.background = new THREE.Color(0x181617);
     }
 
     _createLight() {

@@ -19,6 +19,9 @@ export default {
   },
   mounted() {
     this.setup()
+  },
+  beforeDestroy() {
+    this.threeScene.destroy()
   }
 }
 </script>

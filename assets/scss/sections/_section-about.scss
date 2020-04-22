@@ -22,6 +22,33 @@
     display: inline-block;
 }
 
+.section-about__paragraph {
+    .line {
+        display: inline-block;
+        transform: translateY(30px);
+    }
+
+    .line-container {
+        position: relative;
+
+        display: inline-block;
+        overflow: hidden;
+    }
+
+    &.isInView {
+        .line-container {
+            @for $i from 1 to 24 {
+                &--#{$i} {
+                    .line {
+                        transform: translateY(0);
+                        transition: transform 1.5s $Power3Out #{$i * 0.1}s;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .section-about__introduction-title {
     position: absolute;
     left: 0;

@@ -1,5 +1,3 @@
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
-
 const config = require('./.contentful.json');
 const webpack = require('webpack');
 
@@ -50,7 +48,7 @@ export default {
   */
   server: {
     port: 3000, // par défaut: 3000
-    host: '0.0.0.0' // par défaut: localhost
+    host: 'localhost' // par défaut: localhost
   },
   /*
   ** Build configuration

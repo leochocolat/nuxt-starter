@@ -1,6 +1,9 @@
 import { TimelineLite, Power4 } from 'gsap';
+import Emitter from '../events/Emitter';
 
 function transitionOutHome(el, done) {
+    Emitter.emit('TRANSITION:OUT', { pageName: 'home', el: el });
+
     const content = el.querySelector('.main__content');
     const overlay = el.querySelector('.js-transition-overlay');
     
@@ -10,6 +13,8 @@ function transitionOutHome(el, done) {
 }
 
 function transitionOutProject(el, done) {
+    Emitter.emit('TRANSITION:OUT', { pageName: 'project', el: el });
+
     const content = el.querySelector('.main__content');
     const overlay = el.querySelector('.js-transition-overlay');
     
@@ -19,11 +24,11 @@ function transitionOutProject(el, done) {
 }
 
 function transitionInHome(el, done) {
-    console.log('enter home');
+    Emitter.emit('TRANSITION:IN', { pageName: 'home', el: el });
 }
 
 function transitionInProject(el, done) {
-    console.log('enter project');
+    Emitter.emit('TRANSITION:IN', { pageName: 'project', el: el });
 }
 
 export {

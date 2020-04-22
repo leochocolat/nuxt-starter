@@ -1,6 +1,6 @@
 <template>
     <div class="project-list-item">
-        <nuxt-link :to="`/projects/${index}`" class="project-list-item__link">
+        <nuxt-link :to="`/projects/${index}`" class="project-list-item__link js-link">
             {{ project.fields.name }}
         </nuxt-link>
         <div class="project-list-item__content">
@@ -37,8 +37,13 @@ export default {
 
     },
     methods: {
-        setup: () => {
-        
+        setup() {
+            this.setupEventListeners();
+        },
+        setupEventListeners() {
+            this.$el.querySelector('.js-link').addEventListener('click', () => {
+                this.$el.classList.add('is-active');
+            });
         }
     },
     mounted() {

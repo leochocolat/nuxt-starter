@@ -1,6 +1,5 @@
 const PESPECTIVE = 800;
 
-
 class ThreeSubScene {
     constructor(options) {
         this.width = options.width;

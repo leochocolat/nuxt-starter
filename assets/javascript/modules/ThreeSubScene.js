@@ -49,7 +49,7 @@ class ThreeSubScene {
         this._scene = new THREE.Scene();
         // this._scene.background = new THREE.Color(0x1d1b1c);
         // this._scene.background = new THREE.Color(0x000000);
-        this._scene.background = new THREE.Color(0x181617);
+        // this._scene.background = new THREE.Color(0x181617);
     }
 
     _createLight() {
@@ -67,7 +67,7 @@ class ThreeSubScene {
         this._tube.position.z = 10;
         this._tube.rotation.z = Math.PI/2;
 
-        this._scene.add(this._tube);
+        // this._scene.add(this._tube);
     }
 }
 

@@ -45,7 +45,6 @@ class ScrollManager extends EventDispatcher {
     enable() {
         if (document.body.classList.contains('isScrollEnable')) return;
         document.body.classList.add('isScrollEnable');
-        console.log('enable scroll', document.querySelector('html'));
         document.querySelector('html').classList.add('isScrollEnable');
     }
 

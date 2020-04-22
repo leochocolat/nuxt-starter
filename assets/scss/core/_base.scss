@@ -8,7 +8,7 @@ html, body {
     overscroll-behavior-block: none;
     
     &.isScrollEnable {
-        overflow-y: scroll;
+        overflow-y: auto;
     }
     
     color: $white;

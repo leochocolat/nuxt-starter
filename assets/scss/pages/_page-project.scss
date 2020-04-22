@@ -75,8 +75,8 @@
     position: relative;
 
     width: size(18, 24);
-    max-height: calc(100vh - 108px - 100px);
-    height: 100%;
+    height: getVideoHeightFromWidth(18, 24, 80px, 0.58);
+
     overflow: hidden;
 
     background-color: $black;
@@ -85,10 +85,18 @@
 }
 
 .page-project__video, img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+
+    margin: auto;
+
     display: block;
 
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 @include mq-narrow {
@@ -181,6 +189,7 @@
 
     .page-project__video-wrapper {
         width: 100%;
+        height: getVideoHeightFromWidth(24, 24, 0px, 0.58);
     }
 
     .page-project__description-container {

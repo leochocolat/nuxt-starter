@@ -47,6 +47,7 @@ class ThreeScene {
         this._renderer.setSize(this.width, this.height);
         this._renderer.setPixelRatio(window.devicePixelRatio);
 
+        this._camera.fov = (180 * (2 * Math.atan(this.height / 2 / PESPECTIVE))) / Math.PI;
         this._camera.aspect = this.width/this.height;
         this._camera.updateProjectionMatrix();
 

@@ -4,7 +4,7 @@ import bindAll from '../utils/bindAll';
 import DeviceUtils from '../utils/DeviceUtils';
 import lerp from '../utils/lerp';
 
-import { TweenLite } from 'gsap';
+import { gsap } from 'gsap';
 
 const SMOOTH = 0.15;
 const THROTTLE_VALUE = 300;
@@ -65,7 +65,7 @@ class ScrollManager extends EventDispatcher {
 
     disableSmoothScroll() {
         this._isSmoothScrollEnabled = false;
-        TweenLite.ticker.removeEventListener('tick', this._tickHandler);
+        gsap.ticker.remove(this._tickHandler);
     }
 
     setSmoothValue(value) {
@@ -163,7 +163,7 @@ class ScrollManager extends EventDispatcher {
         this._smoothScrollPosition.x = this._scrollPosition.x;
         this._smoothScrollPosition.y = this._scrollPosition.y;
 
-        TweenLite.ticker.addEventListener('tick', this._tickHandler);
+        gsap.ticker.add(this._tickHandler);
     }
 
     _tick() {

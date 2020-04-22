@@ -5,7 +5,7 @@ import Emitter from '../events/Emitter';
 import ScrollManager from '../managers/ScrollManager';
 import ScrollTriggerManager from '../managers/ScrollTriggerManager';
 
-import { TweenLite } from 'gsap';
+import { TweenLite, gsap } from 'gsap';
 
 class ScrollModule {
     constructor(options) {
@@ -143,7 +143,7 @@ class ScrollModule {
         Emitter.on('RESIZE', this._resizeHandler);
         Emitter.on('RESIZE:END', this._resizeEndHandler);
 
-        TweenLite.ticker.addEventListener('tick', this._tickHandler);
+        gsap.ticker.add(this._tickHandler);
     }
 
     _removeEventListeners() {
@@ -154,8 +154,8 @@ class ScrollModule {
         ScrollTriggerManager.removeEventListeners();
 
         document.removeEventListener('readystatechange', this._readyStateChangeHandler);
-        TweenLite.ticker.removeEventListener('tick', this._tickHandler);
-        // TODO: REMOVE RESIZE FROM EMITTER
+
+        gsap.ticker.remove(this._tickHandler);
     }
 
     _scrollHandler(e) {

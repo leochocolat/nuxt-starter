@@ -27,14 +27,45 @@
     }
 }
 
-.test-enter {
+
+//home
+.home-enter-active {
+    
+}
+
+.home-enter {
     .main__content {
         opacity: 0;
     }
 }
 
-.test1-enter {
+.home-enter-to {
+    
+}
+
+.home-leave {
+    
+}
+
+.home-leave-active {
+    
+}
+
+//project
+.project-enter {
     .main__content {
         opacity: 0;
     }
+}
+
+.project-leave {
+    
+}
+
+.project-enter-active {
+    
+}
+
+.project-leave-active {
+
 }

@@ -203,3 +203,25 @@
         top: rem(41px);
     }
 }
+
+//animations
+
+// .animated__parent-line {
+//     display: inline-block;
+//     overflow: hidden;
+// }
+
+// .animated__inner-line {
+//     display: inline-block;
+//     transform: translateY(100%);
+
+//     transition: transform 1.5s $Power4InOut;
+// }
+
+// .header-home {
+//     &.isInView {
+//         .animated__inner-line {
+//             transform: translateY(0%);
+//         }
+//     }
+// }

@@ -4,7 +4,7 @@
           <div class="section-about__content">
               <div class="section-about__introduction">
                 <span class="tiny-word section-about__introduction-title">({{ title }})</span>
-                <div class="paragraph rich-text section-about__paragraph">
+                <div class="paragraph rich-text section-about__paragraph js-scroll-paragraph" data-scroll>
                   <RichTextRenderer :document="description" />
                 </div>
               </div
@@ -35,6 +35,7 @@
 
 <script>
 import RichTextRenderer from 'contentful-rich-text-vue-renderer';
+import SplitText from '~/assets/javascript/vendors/SplitText.js';
 
 export default {
   components: {
@@ -66,10 +67,35 @@ export default {
 
   },
   methods: {
+    setup() {
+      // this.setupScrollParagraph();
+    },
+    setupScrollParagraph() {
+      let scrollParagraph = this.$el.querySelector('.js-scroll-paragraph');
+      let originalContent = scrollParagraph.innerHTML;
+      let splits = new SplitText(scrollParagraph, {
+          type: 'lines',
+          linesClass: 'line-container line-container--++',
+      });
 
+      let lines = [];
+
+      for (let i = 0; i < splits.lines.length; i++) {
+        const element = splits.lines[i];
+        let line = new SplitText(element, {
+          type: 'lines',
+            linesClass: 'line line--++',
+        }).lines;
+        lines.push(line[0]);
+      }
+
+      lines[lines.length - 1].addEventListener('transitionend', () => {
+        scrollParagraph.innerHTML = splits.originalHTML;
+      });
+    }
   },
   mounted() {
-    
+    this.setup();
   },
 }
 </script>

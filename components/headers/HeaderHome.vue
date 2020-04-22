@@ -1,30 +1,34 @@
 <template>
-  <header class="header-home">
+  <header class="header-home js-header-home" data-scroll>
     <div class="container header-home__container">
         <h1 class="heading header-home__heading">
             <span class="header-home__row header-home__row--1">
-                <span class="header-home__word header-home__word--0">Léo Mouraire</span> 
+                <span class="header-home__word header-home__word--0 animated__parent-line">
+                    <span class="animated__inner-line">Leo Mouraire</span>
+                </span> 
             </span>
-            <span class="header-home__row header-home__row--2">
-                Creative
+            <span class="header-home__row header-home__row--2 animated__parent-line">
+                <span class="animated__inner-line">Creative</span>
             </span>
             <span class="header-home__row header-home__row--3">
-                <span class="header-home__word header-home__word--5">
-                    Dev.
+                <span class="header-home__word header-home__word--5 animated__parent-line">
+                    <span class="animated__inner-line">Dev.</span>
                     <span class="tiny-word header-home__tiny-word header-home__tiny-word--top">Front</span>
                 </span>
             </span>
             <span class="header-home__row header-home__row--right-2">
-                <span class="header-home__word header-home__word--right-0">
-                    Projects
+                <span class="header-home__word header-home__word--right-0 animated__parent-line">
+                    <span class="animated__inner-line">Projects</span>
                 </span>
             </span>
             <span class="header-home__row header-home__row--right-3">
                 <span class="header-home__word header-home__date header-home__word--right-3">
-                    2019
+                    <span class="animated__parent-line">
+                        <span class="animated__inner-line">2019</span>
+                    </span>
                     <span class="tiny-word header-home__tiny-word header-home__tiny-word--bottom">+2018</span>
-                    <span class="header-home__second-date">
-                        2020
+                    <span class="header-home__second-date animated__parent-line">
+                        <span class="animated__inner-line">2020</span>
                     </span>
                 </span>
             </span>

@@ -21,3 +21,14 @@ $col-xs-amount: 8;
 :root{
     --vh: 1vh;
 }
+
+/**
+ * Easing
+ */
+$Power4InOut: cubic-bezier(.79,0,.21,1);
+$Power3InOut: cubic-bezier(.67,.01,.3,.99);
+
+// $Power4Out: cubic-bezier(.79,0,.21,1);
+$Power3Out: cubic-bezier(.16,.69,.21,.98);
+
+$Power3In: cubic-bezier(.46,.03,.84,.28);

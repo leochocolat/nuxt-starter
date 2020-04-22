@@ -88,7 +88,7 @@ export default {
     },
     transition: {
         mode: 'out-in',
-        name: 'test1',
+        name: 'project',
         leave(el, done) { transitionOutProject(el, done) },
         enter(el, done) { transitionInProject(el, done) },
     },

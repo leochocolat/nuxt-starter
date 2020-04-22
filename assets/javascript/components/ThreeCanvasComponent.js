@@ -3,7 +3,7 @@ import ScrollManager from '../managers/ScrollManager';
 
 import ThreeScene from '../modules/ThreeScene';
 
-import { TweenLite } from 'gsap';
+import { gsap } from 'gsap';
 
 class ThreeCanvasComponent {
     constructor(options) {
@@ -76,13 +76,13 @@ class ThreeCanvasComponent {
 
     _setupEventListeners() {
         window.addEventListener('resize', this._resizeHandler);
-        TweenLite.ticker.addEventListener('tick', this._tickHandler);
+        gsap.ticker.add(this._tickHandler);
         ScrollManager.addEventListener('scroll', this._scrollHandler);
     }
 
     _removeEventListeners() {
         window.removeEventListener('resize', this._resizeHandler);
-        TweenLite.ticker.removeEventListener('tick', this._tickHandler);
+        gsap.ticker.remove(this._tickHandler);
         ScrollManager.removeEventListener('scroll', this._scrollHandler);
     }
 

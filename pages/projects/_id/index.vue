@@ -5,12 +5,12 @@
             <div class="page-project__content">
                 <Arrow class="page-project__arrow" :direction="`left`" :color="`black`" :link="'/'" />
                 <div class="page-project__description-container">
-                    <div class="page-project__title">
+                    <h1 class="page-project__title">
                         {{ project.fields.name }}
                         <span class="page-project__date">
                             /{{ project.fields.date }}
                         </span>
-                    </div>
+                    </h1>
                     <div class="page-project__description paragraph paragraph--small rich-text">
                         <RichTextRenderer :document="getDescription()" />
                     </div>

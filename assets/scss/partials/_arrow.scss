@@ -53,8 +53,14 @@
 
     width: 100%;
     height: 100%;
+
+    color: transparent;
+
+    overflow: hidden;
     
     cursor: pointer;
+
+    @include unselectable();
 }
 
 @include mq-extra-narrow {

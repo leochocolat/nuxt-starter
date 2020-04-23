@@ -65,14 +65,21 @@
 
 .section-about__socials-item {
     position: relative;
+
+    height: 20px;
 }
 
 .section-about__socials-link {
     position: relative;
 
+    display: inline-block;
+
+    height: 100%;
+    padding-right: 15px;
+
     svg {
         position: absolute;
-        left: calc(100% + 5px);
+        left: calc(100% - 10px);
         top: 0;
         bottom: 0;
 
@@ -132,11 +139,11 @@
     .section-about__socials-link {    
         svg {
             position: absolute;
-            left: calc(100% + 5px);
-            top: 3px;
+            left: calc(100% - 10px);
+            top: 6px;
             bottom: auto;
     
-            width: 5px;
+            width: 6px;
             height: auto;
         }
     }

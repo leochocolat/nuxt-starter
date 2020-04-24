@@ -3,7 +3,9 @@
 }
 
 .section-projects__container {
+    position: relative;
     padding-top: 200px;
+    box-sizing: border-box;
 }
 
 .section-projects__list {

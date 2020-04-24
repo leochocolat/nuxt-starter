@@ -10,11 +10,9 @@
 </style>
 
 <script>
-import ThreeCanvas from '~/components/ThreeCanvas';
-
 export default {
   components: {
-    ThreeCanvas,
+    ThreeCanvas: () => import('~/components/ThreeCanvas'),
     Grid: () => import('~/components/Grid'),
   },
   mounted() {

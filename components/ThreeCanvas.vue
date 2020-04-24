@@ -32,8 +32,4 @@ export default {
         left: 0;
         top: 0;
     }
-
-    .fragment, .vertex {
-        display: none;
-    }
 </style>

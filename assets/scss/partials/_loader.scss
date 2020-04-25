@@ -27,6 +27,18 @@
         * {
             color: white;
         }
+
+        .arrow {
+            background-color: white;
+        }
+        
+        .cls-1 {
+            fill: $white
+        }
+
+        .footer-line {
+            background-color: white;
+        }
     }
 
     &--2 {
@@ -34,6 +46,18 @@
         
         * {
             color: $white;
+        }
+
+        .arrow {
+            background-color: $white;
+        }
+        
+        .cls-1 {
+            fill: white
+        }
+
+        .footer-line {
+            background-color: $white;
         }
     }
 }

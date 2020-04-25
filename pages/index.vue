@@ -80,7 +80,7 @@ export default {
       this.$store.dispatch('page/setCurrent', this.name);
     },
     startLoading() {
-      // this.loader.transitionOut();
+      this.loader.start();
     },
     removeLoading() {
       this.loader.remove();

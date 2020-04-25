@@ -30,12 +30,29 @@ class LoaderComponent {
     }
 
     remove() {
-        this.ui.loader.style.display = 'none';
+        TweenLite.set(this.ui.animatedLines, { y: 0 });
+        TweenLite.set(this.ui.animatedRows, { y: 0 });
+        TweenLite.set(this.ui.footerItems, { y: 0, autoAlpha: 1 });
+        TweenLite.set(this.ui.loader, { width: 0 });
+        TweenLite.set(this.ui.heading, { x: 0 });
+        TweenLite.set(this.ui.animatedRightLines, { x: 0 });
+        TweenLite.set(this.ui.animatedLines, { x: 0 });
+        TweenLite.set(this.ui.footerArrow, { y: 0, autoAlpha: 1 });
+        TweenLite.set(this.ui.animatedRows, { overflow: 'initial' });
+        TweenLite.set(this.ui.lineWrappers, { overflow: 'initial' });
+        TweenLite.set(this.ui.tinyWords, { opacity: 1 });
+        TweenLite.set(this.ui.loader, { display: 'none' })
         ScrollManager.enable();
     }
 
     start() {
-        this.timeline.play();
+        setTimeout(() => {
+            TweenLite.fromTo(this.uiMask2.footerLine, 2, { width: 0 }, { width: '100%', ease: Power3.easeOut });
+            TweenLite.staggerTo(this.uiMask2.animatedLines, 1.2, { y: 0, ease: Power4.easeOut }, 0.1);
+            TweenLite.staggerTo(this.uiMask1.animatedLines, 1.2, { y: 0, ease: Power4.easeOut }, 0.1);
+            TweenLite.staggerTo(this.ui.animatedLines, 1.2, { y: 0, ease: Power4.easeOut }, 0.1);
+            setTimeout(() => { this.timeline.play() }, 2000);
+        }, 100)
     }
 
     _setup() {
@@ -73,49 +90,44 @@ class LoaderComponent {
 
     _setupTimeline() {
         this.timeline = new TimelineLite({ paused: true, onComplete: this._onCompleteHandler });
-
-        //animate in words
-        this.timeline.staggerTo(this.uiMask2.animatedLines, 1.2, { y: 0, ease: Power4.easeOut }, 0.1, 0);
-        this.timeline.staggerTo(this.uiMask1.animatedLines, 1.2, { y: 0, ease: Power4.easeOut }, 0.1, 0);
-        this.timeline.staggerTo(this.ui.animatedLines, 1.2, { y: 0, ease: Power4.easeOut }, 0.1, 0);
         
         //animate out mask 2
-        this.timeline.to(this.ui.loaderMask2, 1.5, { height: 0, ease: Power4.easeInOut }, 1.2);
+        this.timeline.to(this.ui.loaderMask2, 1.5, { height: 0, ease: Power4.easeInOut }, 0);
         
         //animate rows
-        this.timeline.to(this.uiMask2.animatedRows, 1.5, { y: 0, ease: Power4.easeInOut }, 1.3);
-        this.timeline.to(this.uiMask1.animatedRows, 1.5, { y: 0, ease: Power4.easeInOut }, 1.3);
-        this.timeline.to(this.ui.animatedRows, 1.5, { y: 0, ease: Power4.easeInOut }, 1.3);
+        this.timeline.to(this.uiMask2.animatedRows, 1.5, { y: 0, ease: Power4.easeInOut }, 0.1);
+        this.timeline.to(this.uiMask1.animatedRows, 1.5, { y: 0, ease: Power4.easeInOut }, 0.1);
+        this.timeline.to(this.ui.animatedRows, 1.5, { y: 0, ease: Power4.easeInOut }, 0.1);
 
         //animate footer
-        this.timeline.fromTo(this.ui.footerItems, 1.5, { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ease: Power4.easeOut }, 1.7);
-        this.timeline.fromTo(this.uiMask1.footerItems, 1.5, { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ease: Power4.easeOut }, 1.7);
-        this.timeline.fromTo(this.uiMask2.footerItems, 1.5, { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ease: Power4.easeOut }, 1.7);
+        this.timeline.fromTo(this.ui.footerItems, 1.5, { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ease: Power4.easeOut }, 0.5);
+        this.timeline.fromTo(this.uiMask1.footerItems, 1.5, { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ease: Power4.easeOut }, 0.5);
+        this.timeline.fromTo(this.uiMask2.footerItems, 1.5, { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ease: Power4.easeOut }, 0.5);
 
         //animate from right
-        this.timeline.to(this.ui.loader, 2, { width: 0, ease: Power4.easeInOut }, 2.3);
+        this.timeline.to(this.ui.loader, 2, { width: 0, ease: Power4.easeInOut }, 1.1);
 
-        this.timeline.to(this.uiMask2.heading, 2, { x: 0, ease: Power4.easeInOut }, 2.5);
-        this.timeline.to(this.uiMask1.heading, 2, { x: 0, ease: Power4.easeInOut }, 2.5);
-        this.timeline.to(this.ui.heading, 2, { x: 0, ease: Power4.easeInOut }, 2.5);
+        this.timeline.to(this.uiMask2.heading, 2, { x: 0, ease: Power4.easeInOut }, 1.3);
+        this.timeline.to(this.uiMask1.heading, 2, { x: 0, ease: Power4.easeInOut }, 1.3);
+        this.timeline.to(this.ui.heading, 2, { x: 0, ease: Power4.easeInOut }, 1.3);
 
-        this.timeline.to(this.uiMask1.animatedRightLines, 2, { x: 0, ease: Power4.easeInOut }, 2.5);
-        this.timeline.to(this.uiMask2.animatedRightLines, 2, { x: 0, ease: Power4.easeInOut }, 2.5);
-        this.timeline.to(this.ui.animatedRightLines, 2, { x: 0, ease: Power4.easeInOut }, 2.5);
+        this.timeline.to(this.uiMask1.animatedRightLines, 2, { x: 0, ease: Power4.easeInOut }, 1.3);
+        this.timeline.to(this.uiMask2.animatedRightLines, 2, { x: 0, ease: Power4.easeInOut }, 1.3);
+        this.timeline.to(this.ui.animatedRightLines, 2, { x: 0, ease: Power4.easeInOut }, 1.3);
         
-        this.timeline.to(this.uiMask2.animatedLines, 2, { x: 0, ease: Power4.easeInOut }, 2.5);
-        this.timeline.to(this.uiMask1.animatedLines, 2, { x: 0, ease: Power4.easeInOut }, 2.5);
-        this.timeline.to(this.ui.animatedLines, 2, { x: 0, ease: Power4.easeInOut }, 2.5);
+        this.timeline.to(this.uiMask2.animatedLines, 2, { x: 0, ease: Power4.easeInOut }, 1.3);
+        this.timeline.to(this.uiMask1.animatedLines, 2, { x: 0, ease: Power4.easeInOut }, 1.3);
+        this.timeline.to(this.ui.animatedLines, 2, { x: 0, ease: Power4.easeInOut }, 1.3);
 
         //animate arrows footer
-        this.timeline.staggerFromTo(this.ui.footerArrow, 2, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ease: Power4.easeOut }, 0.2, 3.7);
-        this.timeline.staggerFromTo(this.uiMask1.footerArrow, 2, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ease: Power4.easeOut }, 0.2, 3.7);
-        this.timeline.staggerFromTo(this.uiMask2.footerArrow, 2, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ease: Power4.easeOut }, 0.2, 3.7);
+        this.timeline.staggerFromTo(this.ui.footerArrow, 2, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ease: Power4.easeOut }, 0.2, 2.5);
+        this.timeline.staggerFromTo(this.uiMask1.footerArrow, 2, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ease: Power4.easeOut }, 0.2, 2.5);
+        this.timeline.staggerFromTo(this.uiMask2.footerArrow, 2, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ease: Power4.easeOut }, 0.2, 2.5);
 
         //reset overflows and display tiny words
-        this.timeline.set(this.ui.animatedRows, { overflow: 'initial' }, 4);
-        this.timeline.set(this.ui.lineWrappers, { overflow: 'initial' }, 4);
-        this.timeline.staggerTo(this.ui.tinyWords, 1, { opacity: 1 }, 0.1, 4);
+        this.timeline.set(this.ui.animatedRows, { overflow: 'initial' }, 3.8);
+        this.timeline.set(this.ui.lineWrappers, { overflow: 'initial' }, 3.8);
+        this.timeline.staggerTo(this.ui.tinyWords, 1, { opacity: 1 }, 0.1, 3.8);
     }
 
     _bindAll() {
@@ -126,8 +138,7 @@ class LoaderComponent {
     }
 
     _setupEventListeners() {
-        TweenLite.fromTo(this.uiMask2.footerLine, 1.5, { width: 0 }, { width: '100%', ease: Power3.easeOut })
-        setTimeout(() => { this.start() }, 1500);
+
     }
 
     _onCompleteHandler() {

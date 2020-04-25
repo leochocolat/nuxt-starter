@@ -34,7 +34,7 @@
     }
 
     &--left {
-        transform: rotate(180deg);
+        transform: scaleX(-1);
     }
 
     &--black {
@@ -42,6 +42,12 @@
 
         .cls-1 {
             fill: $white
+        }
+    }
+
+    &:hover {
+        svg {
+            animation: arrow 0.8s $Power3InOut forwards;
         }
     }
 }
@@ -74,4 +80,23 @@
         }
     }
 
+}
+
+@keyframes arrow {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    51% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }

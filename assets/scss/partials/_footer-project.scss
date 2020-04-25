@@ -33,13 +33,22 @@
 .footer-project__list-button {
     position: relative;
 
+    display: inline-block;
+
+    box-sizing: border-box;
+    padding-top: 35px;
+    padding-bottom: 1px;
+
     color: $black;
+    cursor: pointer;
+
+    overflow: hidden;
 
     svg {
         width: 7px;
         height: 7px;
 
-        margin-bottom: 1px;
+        margin-bottom: 0px;
         margin-left: 1px;
         transform: scaleY(-1);
 
@@ -48,17 +57,38 @@
         }
     }
 
-    &:before {
+    &:before, &:after {
         content: '';
 
         position: absolute;
-        left: 0;
-        bottom: -1px;
 
         width: calc(100% - 10px);
         height: 0;
 
         border-bottom: 1px solid $black;
+    }
+
+    &:after {
+        right: 10px;
+        bottom: 0;
+    }
+
+    &:before {
+        left: 0;
+        bottom: 0;
+
+        width: 0;
+    }
+
+    &:hover {
+        &:after {
+            width: 0;
+            transition: width 0.5s $Power2In;
+        }
+        &:before {
+            width: calc(100% - 10px);
+            transition: width 0.5s $Power2Out 0.4s;
+        }
     }
 }
 
@@ -145,6 +175,8 @@
     }
 
     .footer-project__list-button {
+        display: initial;
+        
         svg {
             width: 5px;
             height: 5px;

@@ -94,6 +94,31 @@
             fill: $white
         }
     }
+
+    &:hover {
+        svg {
+            animation: arrow-socials 0.6s $Power3InOut forwards;
+        }
+    }
+}
+
+@keyframes arrow-socials {
+    0% {
+        transform: scaleY(-1) translate(0, 0);
+        opacity: 1;
+    }
+    50% {
+        transform: scaleY(-1) translate(50%, 50%);
+        opacity: 0;
+    }
+    51% {
+        transform: scaleY(-1) translate(-50%, -50%);
+        opacity: 0;
+    }
+    100% {
+        transform: scaleY(-1) translate(0, 0);
+        opacity: 1;
+    }
 }
 
 @include mq-regular {

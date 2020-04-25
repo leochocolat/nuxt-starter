@@ -25,18 +25,32 @@
     }
 }
 
-@include mq-narrow {
-    
-}
+@media (max-width: 1030px) {
+    .header-home {
+        .header-home__heading {
+            width: 100%;
+            transform: translateX(0);
+        }
 
-@include mq-regular {
-    
-}
-
-@media (min-width: $bp-regular + 1) and (max-width: 1030px) {
-    
+        .animated-line--5 {
+            transform: translateY(100%) translateX(0);
+        }
+    }
 }
 
 @include mq-extra-narrow {
+    .header-home__row--1 {
+        &.align-right {
+            left: 0;
+            right: auto;
+            display: inline-block;
+            width: auto;
+        }
+    } 
     
+    .header-home {
+        .animated-line-right {
+            transform: translateX(110%);
+        }
+    }
 }

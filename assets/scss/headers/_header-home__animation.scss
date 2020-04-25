@@ -1,0 +1,32 @@
+.header-home {
+
+}
+
+.header-home__heading {
+    width: 50%;
+    transform: translateX(50%);
+}
+
+.animated-row {
+    transform: translateY(300%);
+}
+
+.animated-line {
+    transform: translateY(100%);
+}
+
+@include mq-narrow {
+    
+}
+
+@include mq-regular {
+    
+}
+
+@media (min-width: $bp-regular + 1) and (max-width: 1030px) {
+    
+}
+
+@include mq-extra-narrow {
+    
+}

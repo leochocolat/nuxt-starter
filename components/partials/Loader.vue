@@ -1,15 +1,8 @@
 <template>
   <div class="loader js-loader">
-    <div class="container loader__container">
-        <!-- <div class="heading loader__heading js-heading">
-            <span class="js-char-stay">L</span
-            ><span class="js-char-stay">o</span
-            ><span class="js-char-out">a</span
-            ><span class="js-char-out">d</span
-            ><span class="js-char-out">i</span
-            ><span class="js-char-out">n</span
-            ><span class="js-char-out">g</span>
-        </div> -->
+    <div class="loader__mask loader__mask--1 js-loader-mask-1">
+    </div>
+    <div class="loader__mask loader__mask--2 js-loader-mask-2">
     </div>
   </div>
 </template>

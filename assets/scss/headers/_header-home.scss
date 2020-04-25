@@ -47,7 +47,8 @@
 
 .header-home__row {
     position: absolute;
-    width: 100%;
+    // width: 100%;
+    width: calc(100vw - 80px);
 
     &.align-left {
         left: 0;
@@ -72,6 +73,12 @@
             top: 0;
             position: absolute;
             left: size(5, 24);
+        }
+
+        .tiny-word {
+            position: absolute;
+            right: calc(100% + 2px);
+            top: 2px;
         }
     }
 }
@@ -103,7 +110,14 @@
 }
 
 .header-home__dates-item {
+    position: relative;
     display: block;
+
+    .tiny-word {
+        position: absolute;
+        right: calc(100% + 5px);
+        bottom: 6px;
+    }
 }
 
 @include mq-narrow {
@@ -125,6 +139,10 @@
 
     .header-home__dates {
         top: #{2 * rem(60px) + (2 * rem(60px))};
+
+        .tiny-word {
+            bottom: 5px;
+        }
     }
 }
 
@@ -147,6 +165,10 @@
 
     .header-home__dates {
         top: #{2 * rem(86px)};
+
+        .tiny-word {
+            bottom: 6px;
+        }
     }
 }
 
@@ -167,7 +189,12 @@
 }
 
 @include mq-extra-narrow {
+    .header-home__container {
+        padding-top: 20px;
+    }
+
     .header-home__row {
+        width: calc(100vw - 40px);
         height: rem(41px);
     }
 
@@ -188,6 +215,11 @@
         .animated-line {
             &--5 {
                 left: size(3, 8);
+            }
+
+            .tiny-word {
+                position: absolute;
+                top: 4px;
             }
         }
     }

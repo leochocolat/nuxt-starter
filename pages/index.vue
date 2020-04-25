@@ -29,13 +29,14 @@ import LoaderComponent from '~/assets/javascript/components/LoaderComponent';
 
 //components
 import Loader from '~/components/partials/Loader';
+import HeaderHome from '~/components/headers/HeaderHome';
 
 export default {
   data () { return { name: 'home' } },
   mixins: [ page ],
   components: {
     Loader,
-    HeaderHome: () => import('~/components/headers/HeaderHome'),
+    HeaderHome,
     SectionProjects: () => import('~/components/sections/SectionProjects'),
     SectionAbout: () => import('~/components/sections/SectionAbout'),
     Footer: () => import('~/components/partials/Footer'),
@@ -79,7 +80,7 @@ export default {
       this.$store.dispatch('page/setCurrent', this.name);
     },
     startLoading() {
-      this.loader.transitionOut();
+      // this.loader.transitionOut();
     },
     removeLoading() {
       this.loader.remove();

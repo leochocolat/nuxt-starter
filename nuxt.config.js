@@ -14,7 +14,12 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      {
+        hid: 'description',
+        name: 'description',
+        content: "I'm front end developper base in Paris. Currently studying at Gobelins Paris and working at Purée Maison. Looking for a new traineeship for my new degree at Gobelins!"
+      },
+      // { hid: 'og:image', property: 'og:image', content: '/ogImage.png' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

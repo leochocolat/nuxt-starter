@@ -21,7 +21,7 @@ class LoaderComponent {
             animatedRightLines: this.el.querySelectorAll('.js-animated-line-right'),
             animatedRows: this.el.querySelectorAll('.js-animated-row'),
             //footer header
-            footerArrow: this.el.querySelectorAll('.js-header-home .js-footer-arrow'),
+            footerArrow: this.el.querySelectorAll('.js-header-home .js-footer-button-arrow'),
             footerItems: this.el.querySelectorAll('.js-header-home .footer-list-item'),
         }
 
@@ -52,7 +52,8 @@ class LoaderComponent {
             TweenLite.staggerTo(this.uiMask1.animatedLines, 1.2, { y: 0, ease: Power4.easeOut }, 0.1);
             TweenLite.staggerTo(this.ui.animatedLines, 1.2, { y: 0, ease: Power4.easeOut }, 0.1);
             setTimeout(() => { this.timeline.play() }, 2000);
-        }, 100)
+            setTimeout(() => { ScrollManager.enable(); }, 4500);
+        }, 100);
     }
 
     _setup() {
@@ -73,7 +74,7 @@ class LoaderComponent {
             animatedRightLines: this.ui.loaderMask1.querySelectorAll('.js-animated-line-right'),
             animatedRows: this.ui.loaderMask1.querySelectorAll('.js-animated-row'),
             heading: this.ui.loaderMask1.querySelector('.js-heading'),
-            footerArrow: this.ui.loaderMask1.querySelectorAll('.js-header-home .js-footer-arrow'),
+            footerArrow: this.ui.loaderMask1.querySelectorAll('.js-header-home .js-footer-button-arrow'),
             footerItems: this.ui.loaderMask1.querySelectorAll('.js-header-home .footer-list-item'),
         };
 
@@ -83,7 +84,7 @@ class LoaderComponent {
             animatedRows: this.ui.loaderMask2.querySelectorAll('.js-animated-row'),
             heading: this.ui.loaderMask2.querySelector('.js-heading'),
             footerLine: this.ui.loaderMask2.querySelector('.js-footer-line'),
-            footerArrow: this.ui.loaderMask2.querySelectorAll('.js-header-home .js-footer-arrow'),
+            footerArrow: this.ui.loaderMask2.querySelectorAll('.js-header-home .js-footer-button-arrow'),
             footerItems: this.ui.loaderMask2.querySelectorAll('.js-header-home .footer-list-item'),
         };
     }

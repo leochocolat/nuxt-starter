@@ -30,17 +30,17 @@
             </span>
             <span class="header-home__dates">
                 <span class="header-home__dates-item">
-                    <span class="header-home__animated-line-wrapper">
+                    <span class="header-home__animated-line-wrapper js-animated-line-wrapper">
                         <span class="animated-line-right js-animated-line-right">
                             2019<span class="and-char">&</span>
-                            <span class="tiny-word">
+                            <span class="tiny-word js-tiny-word">
                                 Selected
                             </span>
                         </span>
                     </span>
                 </span>
                 <span class="header-home__dates-item">
-                    <span class="header-home__animated-line-wrapper">
+                    <span class="header-home__animated-line-wrapper js-animated-line-wrapper">
                         <span class="animated-line-right js-animated-line-right">
                             2020    
                         </span>

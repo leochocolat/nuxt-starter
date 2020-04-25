@@ -1,5 +1,7 @@
 .header-home {
-
+    .tiny-word {
+        opacity: 0;
+    }
 }
 
 .header-home__heading {
@@ -13,6 +15,14 @@
 
 .animated-line {
     transform: translateY(100%);
+}
+
+.animated-line--5 {
+    transform: translateY(100%) translateX(-100%);
+}
+
+.animated-line-right {
+    transform: translateX(104%);
 }
 
 @include mq-narrow {

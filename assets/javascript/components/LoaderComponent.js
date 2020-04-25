@@ -16,6 +16,7 @@ class LoaderComponent {
             header: this.el.querySelector('.js-header-home'),
             heading: this.el.querySelector('.js-heading'),
             animatedLines: this.el.querySelectorAll('.js-animated-line'),
+            animatedRightLines: this.el.querySelectorAll('.js-animated-line-right'),
             animatedRows: this.el.querySelectorAll('.js-animated-row'),
         }
 
@@ -47,12 +48,14 @@ class LoaderComponent {
 
         this.uiMask1 = {
             animatedLines: this.ui.loaderMask1.querySelectorAll('.js-animated-line'),
+            animatedRightLines: this.ui.loaderMask1.querySelectorAll('.js-animated-line-right'),
             animatedRows: this.ui.loaderMask1.querySelectorAll('.js-animated-row'),
             heading: this.ui.loaderMask1.querySelector('.js-heading'),
         };
 
         this.uiMask2 = {
             animatedLines: this.ui.loaderMask2.querySelectorAll('.js-animated-line'),
+            animatedRightLines: this.ui.loaderMask2.querySelectorAll('.js-animated-line-right'),
             animatedRows: this.ui.loaderMask2.querySelectorAll('.js-animated-row'),
             heading: this.ui.loaderMask2.querySelector('.js-heading'),
         };
@@ -61,9 +64,9 @@ class LoaderComponent {
     _setupTimeline() {
         this.timeline = new TimelineLite({ paused: true });
 
-        this.timeline.to(this.uiMask2.animatedLines, 1, { y: 0 }, 0);
-        this.timeline.to(this.uiMask1.animatedLines, 1, { y: 0 }, 0);
-        this.timeline.to(this.ui.animatedLines, 1, { y: 0 }, 0);
+        this.timeline.staggerTo(this.uiMask2.animatedLines, 1, { y: 0 }, 0.1, 0);
+        this.timeline.staggerTo(this.uiMask1.animatedLines, 1, { y: 0 }, 0.1, 0);
+        this.timeline.staggerTo(this.ui.animatedLines, 1, { y: 0 }, 0.1, 0);
         
         this.timeline.to(this.ui.loaderMask2, 1, { height: 0 }, 1);
 
@@ -76,6 +79,13 @@ class LoaderComponent {
         this.timeline.to(this.uiMask2.heading, 1, { x: 0 }, 2);
         this.timeline.to(this.uiMask1.heading, 1, { x: 0 }, 2);
         this.timeline.to(this.ui.heading, 1, { x: 0 }, 2);
+        this.timeline.to(this.uiMask1.animatedRightLines, 1, { x: 0 }, 2);
+        this.timeline.to(this.uiMask2.animatedRightLines, 1, { x: 0 }, 2);
+        this.timeline.to(this.ui.animatedRightLines, 1, { x: 0 }, 2);
+
+        this.timeline.to(this.uiMask2.animatedLines, 1, { x: 0 }, 2);
+        this.timeline.to(this.uiMask1.animatedLines, 1, { x: 0 }, 2);
+        this.timeline.to(this.ui.animatedLines, 1, { x: 0 }, 2);
     }
 
     _bindAll() {

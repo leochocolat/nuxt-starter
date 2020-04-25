@@ -1,0 +1,231 @@
+.header-home {
+    position: relative;
+    
+    width: 100%;
+
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);//100vh on mobile devices
+}
+
+.header-home__container {
+    padding-top: 40px;
+}
+
+.header-home__heading {
+    position: relative;
+}
+
+.header-home__heading-span {
+    display: inline-block;
+}
+
+.header-home__row {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+
+    @for $i from 1 to 24 {
+        &--#{$i} {
+            top: #{($i - 1) * rem(86px)};
+        }
+    }
+
+    @for $i from 1 to 24 {
+        &--right-#{$i} {
+            top: #{($i - 1) * rem(86px)};
+        }
+    }
+}
+
+.header-home__second-date {
+    position: absolute;
+    left: 0;
+    top: rem(86px);
+}
+
+.header-home__word {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    white-space: nowrap;
+
+    @for $i from 0 to 24 {
+        &--#{$i} {
+            left: size($i, 24);
+        }
+    }
+
+    @for $i from 0 to 24 {
+        &--right-#{$i} {
+            left: auto;
+            right: size($i, 24);
+        }
+    }
+}
+
+.header-home__date {
+    &:after {
+        content: '&';
+
+        font-size: 93%;
+
+        position: absolute;
+        left: calc(100% + 2px);
+        top: 0;
+    }
+}
+
+.header-home__tiny-word {
+    position: absolute;
+    right: calc(100% + 5px);
+    
+    &--bottom {
+        bottom: 5px;
+    }
+
+    &--top {
+        top: 4px
+    }
+
+    @include custom-selection {
+        background-color: $white;
+        color: $darkGrey;
+    }
+}
+
+@include mq-narrow {
+    .header-home__row {
+        @for $i from 1 to 24 {
+            &--#{$i} {
+                top: #{($i - 1) * rem(60px)};
+            }
+        }
+    
+        @for $i from 1 to 24 {
+            &--right-#{$i} {
+                top: #{($i - 1) * rem(60px) + (2 * rem(60px))};
+            }
+        }
+    }
+
+    .header-home__second-date {
+        top: rem(60px);
+    }
+}
+
+@include mq-regular {
+    .header-home__row {
+        @for $i from 1 to 24 {
+            &--#{$i} {
+                top: #{($i - 1) * rem(86px)};
+            }
+        }
+    
+        @for $i from 1 to 24 {
+            &--right-#{$i} {
+                top: #{($i - 1) * rem(86px)};
+            }
+        }
+    }
+
+    .header-home__second-date {
+        top: rem(86px);
+    }
+}
+
+@media (min-width: $bp-regular + 1) and (max-width: 1030px) {
+    .header-home__row {
+        @for $i from 1 to 24 {
+            &--right-#{$i} {
+                top: #{($i - 1) * rem(86px) + (2 * rem(86px))};
+            }
+        }
+    }
+}
+
+@include mq-extra-narrow {
+    .header-home__container {
+        padding-top: 20px;
+    }
+
+    .header-home__row {
+        @for $i from 1 to 24 {
+            &--#{$i} {
+                top: #{($i - 1) * rem(41px)};
+            }
+        }
+
+        @for $i from 1 to 24 {
+            &--right-#{$i} {
+                top: #{($i - 1) * rem(41px) + (3 * rem(41px))};
+            }
+        }
+    }
+
+    .header-home__word {
+        position: absolute;
+        top: 0;
+        left: 0;
+    
+        @for $i from 0 to 8 {
+            &--#{$i} {
+                left: size($i/2, 8);
+            }
+        }
+    
+        @for $i from 0 to 24 {
+            &--right-#{$i} {
+                left: auto;
+                right: size($i, 24);
+            }
+        }
+    }
+
+    .header-home__word--5 {
+        left: size(3, 8);
+    }
+
+    .header-home__date {
+        &:after {
+            position: initial;
+            margin-left: -5px;
+        }
+    }
+
+    .header-home__word--right-0 {
+        left: 0;
+    }
+
+    .header-home__word--right-3 {
+        right: 0;
+    }
+
+    .header-home__second-date {
+        top: rem(41px);
+    }
+}
+
+//animations
+
+// .animated__parent-line {
+//     display: inline-block;
+//     overflow: hidden;
+// }
+
+// .animated__inner-line {
+//     display: inline-block;
+//     transform: translateY(100%);
+
+//     transition: transform 1.5s $Power4InOut;
+// }
+
+// .header-home {
+//     &.isInView {
+//         .animated__inner-line {
+//             transform: translateY(0%);
+//         }
+//     }
+// }

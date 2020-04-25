@@ -40,6 +40,12 @@ export default {
     SectionAbout: () => import('~/components/sections/SectionAbout'),
     Footer: () => import('~/components/partials/Footer'),
   },
+  computed: {
+    ...mapGetters({
+      scrollPosition: ['scroll/position'],
+      session: ['session/session'],
+    }),
+  },
   methods: {
     setup() {
       this.setupLoading();
@@ -78,12 +84,6 @@ export default {
     removeLoading() {
       this.loader.remove();
     }
-  },
-  computed: {
-    ...mapGetters({
-      scrollPosition: ['scroll/position'],
-      session: ['session/session'],
-    }),
   },
   transition: {
     mode: 'out-in',

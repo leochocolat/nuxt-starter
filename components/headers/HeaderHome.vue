@@ -1,38 +1,38 @@
 <template>
   <header class="header-home js-header-home" data-scroll>
     <div class="container header-home__container">
-        <h1 class="heading header-home__heading">
-            <span class="header-home__row header-home__row--1">
-                <span class="header-home__word header-home__word--0 animated__parent-line">
-                    <span class="animated__inner-line">Leo Mouraire</span>
-                </span> 
-            </span>
-            <span class="header-home__row header-home__row--2 animated__parent-line">
-                <span class="animated__inner-line">Creative</span>
-            </span>
-            <span class="header-home__row header-home__row--3">
-                <span class="header-home__word header-home__word--5 animated__parent-line">
-                    <span class="animated__inner-line">Dev.</span>
-                    <span class="tiny-word header-home__tiny-word header-home__tiny-word--top">Front</span>
+        <h1 class="heading header-home__heading js-heading">
+            <span class="header-home__row header-home__row--0 align-left">
+                <span class="animated-line">
+                    Leo Mouraire
                 </span>
             </span>
-            <span class="header-home__row header-home__row--right-2">
-                <span class="header-home__word header-home__word--right-0 animated__parent-line">
-                    <span class="animated__inner-line">Projects</span>
+            <span class="header-home__row header-home__row--1 align-left">
+                <span class="animated-line">
+                    Creative
                 </span>
             </span>
-            <span class="header-home__row header-home__row--right-3">
-                <span class="header-home__word header-home__date header-home__word--right-3">
-                    <span class="animated__parent-line">
-                        <span class="animated__inner-line">2019</span>
-                    </span>
-                    <span class="tiny-word header-home__tiny-word header-home__tiny-word--bottom">+2018</span>
-                    <span class="header-home__second-date animated__parent-line">
-                        <span class="animated__inner-line">2020</span>
-                    </span>
+            <span class="header-home__row header-home__row--2 align-left">
+                <span class="animated-line animated-line--5">
+                    Dev.
                 </span>
             </span>
         </h1>
+        <h2 class="heading header-home__subheading js-subheading">
+            <span class="header-home__row header-home__row--1 align-right">
+                <span class="animated-line">
+                    Projects
+                </span>
+            </span>
+            <span class="header-home__dates">
+                <span class="header-home__dates-item js-animated-line">
+                    2019<span class="and-char">&</span>
+                </span>
+                <span class="header-home__dates-item js-animated-line">
+                    2020
+                </span>
+            </span>
+        </h2>
     </div>
     <Footer :name="'header'" :position="'bottom'" :first="data.fields.currentPosition" :second="data.fields.previousPosition" :third="data.fields.message" />
   </header>

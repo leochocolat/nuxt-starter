@@ -15,213 +15,188 @@
     position: relative;
 }
 
+.header-home__subheading {
+    position: relative;
+}
+
+.animated-line {
+    display: inline-block;
+}
+
 .header-home__row {
-    position: absolute;
-    left: 0;
-    top: 0;
+    display: block;
 
-    width: 100%;
-
-    @for $i from 1 to 24 {
-        &--#{$i} {
-            top: #{($i - 1) * rem(86px)};
-        }
-    }
-
-    @for $i from 1 to 24 {
-        &--right-#{$i} {
-            top: #{($i - 1) * rem(86px)};
-        }
-    }
-}
-
-.header-home__second-date {
-    position: absolute;
-    left: 0;
-    top: rem(86px);
-}
-
-.header-home__word {
-    position: absolute;
-    top: 0;
-    left: 0;
-
+    height: rem(86px);
+    overflow: hidden;
     white-space: nowrap;
 
-    @for $i from 0 to 24 {
-        &--#{$i} {
-            left: size($i, 24);
-        }
+    // border: solid 1px red;
+
+    &.align-left {
+        box-sizing: border-box;
+        padding-right: 5px;
+        text-align: left;
     }
 
-    @for $i from 0 to 24 {
-        &--right-#{$i} {
-            left: auto;
-            right: size($i, 24);
-        }
-    }
-}
-
-.header-home__date {
-    &:after {
-        content: '&';
-
-        font-size: 93%;
-
-        position: absolute;
-        left: calc(100% + 2px);
-        top: 0;
+    &.align-right {
+        box-sizing: border-box;
+        padding-right: 5px;
+        text-align: right;
     }
 }
 
-.header-home__tiny-word {
+.header-home__row {
     position: absolute;
-    right: calc(100% + 5px);
+    width: 100%;
+
+    &.align-left {
+        left: 0;
+        right: auto;
+    }
+
+    &.align-right {
+        left: auto;
+        right: 0;
+    }
+
+    @for $i from 0 to 5 {
+        &--#{$i} {
+            top: #{$i * rem(86px)};
+        }
+    }
+
+    .animated-line {
+        display: inline-block;
+
+        &--5 {
+            top: 0;
+            position: absolute;
+            left: size(5, 24);
+        }
+    }
+}
+
+.header-home__subheading {
+    position: relative;
+    text-align: right;
+}
+
+.header-home__dates {
+    position: absolute;
+    right: size(1, 24);
+    top: #{2 * rem(86px)};
     
-    &--bottom {
-        bottom: 5px;
-    }
+    display: block;
 
-    &--top {
-        top: 4px
-    }
+    min-width: size(5, 24);
+    min-height: #{2 * rem(86px)};
 
-    @include custom-selection {
-        background-color: $white;
-        color: $darkGrey;
+    text-align: left;
+    box-sizing: border-box;
+
+    padding-right: 7px;
+    overflow: hidden;
+
+    .and-char {
+        font-size: 95%;
     }
+}
+
+.header-home__dates-item {
+    display: block;
 }
 
 @include mq-narrow {
     .header-home__row {
-        @for $i from 1 to 24 {
+        height: rem(60px);
+    }
+
+    .header-home__row {
+        @for $i from 0 to 5 {
             &--#{$i} {
-                top: #{($i - 1) * rem(60px)};
-            }
-        }
-    
-        @for $i from 1 to 24 {
-            &--right-#{$i} {
-                top: #{($i - 1) * rem(60px) + (2 * rem(60px))};
+                top: #{$i * rem(60px)};
+
+                &.align-right {
+                    top: #{$i * rem(60px) + (2 * rem(60px))};
+                }
             }
         }
     }
 
-    .header-home__second-date {
-        top: rem(60px);
+    .header-home__dates {
+        top: #{2 * rem(60px) + (2 * rem(60px))};
     }
 }
 
 @include mq-regular {
     .header-home__row {
-        @for $i from 1 to 24 {
+        height: rem(86px);
+    }
+
+    .header-home__row {
+        @for $i from 0 to 5 {
             &--#{$i} {
-                top: #{($i - 1) * rem(86px)};
-            }
-        }
-    
-        @for $i from 1 to 24 {
-            &--right-#{$i} {
-                top: #{($i - 1) * rem(86px)};
+                top: #{$i * rem(86px)};
+
+                &.align-right {
+                    top: #{$i * rem(86px)};
+                }
             }
         }
     }
 
-    .header-home__second-date {
-        top: rem(86px);
+    .header-home__dates {
+        top: #{2 * rem(86px)};
     }
 }
 
 @media (min-width: $bp-regular + 1) and (max-width: 1030px) {
     .header-home__row {
         @for $i from 1 to 24 {
-            &--right-#{$i} {
-                top: #{($i - 1) * rem(86px) + (2 * rem(86px))};
+            &--#{$i} {
+                &.align-right {
+                    top: #{$i * rem(86px) + (2 * rem(86px))};
+                }
             }
         }
+    }
+
+    .header-home__dates {
+        top: #{2 * rem(86px) + (2 * rem(86px))};
     }
 }
 
 @include mq-extra-narrow {
-    .header-home__container {
-        padding-top: 20px;
+    .header-home__row {
+        height: rem(41px);
     }
 
     .header-home__row {
-        @for $i from 1 to 24 {
+        @for $i from 0 to 5 {
             &--#{$i} {
-                top: #{($i - 1) * rem(41px)};
+                top: #{$i * rem(41px)};
+
+                &.align-right {
+                    top: #{$i * rem(41px) + (3 * rem(41px))};
+
+                    width: 100%;
+                    text-align: left;
+                }
             }
         }
 
-        @for $i from 1 to 24 {
-            &--right-#{$i} {
-                top: #{($i - 1) * rem(41px) + (3 * rem(41px))};
-            }
-        }
-    }
-
-    .header-home__word {
-        position: absolute;
-        top: 0;
-        left: 0;
-    
-        @for $i from 0 to 8 {
-            &--#{$i} {
-                left: size($i/2, 8);
-            }
-        }
-    
-        @for $i from 0 to 24 {
-            &--right-#{$i} {
-                left: auto;
-                right: size($i, 24);
+        .animated-line {
+            &--5 {
+                left: size(3, 8);
             }
         }
     }
 
-    .header-home__word--5 {
-        left: size(3, 8);
-    }
-
-    .header-home__date {
-        &:after {
-            position: initial;
-            margin-left: -5px;
-        }
-    }
-
-    .header-home__word--right-0 {
-        left: 0;
-    }
-
-    .header-home__word--right-3 {
-        right: 0;
-    }
-
-    .header-home__second-date {
-        top: rem(41px);
+    .header-home__dates {
+        top: #{2 * rem(41px) + (3 * rem(41px))};
     }
 }
 
-//animations
-
-// .animated__parent-line {
-//     display: inline-block;
-//     overflow: hidden;
-// }
-
-// .animated__inner-line {
-//     display: inline-block;
-//     transform: translateY(100%);
-
-//     transition: transform 1.5s $Power4InOut;
-// }
-
-// .header-home {
-//     &.isInView {
-//         .animated__inner-line {
-//             transform: translateY(0%);
-//         }
-//     }
-// }
+// rem(86px)
+// rem(60px)
+// rem(41px)

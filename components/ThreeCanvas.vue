@@ -13,9 +13,9 @@ export default {
 
   },
   methods: {
-      setup() {
-        this.threeScene = new ThreeCanvasComponent({ el: this.$el });
-      }
+    setup() {
+      this.threeScene = new ThreeCanvasComponent({ el: this.$el });
+    }
   },
   mounted() {
     this.setup()
@@ -27,9 +27,9 @@ export default {
 </script>
 
 <style>
-    canvas {
-        position: fixed;
-        left: 0;
-        top: 0;
-    }
+  canvas {
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
 </style>

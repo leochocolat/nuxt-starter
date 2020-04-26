@@ -16,19 +16,7 @@
                     </div>
                 </div
                 ><div class="page-project__video-wrapper">
-                    <picture class="page-project__video js-poster">
-                        <source type="image/webp"
-                            :srcset="`${project.fields.images[0].fields.file.url} 2000w,
-                                    ${project.fields.images[1].fields.file.url}  1000w,
-                                    ${project.fields.images[2].fields.file.url}  500w`"
-                        >
-                        <img
-                            :src="project.fields.images[3].fields.file.url"
-                            :width="project.fields.images[1].fields.file.details.image.width"
-                            :height="project.fields.images[1].fields.file.details.image.height"
-                            :alt="project.fields.images[0].fields.title"
-                        >
-                    </picture>
+                    <VideoPlayer :images="project.fields.images" :videos="project.fields.videos" />
                 </div>
             </div>
             <FooterProject :project="project.fields" />
@@ -51,9 +39,13 @@ import page from '~/assets/javascript/mixins/page';
 //module
 import { transitionOutProject, transitionInProject } from '~/assets/javascript/transitions/transition';
 
+//modules
+import VideoPlayer from '~/components/partials/VideoPlayer';
+
 export default {
     components: {
         RichTextRenderer,
+        VideoPlayer,
         Arrow: () => import('~/components/partials/Arrow'),
         FooterProject: () => import('~/components/partials/FooterProject'),
     },

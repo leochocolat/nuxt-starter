@@ -154,8 +154,13 @@ class ScrollModule {
         ScrollTriggerManager.removeEventListeners();
 
         document.removeEventListener('readystatechange', this._readyStateChangeHandler);
+<<<<<<< HEAD
 
         gsap.ticker.remove(this._tickHandler);
+=======
+        gsap.ticker.remove(this._tickHandler);
+        // TODO: REMOVE RESIZE FROM EMITTER
+>>>>>>> a0d3abbf7a1f2dd304c9661217c60497602b2829
     }
 
     _scrollHandler(e) {

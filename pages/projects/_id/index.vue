@@ -39,12 +39,15 @@ import page from '~/assets/javascript/mixins/page';
 //module
 import { transitionOutProject, transitionInProject } from '~/assets/javascript/transitions/transition';
 
+//modules
+import VideoPlayer from '~/components/partials/VideoPlayer';
+
 export default {
     components: {
         RichTextRenderer,
+        VideoPlayer,
         Arrow: () => import('~/components/partials/Arrow'),
         FooterProject: () => import('~/components/partials/FooterProject'),
-        VideoPlayer: () => import('~/components/partials/VideoPlayer'),
     },
     methods: {
         setup() {

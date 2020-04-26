@@ -89,6 +89,29 @@
             width: calc(100% - 10px);
             transition: width 0.5s $Power2Out 0.4s;
         }
+
+        svg {
+            animation: arrow-link 0.8s $Power3InOut .2s forwards;
+        }
+    }
+}
+
+@keyframes arrow-link {
+    0% {
+        transform: scaleY(-1) translate(0, 0);
+        opacity: 1;
+    }
+    50% {
+        transform: scaleY(-1) translate(50%, 50%);
+        opacity: 0;
+    }
+    51% {
+        transform: scaleY(-1) translate(-50%, -50%);
+        opacity: 0;
+    }
+    100% {
+        transform: scaleY(-1) translate(0, 0);
+        opacity: 1;
     }
 }
 

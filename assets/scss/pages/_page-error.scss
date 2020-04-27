@@ -3,3 +3,13 @@
 
     height: 100vh;
 }
+
+.page-error__container {
+    padding-top: 40px;
+}
+
+@include mq-extra-narrow {
+    .page-error__container {
+        padding-top: 20px;
+    }   
+}

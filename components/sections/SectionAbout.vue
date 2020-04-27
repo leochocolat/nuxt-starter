@@ -5,7 +5,7 @@
               <div class="section-about__introduction">
                 <span class="tiny-word section-about__introduction-title">({{ title }})</span>
                 <div class="paragraph rich-text section-about__paragraph js-scroll-paragraph" data-scroll>
-                  <RichTextRenderer :document="description" />
+                  <CustomRichTextRenderer :document="description" />
                 </div>
               </div
               ><ul class="section-about__socials">
@@ -34,12 +34,13 @@
 </template>
 
 <script>
-import RichTextRenderer from 'contentful-rich-text-vue-renderer';
+import CustomRichTextRenderer from '~/components/partials/CustomRichTextRenderer';
+
 import SplitText from '~/assets/javascript/vendors/SplitText.js';
 
 export default {
   components: {
-    RichTextRenderer
+    CustomRichTextRenderer
   },
   props: {
     title: {

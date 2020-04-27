@@ -11,6 +11,8 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^13.4.0",
+    "@contentful/rich-text-types": "^14.1.0",
     "contentful": "^7.14.2",
     "contentful-rich-text-vue-renderer": "^1.1.5",
     "events": "^3.1.0",

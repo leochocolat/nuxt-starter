@@ -12,7 +12,7 @@
                         </span>
                     </h1>
                     <div class="page-project__description paragraph paragraph--small rich-text">
-                        <RichTextRenderer :document="getDescription()" />
+                        <CustomRichTextRenderer :document="getDescription()" />
                     </div>
                 </div
                 ><div class="page-project__video-wrapper">
@@ -29,7 +29,8 @@
 <script>
 //vendors
 import { mapGetters } from 'vuex';
-import RichTextRenderer from 'contentful-rich-text-vue-renderer';
+import CustomRichTextRenderer from '~/components/partials/CustomRichTextRenderer';
+
 import { createClient } from '~/plugins/contentful.js';
 const client = createClient();
 
@@ -44,7 +45,7 @@ import VideoPlayer from '~/components/partials/VideoPlayer';
 
 export default {
     components: {
-        RichTextRenderer,
+        CustomRichTextRenderer,
         VideoPlayer,
         Arrow: () => import('~/components/partials/Arrow'),
         FooterProject: () => import('~/components/partials/FooterProject'),
@@ -84,24 +85,27 @@ export default {
         leave(el, done) { transitionOutProject(el, done) },
         enter(el, done) { transitionInProject(el, done) },
     },
-    asyncData ({ env, params }) {
+    asyncData ({ env, params, redirect }) {
         return Promise.all([
         client.getEntries({
             'content_type': 'project',
             order: 'sys.createdAt'
         }),
         ]).then(([projects]) => {
+            if (!projects.items[params.id]) redirect('/')
+
             return {
                 project: projects.items[params.id],
             }
         }).catch(console.error)
     },
-    validate ({ params }) {
+    validate ({ params, redirect }) {
         return Promise.all([
             client.getEntries({
                 'content_type': 'project'
             }),
         ]).then(([data]) => {
+            if (!data.items[params.id]) redirect('/where-the-fuck-do-you-think-youre-going');
             return data.items[params.id] != null;
         }).catch(console.error)
     }

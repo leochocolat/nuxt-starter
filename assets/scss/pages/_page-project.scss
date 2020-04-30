@@ -175,6 +175,11 @@
         justify-content: baseline;
     }
 
+    .page-project__video-wrapper {
+        width: 100%;
+        height: getVideoHeightFromWidth(24, 24, 80px, 0.58);
+    }
+
     .page-project__description-container {
         width: calc(100% - 40px);
 

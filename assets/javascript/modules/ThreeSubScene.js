@@ -1,12 +1,5 @@
 const PESPECTIVE = 800;
 
-import {
-    Scene, 
-    PerspectiveCamera, 
-    DirectionalLight,
-    WebGLRenderTarget
-} from 'three';
-
 class ThreeSubScene {
     constructor(options) {
         this.width = options.width;
@@ -43,18 +36,18 @@ class ThreeSubScene {
     }
 
     _createScene() {
-        this.renderTarget = new WebGLRenderTarget(this.width, this.height);
+        this.renderTarget = new THREE.WebGLRenderTarget(this.width, this.height);
 
         const fov = (180 * (2 * Math.atan(this.height / 2 / PESPECTIVE))) / Math.PI;
         
-        this._camera = new PerspectiveCamera(fov, this.width / this.height, 1, 1000);
+        this._camera = new THREE.PerspectiveCamera(fov, this.width / this.height, 1, 1000);
         this._camera.position.set(0, 0, PESPECTIVE);
         
-        this._scene = new Scene();
+        this._scene = new THREE.Scene();
     }
 
     _createLight() {
-        this._light = new DirectionalLight(0xffffff, 1);
+        this._light = new THREE.DirectionalLight(0xffffff, 1);
         this._light.position.z = 10;
 
         this._scene.add(this._light);

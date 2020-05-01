@@ -81,10 +81,13 @@ export default {
     /*
     ** You can extend webpack config here
     */
+    resolve: {
+      three: 'node_modules/three/build/three.min.js',
+    },
     plugins: [
-      // new webpack.ProvidePlugin({
-      //   THREE: 'three',
-      // }),
+      new webpack.ProvidePlugin({
+        THREE: 'three',
+      }),
     ],
     extend (config, ctx) {
       config.module.rules.push({

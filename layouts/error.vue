@@ -6,7 +6,7 @@
             <div class="heading page-error__col page-error__col--3 js-heading">
               {{ error.statusCode }}
               <span class="tiny-word">
-                {{ error.message }}
+                {{ getErrorMessage(error) }} 
               </span>
             </div>
           </div>
@@ -61,11 +61,26 @@ export default {
       timeline.to(this.$el.querySelector('.js-progress'), 3, { scaleX: 1, ease: Power2.easeOut }, 0.8);
       timeline.to(this.$el.querySelector('.js-transition-overlay'), 1, { y: 0, ease: Power4.easeInOut }, 3.1);
       timeline.to(this.$el.querySelector('.js-container'), 1.1, { y: -200, ease: Power4.easeInOut }, 3.1);
+    },
+    getErrorMessage(error) {
+      let errorMessage = error.message;
+
+      if (error.statusCode === 404) {
+        errorMessage = 'not found'
+      }
+
+      return errorMessage;
     }
   },
   head() {
-    return {
-      title: 'You got lost...'
+    if (this.error.statusCode === 404) {
+      return {
+        title: 'You got lost...'
+      }
+    } else {
+      return {
+        title: `Error: ${this.error.message}`
+      }
     }
   }
 }

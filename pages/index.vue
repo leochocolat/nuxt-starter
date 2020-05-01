@@ -45,6 +45,7 @@ export default {
     ...mapGetters({
       scrollPosition: ['scroll/position'],
       session: ['session/session'],
+      currentPage: ['page/current'],
     }),
   },
   methods: {

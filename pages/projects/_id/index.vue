@@ -44,6 +44,8 @@ import { transitionOutProject, transitionInProject } from '~/assets/javascript/t
 import VideoPlayer from '~/components/partials/VideoPlayer';
 
 export default {
+    data () { return { name: 'project' } },
+    mixins: [ page ],
     components: {
         CustomRichTextRenderer,
         VideoPlayer,
@@ -52,7 +54,7 @@ export default {
     },
     methods: {
         setup() {
-            this.setupSession();
+            // this.setupSession();
         },
         setupSession() {
             if (!this.session) {

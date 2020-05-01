@@ -7,4 +7,14 @@ export default {
     beforeDestroy() {
         ScrollManager.disable();
     },
+    head() {
+        return {
+            bodyAttrs: {
+                class: this.name
+            },
+            htmlAttrs: {
+                class: this.name
+            }
+        }
+    }
 }

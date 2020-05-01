@@ -20,6 +20,42 @@
         .footer-list-arrow {
             visibility: hidden;
         }
+
+        .footer-arrow {
+            opacity: 0;
+            transform: translateY(40px) rotate(-90deg);
+        }
+
+        .footer-list-item {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        &.isInView {
+            .footer-arrow {
+                opacity: 1;
+                transform: translateY(0) rotate(-90deg);
+
+                @for $i from 0 to 2 {
+                    &:nth-child(#{$i+1}) {
+                        transition: 2s $Power3Out #{$i * 0.2 + 0.3}s;
+                        transition-property: transform, opacity;
+                    }
+                }
+            }
+
+            .footer-list-item {
+                opacity: 1;
+                transform: translateY(0);
+
+                @for $i from 0 to 4 {
+                    &:nth-child(#{$i+1}) {
+                        transition: 1s $Power3Out #{$i * 0}s;
+                        transition-property: transform, opacity;
+                    }
+                }
+            }
+        }
     }
 }
 

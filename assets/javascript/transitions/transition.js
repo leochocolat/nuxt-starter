@@ -31,9 +31,20 @@ function transitionInProject(el, done) {
     Emitter.emit('TRANSITION:IN', { pageName: 'project', el: el });
 }
 
+function beforeLeaveState(el, done) {
+    if (document.querySelector('html').classList.contains('isLoading')) return;
+    document.querySelector('html').classList.add('isLoading');
+}
+
+function afterLeaveState(el, done) {
+    document.querySelector('html').classList.remove('isLoading');
+}
+
 export {
     transitionOutHome,
     transitionOutProject,
     transitionInHome,
-    transitionInProject
+    transitionInProject,
+    beforeLeaveState,
+    afterLeaveState
 };

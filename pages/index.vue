@@ -23,7 +23,7 @@ import page from '~/assets/javascript/mixins/page';
 
 //modules
 import ScrollModule from '~/assets/javascript/modules/ScrollModule';
-import { transitionOutHome, transitionInHome } from '~/assets/javascript/transitions/transition';
+import { transitionOutHome, transitionInHome, beforeLeaveState, afterLeaveState } from '~/assets/javascript/transitions/transition';
 import LoaderComponent from '~/assets/javascript/components/LoaderComponent';
 
 //components
@@ -73,7 +73,9 @@ export default {
     mode: 'out-in',
     name: 'home',
     leave(el, done) { transitionOutHome(el, done) },
-    enter(el, done) { transitionInHome(el, done) }
+    enter(el, done) { transitionInHome(el, done) },
+    beforeLeave(el, done) { beforeLeaveState(el, done) },
+    afterLeave(el, done) { afterLeaveState(el, done) },
   },
   asyncData () {
     return Promise.all([

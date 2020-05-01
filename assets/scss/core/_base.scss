@@ -10,6 +10,10 @@ html, body {
     &.isScrollEnable {
         overflow-y: auto;
     }
+
+    &.isLoading {
+        cursor: wait;
+    }
     
     color: $white;
     background-color: $darkGrey;

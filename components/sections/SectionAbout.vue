@@ -8,7 +8,7 @@
                   <CustomRichTextRenderer :document="description" />
                 </div>
               </div
-              ><ul class="section-about__socials">
+              ><ul class="section-about__socials" data-scroll>
                   <li class="section-about__socials-item">
                       <a target="_blank" rel="noopener" :href="`mailto:${email}`" class="section-about__socials-link">
                         Email

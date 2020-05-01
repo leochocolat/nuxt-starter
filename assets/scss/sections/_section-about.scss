@@ -61,6 +61,24 @@
     font-size: rem(11px);
     line-height: rem(20px);
     text-transform: uppercase;
+
+    .section-about__socials-item {
+        opacity: 0;
+
+        transition: opacity 1.5s $Power3InOut;
+    }
+
+    &.isInView {
+        .section-about__socials-item {
+            opacity: 1;
+
+            @for $i from 0 to 3 {
+                &:nth-child(#{$i+1}) {
+                    transition: opacity 1.5s $Power3InOut #{$i * 0.2}s;
+                }
+            }
+        }
+    }
 }
 
 .section-about__socials-item {

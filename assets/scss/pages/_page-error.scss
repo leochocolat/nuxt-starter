@@ -5,11 +5,202 @@
 }
 
 .page-error__container {
-    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 100%;
+
+    box-sizing: border-box;
+}
+
+.transition-overlay {
+    background-color: white;
+
+    transform: translateY(100%);
+    will-change: transform;
+}
+
+.page-error__content {
+    width: size(16, 24);
+    
+    margin: auto;
+    padding-bottom: 108px;
+}
+
+.page-error__row {
+    position: relative;
+    overflow: hidden;
+
+    &.no-mobile {
+        display: none;
+    }
+
+    &.no-desktop {
+        display: block;
+    }
+}
+
+.page-error__col {
+    @for $i from 0 to 10 {
+        &--#{$i} {
+            margin-left: calc(#{size(1, 16)} * #{$i});
+        }
+    }
+
+    &--0-5 {
+        margin-left: calc(#{size(1, 16)} * 0.5);
+    }
+
+    .tiny-word {
+        margin-left: -10px;
+    }
+
+    transform: translateY(100%);
+    will-change: transform;
+}
+
+.page-error__progress {
+    position: absolute;
+    left: 0;
+    bottom: 108px;
+    
+    height: 0;
+    width: 100%;
+    border-top: solid 1px $brownGrey;
+
+    transform-origin: left top;
+    transform: scaleX(0);
+    will-change: transform;
+}
+
+@include mq-narrow {
+    .page-error__content {
+        width: size(24, 24);
+    }
+
+    .page-error__col {
+        @for $i from 0 to 10 {
+            &--#{$i} {
+                margin-left: calc(#{size(1, 24)} * #{$i});
+            }
+        }
+    
+        &--0-5 {
+            margin-left: calc(#{size(1, 24)} * 0.5);
+        }
+    
+        .tiny-word {
+            margin-left: -10px;
+        }
+    }
+}
+
+@include mq-regular {
+    .page-error__content {
+        width: size(16, 24);
+    }
+
+    .page-error__col {
+        @for $i from 0 to 10 {
+            &--#{$i} {
+                margin-left: calc(#{size(1, 16)} * #{$i});
+            }
+        }
+    
+        &--0-5 {
+            margin-left: calc(#{size(1, 16)} * 0.5);
+        }
+    
+        .tiny-word {
+            margin-left: -10px;
+        }
+
+        &.no-desktop {
+            display: initial;
+        }
+
+        &.no-mobile {
+            display: none;
+        }
+    }
+}
+
+@media (min-width: $bp-regular + 1) and (max-width: 1070px) {
+    .page-error__content {
+        width: size(20, 24);
+    }
+
+    .page-error__col {
+        @for $i from 0 to 10 {
+            &--#{$i} {
+                margin-left: calc(#{size(1, 20)} * #{$i});
+            }
+        }
+    
+        &--0-5 {
+            margin-left: calc(#{size(1, 20)} * 0.5);
+        }
+    }
+}
+
+@include mq-wide {
+    .page-error__content {
+        width: size(16, 24);
+    }
+
+    .page-error__row {
+        &.no-mobile {
+            display: block;
+        }
+    
+        &.no-desktop {
+            display: none;
+        }
+    }
+
+    .page-error__col {
+        @for $i from 0 to 10 {
+            &--#{$i} {
+                margin-left: calc(#{size(1, 16)} * #{$i});
+            }
+        }
+    
+        &--0-5 {
+            margin-left: calc(#{size(1, 16)} * 0.5);
+        }
+    
+        .tiny-word {
+            margin-left: -10px;
+        }
+    }
 }
 
 @include mq-extra-narrow {
-    .page-error__container {
-        padding-top: 20px;
-    }   
+    .page-error__content {
+        width: size(24, 24);
+    }
+
+    .page-error__row {
+        &--right {
+            text-align: right;
+            padding-right: 10px;
+        }
+    }
+
+    .page-error__col {
+        @for $i from 0 to 10 {
+            &--#{$i} {
+                margin-left: calc(#{size(1, 24)} * #{$i});
+            }
+        }
+    
+        &--0-5 {
+            margin-left: calc(#{size(1, 24)} * 0.5);
+        }
+    
+        .tiny-word {
+            margin-left: 0;
+        }
+    }
 }

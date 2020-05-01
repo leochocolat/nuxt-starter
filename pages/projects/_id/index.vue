@@ -29,8 +29,6 @@
 <script>
 //vendors
 import { mapGetters } from 'vuex';
-import CustomRichTextRenderer from '~/components/partials/CustomRichTextRenderer';
-
 import { createClient } from '~/plugins/contentful.js';
 const client = createClient();
 
@@ -47,22 +45,14 @@ export default {
     data () { return { name: 'project' } },
     mixins: [ page ],
     components: {
-        CustomRichTextRenderer,
-        VideoPlayer,
+        CustomRichTextRenderer: () => import('~/components/partials/CustomRichTextRenderer'),
         Arrow: () => import('~/components/partials/Arrow'),
         FooterProject: () => import('~/components/partials/FooterProject'),
+        VideoPlayer,
     },
     methods: {
         setup() {
-            // this.setupSession();
-        },
-        setupSession() {
-            if (!this.session) {
-                this.startLoading();
-                this.$store.dispatch('session/setSession', Date.now());
-            } else {
-                this.removeLoading();
-            }
+            
         },
         getDescription() {
             let description = '';

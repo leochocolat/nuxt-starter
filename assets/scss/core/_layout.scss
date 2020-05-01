@@ -3,6 +3,8 @@
     width: calc(100% - 80px);
 
     margin: auto;
+
+    box-sizing: border-box;
 }
 
 @include mq-extra-narrow {

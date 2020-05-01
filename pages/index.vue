@@ -15,7 +15,6 @@
 
 <script>
 //vendors
-import { mapGetters } from 'vuex';
 import { createClient } from '~/plugins/contentful.js';
 const client = createClient();
 
@@ -41,30 +40,14 @@ export default {
     SectionAbout: () => import('~/components/sections/SectionAbout'),
     Footer: () => import('~/components/partials/Footer'),
   },
-  computed: {
-    ...mapGetters({
-      scrollPosition: ['scroll/position'],
-      session: ['session/session'],
-      currentPage: ['page/current'],
-    }),
-  },
   methods: {
     setup() {
       this.setupLoading();
-      this.setupSession();
       this.setupSmoothScroll();
       this.setupStore();
     },
     setupLoading() {
       this.loader = new LoaderComponent({ el: this.$el });
-    },
-    setupSession() {
-      if (!this.session) {
-        this.startLoading();
-        this.$store.dispatch('session/setSession', Date.now());
-      } else {
-        this.removeLoading();
-      }
     },
     setupSmoothScroll() {
       let scrollModule = new ScrollModule({
@@ -78,7 +61,6 @@ export default {
     },
     setupStore() {
       this.$store.dispatch('projects/setProjects', this.projects);
-      this.$store.dispatch('page/setCurrent', this.name);
     },
     startLoading() {
       this.loader.start();

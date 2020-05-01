@@ -12,16 +12,49 @@
     width: 100%;
     height: 140px;
 
-    svg {
-        transform-origin: right top;
-        transition: transform 1s $Power4InOut;
+    .project-list-item__project-name {
+        transform: translateY(10px);
+        opacity: 0;
+
+        transition: 1.5s $Power3Out;
+        transition-property: transform, opacity;
     }
 
-    &.is-active {
+    .project-list-item__project-infos {
+        transform: translateY(5px);
+        opacity: 0;
+
+        transition: 1.8s $Power3Out;
+        transition-property: transform, opacity;
+    }
+
+    svg {
+        transform-origin: right top;
+        transform: rotate(-45deg);
+
+        transition: transform 0.8s $Power3Out;
+    }
+
+    &.isInView {
+        svg {
+            transform: rotate(0deg);
+
+            transition: transform 1.2s $Power3Out;
+        }
+
+        .project-list-item__project-name, .project-list-item__project-infos {
+            transform: translateY(0) rotateX(0deg);
+            opacity: 1;
+
+            transition-duration: 1.8s;
+        }
+    }
+
+    &:hover {
         svg {
             transform: rotate(45deg);
-            transition-duration: 1s;
-            transition-timing-function: $Power4InOut;
+            transition-duration: 0.8s;
+            transition-timing-function: $Power3Out;
         }
     }
 }
@@ -38,6 +71,7 @@
 }
 
 .project-list-item__content {
+    pointer-events: none;
     padding-top: 30px;
 
     & > * {
@@ -107,9 +141,9 @@
     left: 0;
 
     width: 100%;
-    height: 1px;
+    height: 0px;
 
-    background-color: $white;
+    border-top: solid 1px $white;
 
     &--top {
         top: 0;

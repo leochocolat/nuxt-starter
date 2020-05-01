@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     setup() {
-      // this.setupScrollParagraph();
+      this.setupScrollParagraph();
     },
     setupScrollParagraph() {
       let scrollParagraph = this.$el.querySelector('.js-scroll-paragraph');

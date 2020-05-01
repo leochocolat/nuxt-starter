@@ -1,5 +1,5 @@
 <template>
-    <div class="project-list-item">
+    <div class="project-list-item" data-scroll data-scroll-offset="70" data-scroll-repeat="true">
         <nuxt-link :to="`/projects/${index}`" class="project-list-item__link js-link">
             {{ project.fields.name }}
         </nuxt-link>

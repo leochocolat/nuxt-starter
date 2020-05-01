@@ -177,7 +177,7 @@
 
     .page-project__video-wrapper {
         width: 100%;
-        height: getVideoHeightFromWidth(24, 24, 80px, 0.58);
+        height: auto;
     }
 
     .page-project__description-container {

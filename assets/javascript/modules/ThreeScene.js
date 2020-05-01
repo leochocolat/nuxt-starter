@@ -3,6 +3,18 @@ import fragment from '../shaders/noise/fragment.glsl';
 
 import ThreeSubScene from './ThreeSubScene';
 
+import {
+    Scene, 
+    WebGLRenderer, 
+    PerspectiveCamera, 
+    Vector3, 
+    Uniform, 
+    PlaneGeometry,
+    ShaderMaterial,
+    DirectionalLight,
+    Mesh
+} from 'three';
+
 const PESPECTIVE = 800;
 
 class ThreeScene {
@@ -67,9 +79,9 @@ class ThreeScene {
     }
 
     _createScene() {
-        this._scene = new THREE.Scene();
+        this._scene = new Scene();
 
-		this._renderer = new THREE.WebGLRenderer({
+		this._renderer = new WebGLRenderer({
             canvas: this.canvas,
             alpha: true
         });
@@ -79,34 +91,34 @@ class ThreeScene {
         
         const fov = (180 * (2 * Math.atan(this.height / 2 / PESPECTIVE))) / Math.PI;
         
-        this._camera = new THREE.PerspectiveCamera(fov, this.width / this.height, 1, 1000);
+        this._camera = new PerspectiveCamera(fov, this.width / this.height, 1, 1000);
         this._camera.position.set(0, 0, PESPECTIVE);
     }
 
     _createPlane() {
-        const geometry = new THREE.PlaneGeometry(1, 1, 1);
+        const geometry = new PlaneGeometry(1, 1, 1);
 
         this._uniforms = {
             //base
-            iResolution: { value: new THREE.Vector3(this.width, this.height, 1) },
+            iResolution: { value: new Vector3(this.width, this.height, 1) },
             iTime: { value: 0 },
             iTimeDelta: { value: 16 },
             iFrame: { value: 60 },
             //custom
-            tOld: { value: new THREE.Uniform(null) },
-            tNew: { value: new THREE.Uniform(null) },
-            iChannel0: { value: new THREE.Uniform(null) },
-            iChannel1: { value: new THREE.Uniform(null) },
+            tOld: { value: new Uniform(null) },
+            tNew: { value: new Uniform(null) },
+            iChannel0: { value: new Uniform(null) },
+            iChannel1: { value: new Uniform(null) },
             damp: { value: 0.99 }
         }
         
-        const material = new THREE.ShaderMaterial({
+        const material = new ShaderMaterial({
             uniforms: this._uniforms,
             vertexShader: vertex,
             fragmentShader: fragment,
         });
 
-        this._plane = new THREE.Mesh(geometry, material);
+        this._plane = new Mesh(geometry, material);
         this._plane.scale.set(this.width, this.height, 1);
         this._plane.position.z = 0;
 
@@ -114,7 +126,7 @@ class ThreeScene {
     }
 
     _createLight() {
-        this._light = new THREE.DirectionalLight(0xffffff, 1);
+        this._light = new DirectionalLight(0xffffff, 1);
         this._light.position.z = 150;
         this._scene.add(this._light);
     }

@@ -17,11 +17,12 @@
     "contentful-rich-text-vue-renderer": "^1.1.5",
     "events": "^3.1.0",
     "gsap": "^3.2.6",
+    "three": "^0.114.0"
+  },
+  "devDependencies": {
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
     "raw-loader": "^4.0.1",
-    "sass-loader": "^8.0.2",
-    "three": "^0.114.0"
-  },
-  "devDependencies": {}
+    "sass-loader": "^8.0.2"
+  }
 }

@@ -82,9 +82,9 @@ export default {
     ** You can extend webpack config here
     */
     plugins: [
-      new webpack.ProvidePlugin({
-        THREE: 'three',
-      }),
+      // new webpack.ProvidePlugin({
+      //   THREE: 'three',
+      // }),
     ],
     extend (config, ctx) {
       config.module.rules.push({

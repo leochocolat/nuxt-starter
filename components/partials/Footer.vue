@@ -1,5 +1,5 @@
 <template>
-    <div class="container footer" data-scroll data-scroll-repeat="true" :class="`footer--${name}`">
+    <div class="container footer" data-scroll :class="`footer--${name}`">
         <div class="footer-arrows">
             <Arrow class="footer-arrow js-footer-button-arrow" :scrollTo="position == 'bottom' ? '.footer--header' : 'body'" :direction="position"/>
             <Arrow class="footer-arrow js-footer-button-arrow" :scrollTo="position == 'bottom' ? '.footer--header' : 'body'" :direction="position" />

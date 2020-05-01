@@ -8,7 +8,6 @@ import { TweenLite } from 'gsap';
 
 //TODO : 
 //ADD STICKY OPTION
-//CHECK IF PARALLAX IS FIXED
 
 class ScrollTriggerManager extends EventDispatcher {
     constructor(options) {

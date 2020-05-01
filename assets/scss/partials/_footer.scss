@@ -147,12 +147,42 @@
     }
 
     .footer-text {
-        width: calc(100% - 15px);
+        width: calc(100% - 5px);
     }
 
     .footer-arrow {
         &:first-child {
             display: none;
+        }
+    }
+
+    .footer-list-arrow {
+        left: -10px;
+        top: 2px;
+        
+        width: 6px;
+        height: 6px;
+        
+        .cls-1 {
+            fill: $brownGrey;
+        }
+    }
+}
+
+@media (max-width: 340px) {
+    .footer-text {
+        font-size: rem(7px);
+    }
+
+    .footer-list-arrow {
+        left: -10px;
+        top: 2px;
+        
+        width: 5px;
+        height: 5px;
+        
+        .cls-1 {
+            fill: $brownGrey;
         }
     }
 }

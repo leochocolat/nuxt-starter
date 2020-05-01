@@ -55,7 +55,7 @@ export default {
   ** Server
   */
   server: {
-    port: 1234, // par défaut: 3000
+    port: 3000, // par défaut: 3000
     host: 'localhost' // par défaut: localhost
   },
   /*

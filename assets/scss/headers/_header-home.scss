@@ -213,16 +213,16 @@
 
     .header-home__row {
         width: calc(100vw - 40px);
-        height: rem(41px);
+        height: rem(40px);
     }
 
     .header-home__row {
         @for $i from 0 to 5 {
             &--#{$i} {
-                top: #{$i * rem(41px)};
+                top: #{$i * rem(40px)};
 
                 &.align-right {
-                    top: #{$i * rem(41px) + (3 * rem(41px))};
+                    top: #{$i * rem(40px) + (3 * rem(40px))};
 
                     width: 100%;
                     text-align: left;
@@ -243,11 +243,11 @@
     }
 
     .header-home__dates {
-        top: #{2 * rem(41px) + (3 * rem(41px))};
+        top: #{2 * rem(40px) + (3 * rem(40px))};
     }
 
     .header-home__dates-item {
-        height: rem(41px);
+        height: rem(40px);
     }
 }
 

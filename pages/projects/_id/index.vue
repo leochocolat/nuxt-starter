@@ -36,7 +36,7 @@ const client = createClient();
 import page from '~/assets/javascript/mixins/page';
 
 //module
-import { transitionOutProject, transitionInProject } from '~/assets/javascript/transitions/transition';
+import { transitionOutProject, transitionInProject, beforeLeaveState, afterLeaveState } from '~/assets/javascript/transitions/transition';
 
 //modules
 import VideoPlayer from '~/components/partials/VideoPlayer';
@@ -76,6 +76,8 @@ export default {
         name: 'project',
         leave(el, done) { transitionOutProject(el, done) },
         enter(el, done) { transitionInProject(el, done) },
+        beforeLeave(el, done) { beforeLeaveState(el, done) },
+        afterLeave(el, done) { afterLeaveState(el, done) },
     },
     asyncData ({ env, params, redirect }) {
         return Promise.all([

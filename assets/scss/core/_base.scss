@@ -12,7 +12,7 @@ html, body {
     }
 
     &.isLoading {
-        cursor: wait;
+        cursor: wait !important;
     }
     
     color: $white;

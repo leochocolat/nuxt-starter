@@ -39,5 +39,9 @@ export default {
         document.querySelector('html').classList.remove(`${this.name}`);
         document.body.classList.remove(`${this.name}`);
         ScrollManager.disable();
+
+        if (this.scrollModule) {
+            this.scrollModule.disable();
+        }
     },
 }

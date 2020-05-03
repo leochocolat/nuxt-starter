@@ -5,6 +5,32 @@
 
     width: 100%;
     height: 108px;
+
+    .footer-project__list-item {
+        opacity: 0;
+    }
+
+    .footer-project__line {
+        opacity: 0;
+    }
+
+    &.isInView {
+        .footer-project__list-item {
+            opacity: 1;
+
+            @for $i from 0 to 5 {
+                &:nth-child(#{$i + 1}) {
+                    transition: opacity 2s $Power3Out #{$i * 0.1 + 0.5}s;
+                }
+            }
+        }
+
+        .footer-project__line {
+            opacity: 1;
+
+            transition: opacity 1.5s $Power3Out 0.5s;
+        }
+    }
 }
 
 .footer-project__list {

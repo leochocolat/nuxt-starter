@@ -35,6 +35,9 @@ import CustomRichTextRenderer from '~/components/partials/CustomRichTextRenderer
 
 import FooterHoverComponent from '~/assets/javascript/components/FooterHoverComponent';
 
+//components
+import Arrow from '~/components/partials/Arrow';
+
 export default {
     props: {
         name: {
@@ -59,7 +62,7 @@ export default {
         }
     },
     components: {
-        Arrow: () =>  import('~/components/partials/Arrow'),
+        Arrow,
         CustomRichTextRenderer,
     }, 
     methods: {

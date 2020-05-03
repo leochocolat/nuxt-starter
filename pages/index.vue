@@ -29,6 +29,9 @@ import LoaderComponent from '~/assets/javascript/components/LoaderComponent';
 //components
 import Loader from '~/components/partials/Loader';
 import HeaderHome from '~/components/headers/HeaderHome';
+import SectionProjects from '~/components/sections/SectionProjects';
+import SectionAbout from '~/components/sections/SectionAbout';
+import Footer from '~/components/partials/Footer';
 
 export default {
   data () { return { name: 'home' } },
@@ -36,9 +39,9 @@ export default {
   components: {
     Loader,
     HeaderHome,
-    SectionProjects: () => import('~/components/sections/SectionProjects'),
-    SectionAbout: () => import('~/components/sections/SectionAbout'),
-    Footer: () => import('~/components/partials/Footer'),
+    SectionProjects,
+    SectionAbout,
+    Footer,
   },
   methods: {
     setup() {
@@ -51,8 +54,8 @@ export default {
     },
     setupSmoothScroll() {
       let scrollModule = new ScrollModule({
-        container: document.querySelector('.js-scroll-container'),
-        content: document.querySelector('.js-scroll-content'),
+        container: this.$el,
+        content: this.$el.querySelector('.js-scroll-content'),
         smooth: true,
         smoothValue: 0.1
       });
@@ -63,6 +66,7 @@ export default {
       this.$store.dispatch('projects/setProjects', this.projects);
     },
     startLoading() {
+      this.loader.init();
       this.loader.start();
     },
     removeLoading() {

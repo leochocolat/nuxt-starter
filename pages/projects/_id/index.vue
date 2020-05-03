@@ -1,25 +1,27 @@
 <template>
-  <div class="main page-project">
-    <div class="main__content">
-        <div class="container page-project__container">
-            <div class="page-project__content">
-                <Arrow class="page-project__arrow" :direction="`left`" :color="`black`" :link="'/'" />
-                <div class="page-project__description-container">
-                    <h1 class="page-project__title">
-                        {{ project.fields.name }}
-                        <span class="page-project__date">
-                            /{{ project.fields.date }}
-                        </span>
-                    </h1>
-                    <div class="page-project__description paragraph paragraph--small rich-text">
-                        <CustomRichTextRenderer :document="getDescription()" />
+  <div class="main page-project js-scroll-container">
+    <div class="js-scroll-content">
+        <div class="main__content">
+            <div class="container page-project__container">
+                <div class="page-project__content">
+                    <Arrow class="page-project__arrow" :direction="`left`" :color="`black`" :link="'/'" />
+                    <div class="page-project__description-container">
+                        <h1 class="page-project__title">
+                            {{ project.fields.name }}
+                            <span class="page-project__date">
+                                /{{ project.fields.date }}
+                            </span>
+                        </h1>
+                        <div class="page-project__description paragraph paragraph--small rich-text js-scroll-paragraph">
+                            <CustomRichTextRenderer :document="getDescription()" />
+                        </div>
+                    </div
+                    ><div class="page-project__video-wrapper">
+                        <VideoPlayer class="js-video-player" :images="project.fields.images" :videos="project.fields.videos" />
                     </div>
-                </div
-                ><div class="page-project__video-wrapper">
-                    <VideoPlayer :images="project.fields.images" :videos="project.fields.videos" />
                 </div>
+                <FooterProject class="js-footer-project" :project="project.fields" />
             </div>
-            <FooterProject :project="project.fields" />
         </div>
     </div>
     <div class="transition-overlay js-transition-overlay"></div>
@@ -37,22 +39,33 @@ import page from '~/assets/javascript/mixins/page';
 
 //module
 import { transitionOutProject, transitionInProject, beforeLeaveState, afterLeaveState } from '~/assets/javascript/transitions/transition';
+import SplitText from '~/assets/javascript/vendors/SplitText.js';
 
 //modules
 import VideoPlayer from '~/components/partials/VideoPlayer';
+import FooterProject from '~/components/partials/FooterProject';
+import Arrow from '~/components/partials/Arrow';
+import CustomRichTextRenderer from '~/components/partials/CustomRichTextRenderer';
 
 export default {
     data () { return { name: 'project' } },
     mixins: [ page ],
     components: {
-        CustomRichTextRenderer: () => import('~/components/partials/CustomRichTextRenderer'),
-        Arrow: () => import('~/components/partials/Arrow'),
-        FooterProject: () => import('~/components/partials/FooterProject'),
+        CustomRichTextRenderer,
+        Arrow,
+        FooterProject,
         VideoPlayer,
     },
     methods: {
         setup() {
-            
+            this.setupScrollParagraph();
+
+            setTimeout(() => {
+                this.$el.classList.add('isInView');
+                this.$el.querySelector('.js-footer-project').classList.add('isInView');
+                this.$el.querySelector('.js-video-player').classList.add('isInView');
+                this.$el.querySelector('.js-scroll-paragraph').classList.add('isInView');
+            }, 100);
         },
         getDescription() {
             let description = '';
@@ -63,6 +76,29 @@ export default {
             }
 
             return description;
+        },
+        setupScrollParagraph() {
+            let scrollParagraph = this.$el.querySelector('.js-scroll-paragraph');
+            let originalContent = scrollParagraph.innerHTML;
+            let splits = new SplitText(scrollParagraph, {
+                type: 'lines',
+                linesClass: 'line-container line-container--++',
+            });
+
+            let lines = [];
+
+            for (let i = 0; i < splits.lines.length; i++) {
+                const element = splits.lines[i];
+                let line = new SplitText(element, {
+                type: 'lines',
+                    linesClass: 'line line--++',
+                }).lines;
+                lines.push(line[0]);
+            }
+
+            lines[lines.length - 1].addEventListener('transitionend', () => {
+                scrollParagraph.innerHTML = splits.originalHTML;
+            });
         }
     },
     computed: {

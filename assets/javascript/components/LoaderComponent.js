@@ -29,19 +29,21 @@ class LoaderComponent {
         this._setup();
     }
 
+    init() {
+        this._setupTimeline();
+    }
+
     remove() {
-        TweenLite.set(this.ui.animatedLines, { y: 0 });
-        TweenLite.set(this.ui.animatedRows, { y: 0 });
+        TweenLite.set(this.ui.animatedLines, { y: 0, x: 0 });
+        TweenLite.set(this.ui.animatedRows, { y: 0, overflow: 'initial' });
         TweenLite.set(this.ui.footerItems, { y: 0, autoAlpha: 1 });
-        TweenLite.set(this.ui.loader, { width: 0 });
+        TweenLite.set(this.ui.loader, { width: 0, display: 'none' });
         TweenLite.set(this.ui.heading, { x: 0 });
         TweenLite.set(this.ui.animatedRightLines, { x: 0 });
-        TweenLite.set(this.ui.animatedLines, { x: 0 });
         TweenLite.set(this.ui.footerArrow, { y: 0, autoAlpha: 1 });
-        TweenLite.set(this.ui.animatedRows, { overflow: 'initial' });
         TweenLite.set(this.ui.lineWrappers, { overflow: 'initial' });
         TweenLite.set(this.ui.tinyWords, { opacity: 1 });
-        TweenLite.set(this.ui.loader, { display: 'none' })
+
         ScrollManager.enable();
     }
 
@@ -58,7 +60,6 @@ class LoaderComponent {
 
     _setup() {
         this._createClone();
-        this._setupTimeline();
         this._setupEventListeners();
     }
 

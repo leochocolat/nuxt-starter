@@ -15,11 +15,12 @@ class NoiseCanvasComponent {
     }
 
     close() {
-        if (this._worker) {
+        if (this._isOffscreenCanvasAvailable) {
             this._worker.terminate();
-        } else {
             this._removeEventListeners();
         }
+        
+        this._removeEventListeners();
     }
 
     _setup() {
@@ -129,14 +130,18 @@ class NoiseCanvasComponent {
     }
 
     _setupEventListeners() {
-        Emitter.on('RESIZE:END', this._resizeHandler);
+        // Emitter.on('RESIZE:END', this._resizeHandler);
+        window.addEventListener('resize', this._resizeHandler);
 
         if (this._isOffscreenCanvasAvailable) return;
         gsap.ticker.add(this._tickHandler);
     }
 
     _removeEventListeners() {
-        Emitter.removeListener('RESIZE:END', this._resizeHandler);
+        // Emitter.removeListener('RESIZE:END', this._resizeHandler);
+        window.removeListener('resize', this._resizeHandler);
+
+        if (this._isOffscreenCanvasAvailable) return;
         gsap.ticker.remove(this._tickHandler);
     }
 

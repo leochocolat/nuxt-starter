@@ -67,8 +67,6 @@ class NoiseCanvasComponent {
 
         this.el.style.width = `${this._width} px`;
         this.el.style.height = `${this._height} px`;
-
-        console.log(this._width, this._height);
     }
 
     _resizeOffscreenCanvas(width, height) {        

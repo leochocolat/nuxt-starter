@@ -1,6 +1,6 @@
 <template>
-  <span v-html="getRichText()" class="custom-rich-text-renderer">
-  </span>
+  <p v-html="getRichText()" class="custom-rich-text-renderer">
+  </p>
 </template>
 
 <script>
@@ -25,7 +25,7 @@ export default {
         const options = {
             renderNode: {
                 [INLINES. HYPERLINK]: (node, next) => {
-                    return `<a href="${node.data.uri}" target="_blank" rel="noopener" '}>${next(node.content)}</a>`;
+                    return `<a href="${node.data.uri}" target="_blank" rel="noopener">${next(node.content)}</a>`;
                 }
             }
         };

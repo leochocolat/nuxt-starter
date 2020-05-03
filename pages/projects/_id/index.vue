@@ -1,5 +1,5 @@
 <template>
-  <div class="main page-project js-scroll-container">
+  <div :class="`main page-project js-scroll-container ${this.state}`">
     <div class="js-scroll-content">
         <div class="main__content">
             <div class="container page-project__container">
@@ -12,15 +12,16 @@
                                 /{{ project.fields.date }}
                             </span>
                         </h1>
-                        <div class="page-project__description paragraph paragraph--small rich-text js-scroll-paragraph">
+                        <div :class="`page-project__description paragraph paragraph--small rich-text js-scroll-paragraph ${this.state}`">
                             <CustomRichTextRenderer :document="getDescription()" />
+                            <!-- <CustomRichTextRenderer :document="project.fields.description" /> -->
                         </div>
                     </div
                     ><div class="page-project__video-wrapper">
-                        <VideoPlayer class="js-video-player" :images="project.fields.images" :videos="project.fields.videos" />
+                        <VideoPlayer :class="`${this.state}`" :images="project.fields.images" :videos="project.fields.videos" />
                     </div>
                 </div>
-                <FooterProject class="js-footer-project" :project="project.fields" />
+                <FooterProject :class="`${this.state}`" :project="project.fields" />
             </div>
         </div>
     </div>
@@ -48,7 +49,7 @@ import Arrow from '~/components/partials/Arrow';
 import CustomRichTextRenderer from '~/components/partials/CustomRichTextRenderer';
 
 export default {
-    data () { return { name: 'project' } },
+    data () { return { name: 'project', state: '' } },
     mixins: [ page ],
     components: {
         CustomRichTextRenderer,
@@ -61,10 +62,7 @@ export default {
             this.setupScrollParagraph();
 
             setTimeout(() => {
-                this.$el.classList.add('isInView');
-                this.$el.querySelector('.js-footer-project').classList.add('isInView');
-                this.$el.querySelector('.js-video-player').classList.add('isInView');
-                this.$el.querySelector('.js-scroll-paragraph').classList.add('isInView');
+                this.state = 'isInView';
             }, 100);
         },
         getDescription() {

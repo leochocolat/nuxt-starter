@@ -24,7 +24,7 @@
     }
 
     .page-project__video-wrapper {
-        opacity: 0;
+        width: 0;
     }
 
     &.isInView {
@@ -41,10 +41,27 @@
         }
 
         .page-project__video-wrapper {
-            opacity: 1;
+            transition: width 1.2s $Power3InOut 0.8s;
 
-            transition: opacity 2s $Power3Out 0.5s;
+            width: size(18, 24);
+
+            @include mq-narrow {
+                width: 100%;
+            }
+
+            @include mq-regular {
+                width: size(18, 24);
+            }
+
+            @include mq-extra-narrow {
+                width: 100%;
+            }
+
+            @media (max-width: 1000px) and (min-width: $bp-regular + 1) {
+                width: 100%;
+            }
         }
+
     }
 
     .section-about__introduction {
@@ -95,6 +112,8 @@
 }
 
 .page-project__description {
+    opacity: 0;
+
     .line {
         display: inline-block;
         transform: translateY(30px);
@@ -109,6 +128,8 @@
     }
 
     &.isInView {
+        opacity: 1;
+
         .line-container {
             @for $i from 1 to 50 {
                 &--#{$i} {
@@ -243,7 +264,7 @@
 
     .page-project__video-wrapper {
         width: 100%;
-        height: auto;
+        height: getVideoHeightFromWidth(24, 24, 0px, 0.58);
     }
 
     .page-project__description-container {

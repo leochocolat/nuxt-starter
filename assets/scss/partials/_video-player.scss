@@ -84,15 +84,5 @@
 }
 
 @include mq-extra-narrow {
-    .video-player {
-        position: relative;
     
-        width: 100%;
-        height: auto;
-    }
-
-    .video-player__video, .video-player__image {
-        position: relative;
-        height: auto;
-    }
 }

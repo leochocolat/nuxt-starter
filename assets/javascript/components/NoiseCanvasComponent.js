@@ -68,6 +68,8 @@ class NoiseCanvasComponent {
 
         this._ctx.save();
         this._ctx.scale(this._ratio * RETINA_SCALE_FACTOR, this._ratio * RETINA_SCALE_FACTOR);
+        this._ctx.mozImageSmoothingEnabled = false;
+        this._ctx.imageSmoothingEnabled = false;
 
         this._drawNoiseImage();
 

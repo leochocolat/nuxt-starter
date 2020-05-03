@@ -4,9 +4,9 @@
           <div class="section-about__content">
               <div class="section-about__introduction">
                 <span class="tiny-word section-about__introduction-title">({{ title }})</span>
-                <h2 class="paragraph rich-text section-about__paragraph js-scroll-paragraph" data-scroll>
+                <div class="paragraph rich-text section-about__paragraph js-scroll-paragraph" data-scroll>
                   <CustomRichTextRenderer :document="description" />
-                </h2>
+                </div>
               </div
               ><ul class="section-about__socials" data-scroll>
                   <li class="section-about__socials-item">

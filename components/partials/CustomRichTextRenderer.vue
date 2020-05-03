@@ -1,6 +1,6 @@
 <template>
-  <p v-html="getRichText()" class="custom-rich-text-renderer">
-  </p>
+  <div v-html="getRichText()" class="custom-rich-text-renderer">
+  </div>
 </template>
 
 <script>

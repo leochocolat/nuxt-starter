@@ -1,7 +1,6 @@
 const DATA_AMOUNT = 4;
-const RETINA_SCALE_FACTOR = 2;
-const ALPHA = 25;
-const INTENSITY_MIN = 120;
+const ALPHA = 15;
+const INTENSITY_MIN = 80;
 
 let offscreenCanvas, context;
 let width, height = 0;
@@ -45,6 +44,10 @@ function createImageData() {
 
 function update() {
     context.clearRect(0, 0, width, height);
+
+    context.mozImageSmoothingEnabled = false;
+    context.imageSmoothingEnabled = false;
+
     context.putImageData(createImageData(), 0, 0);
 
     requestAnimationFrame(update);

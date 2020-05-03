@@ -3,7 +3,6 @@ import { gsap } from 'gsap';
 import bindAll from '../utils/bindAll';
 
 const DATA_AMOUNT = 4;
-const RETINA_SCALE_FACTOR = 2;
 const ALPHA = 16;
 const INTENSITY_MIN = 120;
 
@@ -26,6 +25,7 @@ class NoiseCanvasComponent {
     _setup() {
         //check if offscreen available
         if ("OffscreenCanvas" in window) {
+            this._isOffscreenCanvasAvailable = true;
             this._resize();
             this._setupOffscreenCanvas();
             this._resizeOffscreenCanvas();
@@ -64,11 +64,11 @@ class NoiseCanvasComponent {
 
         this._ratio = window.devicePixelRatio;
         
-        this.el.width = this._width * this._ratio * RETINA_SCALE_FACTOR;
-        this.el.height = this._height * this._ratio * RETINA_SCALE_FACTOR;
+        this.el.width = this._width;
+        this.el.height = this._height;
 
-        this.el.style.width = `${this._width * RETINA_SCALE_FACTOR} px`;
-        this.el.style.height = `${this._height * RETINA_SCALE_FACTOR} px`;
+        this.el.style.width = `${this._width} px`;
+        this.el.style.height = `${this._height} px`;
     }
 
     _resizeOffscreenCanvas(width, height) {        
@@ -104,7 +104,7 @@ class NoiseCanvasComponent {
         this._ctx.clearRect(0, 0, this._width, this._height);
 
         this._ctx.save();
-        this._ctx.scale(this._ratio * RETINA_SCALE_FACTOR, this._ratio * RETINA_SCALE_FACTOR);
+
         this._ctx.mozImageSmoothingEnabled = false;
         this._ctx.imageSmoothingEnabled = false;
 
@@ -129,10 +129,9 @@ class NoiseCanvasComponent {
     }
 
     _setupEventListeners() {
-        // Emitter.on('RESIZE:END', this._resizeHandler, { passive: true });
-        window.addEventListener('resize',this._resizeHandler);
+        Emitter.on('RESIZE:END', this._resizeHandler);
 
-        if (this._worker) return;
+        if (this._isOffscreenCanvasAvailable) return;
         gsap.ticker.add(this._tickHandler);
     }
 
@@ -142,7 +141,7 @@ class NoiseCanvasComponent {
     }
 
     _resizeHandler(e) {
-        if (this._worker) {
+        if (this._isOffscreenCanvasAvailable) {
             this._resizeOffscreenCanvas();
         } else {
             this._resize();

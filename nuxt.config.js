@@ -71,8 +71,8 @@ export default {
   ** Server
   */
   server: {
-    port: 3000, // par défaut: 3000
-    host: 'localhost' // par défaut: localhost
+    port: 8000, // par défaut: 3000
+    host: '0.0.0.0' // par défaut: localhost
   },
   /*
   ** Build configuration

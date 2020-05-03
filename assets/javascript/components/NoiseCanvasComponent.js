@@ -17,9 +17,8 @@ class NoiseCanvasComponent {
     close() {
         if (this._isOffscreenCanvasAvailable) {
             this._worker.terminate();
-            this._removeEventListeners();
         }
-        
+
         this._removeEventListeners();
     }
 
@@ -32,10 +31,10 @@ class NoiseCanvasComponent {
             this._resizeOffscreenCanvas();
             this._setupEventListeners();
         } else {
-            this._setupCanvas();
-            this._resize();
-            this._createNoiseImageData();
-            this._setupEventListeners();
+            // this._setupCanvas();
+            // this._resize();
+            // this._createNoiseImageData();
+            // this._setupEventListeners();
         }
     }
 
@@ -62,14 +61,14 @@ class NoiseCanvasComponent {
     _resize(width, height) {
         this._width = width || window.innerWidth;
         this._height = height || window.innerHeight;
-
-        this._ratio = window.devicePixelRatio;
         
         this.el.width = this._width;
         this.el.height = this._height;
 
         this.el.style.width = `${this._width} px`;
         this.el.style.height = `${this._height} px`;
+
+        console.log(this._width, this._height);
     }
 
     _resizeOffscreenCanvas(width, height) {        
@@ -130,26 +129,26 @@ class NoiseCanvasComponent {
     }
 
     _setupEventListeners() {
-        // Emitter.on('RESIZE:END', this._resizeHandler);
-        window.addEventListener('resize', this._resizeHandler);
+        Emitter.on('RESIZE:END', this._resizeHandler);
 
         if (this._isOffscreenCanvasAvailable) return;
-        gsap.ticker.add(this._tickHandler);
+        // gsap.ticker.add(this._tickHandler);
     }
 
     _removeEventListeners() {
-        // Emitter.removeListener('RESIZE:END', this._resizeHandler);
-        window.removeListener('resize', this._resizeHandler);
+        Emitter.removeListener('RESIZE:END', this._resizeHandler);
 
         if (this._isOffscreenCanvasAvailable) return;
-        gsap.ticker.remove(this._tickHandler);
+        // gsap.ticker.remove(this._tickHandler);
     }
 
     _resizeHandler(e) {
+        const { viewportWidth, viewportHeight } = e;
         if (this._isOffscreenCanvasAvailable) {
-            this._resizeOffscreenCanvas();
+            this._resizeOffscreenCanvas(viewportWidth, viewportHeight);
         } else {
-            this._resize();
+            // this._resize();
+            // this._createNoiseImageData();
         }
     }
 

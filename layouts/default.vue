@@ -16,7 +16,7 @@ import NoiseCanvas from '~/components/NoiseCanvas';
 export default {
   components: {
     NoiseCanvas,
-    ThreeCanvas: () => import('~/components/ThreeCanvas'),
+    // ThreeCanvas: () => import('~/components/ThreeCanvas'),
     Grid: () => import('~/components/Grid'),
   },
   mounted() {

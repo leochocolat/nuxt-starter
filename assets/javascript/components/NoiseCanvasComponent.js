@@ -2,7 +2,7 @@ import Emitter from '../events/Emitter';
 import { gsap } from 'gsap';
 import bindAll from '../utils/bindAll';
 
-const DATA_AMOUNT = 6;
+const DATA_AMOUNT = 4;
 const RETINA_SCALE_FACTOR = 2;
 const ALPHA = 16;
 const INTENSITY_MIN = 120;
@@ -16,14 +16,40 @@ class NoiseCanvasComponent {
     }
 
     close() {
-        this._removeEventListeners();
+        if (this._worker) {
+            this._worker.terminate();
+        } else {
+            this._removeEventListeners();
+        }
     }
 
     _setup() {
-        this._setupCanvas();
-        this._resize();
-        this._createNoiseImageData();
-        this._setupEventListeners();
+        //check if offscreen available
+        if ("OffscreenCanvas" in window) {
+            this._resize();
+            this._setupOffscreenCanvas();
+            this._resizeOffscreenCanvas();
+            this._setupEventListeners();
+        } else {
+            this._setupCanvas();
+            this._resize();
+            this._createNoiseImageData();
+            this._setupEventListeners();
+        }
+    }
+
+    _setupOffscreenCanvas() {
+        this._canvas = this.el;
+        this._offscreenCanvas = this._canvas.transferControlToOffscreen();
+
+        this._worker = new Worker('workers/NoiseWorker.js');
+
+        this._worker.postMessage({
+            name: 'start',
+            canvas: this._offscreenCanvas, 
+            width: this._width, 
+            height: this._height,
+        }, [this._offscreenCanvas]);
     }
 
     _setupCanvas() {
@@ -38,11 +64,22 @@ class NoiseCanvasComponent {
 
         this._ratio = window.devicePixelRatio;
         
-        this._canvas.width = this._width * this._ratio * RETINA_SCALE_FACTOR;
-        this._canvas.height = this._height * this._ratio * RETINA_SCALE_FACTOR;
+        this.el.width = this._width * this._ratio * RETINA_SCALE_FACTOR;
+        this.el.height = this._height * this._ratio * RETINA_SCALE_FACTOR;
 
-        this._canvas.style.width = `${this._width * RETINA_SCALE_FACTOR} px`;
-        this._canvas.style.height = `${this._height * RETINA_SCALE_FACTOR} px`;
+        this.el.style.width = `${this._width * RETINA_SCALE_FACTOR} px`;
+        this.el.style.height = `${this._height * RETINA_SCALE_FACTOR} px`;
+    }
+
+    _resizeOffscreenCanvas(width, height) {        
+        this._width = width || window.innerWidth;
+        this._height = height || window.innerHeight;
+
+        this._worker.postMessage({
+            name: 'resize',
+            width: this._width, 
+            height: this._height,
+        }, []);
     }
 
     _createNoiseImageData() {
@@ -53,9 +90,9 @@ class NoiseCanvasComponent {
     
             for (let i = 0; i < imageData.data.length; i += 4) {
                 const r = INTENSITY_MIN + Math.floor(Math.random() * (255 - INTENSITY_MIN));
-                imageData.data[i + 0] = r;  // R value
-                imageData.data[i + 1] = r;  // G value
-                imageData.data[i + 2] = r;  // B value
+                imageData.data[i + 0] = r;      // R value
+                imageData.data[i + 1] = r;      // G value
+                imageData.data[i + 2] = r;      // B value
                 imageData.data[i + 3] = ALPHA;  // A value
             }
 
@@ -83,10 +120,6 @@ class NoiseCanvasComponent {
         this._ctx.putImageData(imageData, 0, 0);
     }
 
-    _getNoiseImage() {
-        
-    }
-
     _bindAll() {
         bindAll(
             this,
@@ -96,7 +129,10 @@ class NoiseCanvasComponent {
     }
 
     _setupEventListeners() {
-        Emitter.on('RESIZE:END', this._resizeHandler, { passive: true });
+        // Emitter.on('RESIZE:END', this._resizeHandler, { passive: true });
+        window.addEventListener('resize',this._resizeHandler);
+
+        if (this._worker) return;
         gsap.ticker.add(this._tickHandler);
     }
 
@@ -106,8 +142,11 @@ class NoiseCanvasComponent {
     }
 
     _resizeHandler(e) {
-        console.log(e);
-        this._resize();
+        if (this._worker) {
+            this._resizeOffscreenCanvas();
+        } else {
+            this._resize();
+        }
     }
 
     _tickHandler() {

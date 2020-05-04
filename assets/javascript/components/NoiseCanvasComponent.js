@@ -42,7 +42,7 @@ class NoiseCanvasComponent {
         this._canvas = this.el;
         this._offscreenCanvas = this._canvas.transferControlToOffscreen();
 
-        this._worker = new Worker('workers/NoiseWorker.js');
+        this._worker = new Worker(`${process.env.BASE_URL}/workers/NoiseWorker.js`);
 
         this._worker.postMessage({
             name: 'start',

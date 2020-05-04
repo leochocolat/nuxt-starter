@@ -1,6 +1,13 @@
 const config = require('./.contentful.json');
 const webpack = require('webpack');
 
+const contentful = require('contentful');
+
+const client = contentful.createClient({
+  space: config.CTF_SPACE_ID,
+  accessToken: config.CTF_CDA_ACCESS_TOKEN
+});
+
 export default {
   mode: 'universal',
   /*
@@ -56,6 +63,7 @@ export default {
   */
   plugins: [
     '~/plugins/listeners.client',
+    '~/plugins/contentful.client',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -78,18 +86,19 @@ export default {
   ** Generate
   */
   generate: {
-    routes: [
-      '/projects/0',
-      '/projects/1',
-      '/projects/2',
-      '/projects/3',
-      '/projects/4',
-      '/projects/5',
-      '/projects/6',
-      '/projects/7',
-      '/projects/8',
-      '/projects/9',
-    ]
+    routes() {
+      return client.getEntries({
+          'content_type': 'project',
+          order: 'sys.createdAt'
+      }).then((res) => {
+          let routes = [];
+          for (let i = 0; i < res.items.length; i++) {
+            routes.push(`/projects/${i}`);
+          }
+
+          return routes;
+      });
+    }
   },
   /*
   ** Build configuration

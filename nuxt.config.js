@@ -17,7 +17,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: "I'm front end developper base in Paris. Currently studying at Gobelins Paris and working at Purée Maison. Looking for a new traineeship for my new degree at Gobelins!"
+        content: "I'm front end developer based in Paris. Currently studying at Gobelins Paris and working at Purée Maison. Looking for a new traineeship for my next degree at Gobelins!"
       },
       {
         name: 'msapplication-TileColor',
@@ -73,6 +73,23 @@ export default {
   server: {
     port: 3000, // par défaut: 3000
     host: 'localhost' // par défaut: localhost
+  },
+  /*
+  ** Generate
+  */
+  generate: {
+    routes: [
+      '/projects/0',
+      '/projects/1',
+      '/projects/2',
+      '/projects/3',
+      '/projects/4',
+      '/projects/5',
+      '/projects/6',
+      '/projects/7',
+      '/projects/8',
+      '/projects/9',
+    ]
   },
   /*
   ** Build configuration

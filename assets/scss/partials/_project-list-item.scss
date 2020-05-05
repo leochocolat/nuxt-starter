@@ -15,17 +15,23 @@
     .project-list-item__project-name {
         transform: translateY(10px);
         opacity: 0;
-
-        transition: 1.5s $Power3Out;
-        transition-property: transform, opacity;
     }
 
     .project-list-item__project-infos {
         transform: translateY(5px);
         opacity: 0;
+    }
 
-        transition: 1.8s $Power3Out;
-        transition-property: transform, opacity;
+    .project-list-item__image-container {
+        width: 0;
+
+        transition: width 0.7s $Power3Out;
+    }
+
+    .project-list-item__image {
+        transform: translateX(-50%) rotate(0deg) scale(1.2, 1.2);
+
+        transition: transform 0.7s $Power3Out;
     }
 
     svg {
@@ -46,17 +52,73 @@
             transform: translateY(0) rotateX(0deg);
             opacity: 1;
 
-            transition-duration: 1.8s;
+            transition: 1.8s $Power3Out;
+            transition-property: transform, opacity;
+        }
+
+        .project-list-item__project-name {
+            transition: transform 0.8s $Power3Out;
+            transition-property: opacity, transform;
         }
     }
 
     &:hover {
+        @media (hover:hover) and (min-width: 1180px) {
+            .project-list-item__project-name {
+                transform: translateX(200px);
+    
+                transition: transform 0.7s $Power3Out;
+            }
+
+            .project-list-item__image-container {
+                width: 180px;
+    
+                transition: width 0.7s $Power3Out;
+            }
+    
+            .project-list-item__image {
+                transform: translateX(-50%);
+    
+                transition: transform 0.8s $Power3Out;
+            }
+        }
+
         svg {
             transform: rotate(45deg);
             transition-duration: 0.8s;
             transition-timing-function: $Power3Out;
         }
     }
+}
+
+.project-list-item__image-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    height: 80%;
+    width: 150px;
+
+    margin: auto;
+    overflow: hidden;
+
+    font-size: 0;
+
+    pointer-events: none;
+}
+
+.project-list-item__image {
+    position: absolute;
+    left: 50%;
+    top: 0;
+
+    transform: translateX(-50%);
+
+    height: 100%;
+    width: auto;
+
+    margin: auto;
 }
 
 .project-list-item__link {

@@ -24,8 +24,13 @@
     }
 
     .page-project__video-wrapper {
+        transform-origin: right top;
         opacity: 0;
-        transform: translateY(100px);
+        transform: scale(1.2, 1.2) rotate(-10deg);
+    }
+
+    .video-player {
+        transform: scale(1.5, 1.5) rotate(-10deg);
     }
 
     &.isInView {
@@ -42,11 +47,18 @@
         }
 
         .page-project__video-wrapper {
-            transition: 1.5s $Power3Out 0s;
+            transition: 1s $Power3Out 0s;
             transition-property: transform, opacity;
 
             transform: translateY(0);
             opacity: 1;
+        }
+
+        .video-player {
+            transition: 1s $Power3Out 0s;
+            transition-property: transform, opacity;
+
+            transform: translateY(0);
         }
     }
 
@@ -235,6 +247,12 @@
 }
 
 @include mq-extra-narrow {
+    .page-project {
+        .page-project__video-wrapper {
+            transform: scale(1.2, 1.2);
+        }
+    }
+
     .page-project__container {
         width: 100%;
 

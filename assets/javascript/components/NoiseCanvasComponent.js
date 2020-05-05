@@ -1,14 +1,20 @@
 import Emitter from '../events/Emitter';
-import { gsap } from 'gsap';
+import { gsap, TweenLite, Power3 } from 'gsap';
 import bindAll from '../utils/bindAll';
 
 const DATA_AMOUNT = 4;
 const ALPHA = 16;
 const INTENSITY_MIN = 120;
+const NOISE_ANIMATED_VALUE = 80;
+const LEAVE_SCREEN_THROTTLE_VALUE = 500;
 
 class NoiseCanvasComponent {
     constructor(options) {
         this.el = options.el;
+
+        this._noise = {
+            deltaAlpha: 0
+        };
 
         this._bindAll();
         this._setup();
@@ -122,15 +128,21 @@ class NoiseCanvasComponent {
         bindAll(
             this,
             '_resizeHandler',
-            '_tickHandler'
+            '_tickHandler',
+            '_pageLeaveHandler',
+            '_pageReturnHandler',
+            '_throttleHandler'
         );
     }
 
     _setupEventListeners() {
         Emitter.on('RESIZE:END', this._resizeHandler);
 
+        window.addEventListener('click', this._screensaverHandler);
+
+        gsap.ticker.add(this._tickHandler);
+
         if (this._isOffscreenCanvasAvailable) return;
-        // gsap.ticker.add(this._tickHandler);
     }
 
     _removeEventListeners() {
@@ -138,6 +150,23 @@ class NoiseCanvasComponent {
 
         if (this._isOffscreenCanvasAvailable) return;
         // gsap.ticker.remove(this._tickHandler);
+    }
+
+    _pageReturnHandler() {
+        this._pageLeave = false;
+
+        if (!this._isOffscreenCanvasAvailable) return;
+        
+        TweenLite.fromTo(this._noise, 1, { deltaAlpha: NOISE_ANIMATED_VALUE, ease: Power3.easeOut }, { deltaAlpha: 0, onUpdate: () => {
+            this._worker.postMessage({
+                name: 'noise',
+                deltaAlpha: this._noise.deltaAlpha
+            }, [])
+        } });
+    }
+
+    _pageLeaveHandler() {
+        this._pageLeave = true;
     }
 
     _resizeHandler(e) {
@@ -151,7 +180,16 @@ class NoiseCanvasComponent {
     }
 
     _tickHandler() {
-        this._draw();
+        this._throttleHandler();
+        // this._draw();
+    }
+
+    _throttleHandler() {
+        clearTimeout(this._throttleTimeout);
+        this._throttleTimeout = setTimeout(this._pageLeaveHandler, LEAVE_SCREEN_THROTTLE_VALUE);
+
+        if (!this._pageLeave) return;
+        this._pageReturnHandler()
     }
 }
 

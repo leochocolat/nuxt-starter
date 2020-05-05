@@ -4,6 +4,19 @@
             {{ project.fields.name }}
         </nuxt-link>
         <div class="project-list-item__content">
+            <div class="project-list-item__image-container">
+                <picture class="project-list-item__image">
+                    <source type="image/webp"
+                        :srcset="`${project.fields.images[2].fields.file.url}`"
+                    >
+                    <img class="project-list-item__image"
+                        :src="project.fields.images[3].fields.file.url"
+                        :width="project.fields.images[3].fields.file.details.image.width"
+                        :height="project.fields.images[3].fields.file.details.image.height"
+                        :alt="project.fields.images[0].fields.title"
+                    >
+                </picture>
+            </div>
             <h3 class="project-list-item__project-name">
                 {{ project.fields.name }}
             </h3

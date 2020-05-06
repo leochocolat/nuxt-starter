@@ -13,7 +13,8 @@ class NoiseCanvasComponent {
         this.el = options.el;
 
         this._noise = {
-            deltaAlpha: 0
+            deltaAlpha: 0,
+            pixelSize: 1
         };
 
         this._bindAll();
@@ -157,7 +158,10 @@ class NoiseCanvasComponent {
 
         if (!this._isOffscreenCanvasAvailable) return;
         
-        TweenLite.fromTo(this._noise, 1, { deltaAlpha: NOISE_ANIMATED_VALUE, ease: Power3.easeOut }, { deltaAlpha: 0, onUpdate: () => {
+        TweenLite.to(this._noise, 1.5, { 
+            deltaAlpha: 0,
+            ease: Power3.easeOut,
+            onUpdate: () => {
             this._worker.postMessage({
                 name: 'noise',
                 deltaAlpha: this._noise.deltaAlpha
@@ -167,6 +171,13 @@ class NoiseCanvasComponent {
 
     _pageLeaveHandler() {
         this._pageLeave = true;
+
+        this._noise.deltaAlpha = NOISE_ANIMATED_VALUE;
+
+        this._worker.postMessage({
+            name: 'noise',
+            deltaAlpha: this._noise.deltaAlpha
+        }, []);
     }
 
     _resizeHandler(e) {

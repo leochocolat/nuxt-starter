@@ -21,6 +21,7 @@
     "three": "^0.114.0"
   },
   "devDependencies": {
+    "@nuxtjs/google-analytics": "^2.2.3",
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
     "raw-loader": "^4.0.1",

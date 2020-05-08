@@ -1,6 +1,6 @@
 <template>
-    <div class="project-list-item" data-scroll data-scroll-offset="70">
-        <nuxt-link :to="`/projects/${index}`" class="project-list-item__link js-link">
+    <div :class="`project-list-item ${state}`" data-scroll data-scroll-offset="70">
+        <nuxt-link :to="`/projects/${index}`" @click.native="projectClickHandler" class="project-list-item__link js-link">
             {{ project.fields.name }}
         </nuxt-link>
         <div class="project-list-item__content">
@@ -37,6 +37,7 @@
 <script>
 
 export default {
+    data() { return { state: '' }},
     props: {
         project: {
             type: Object,
@@ -58,6 +59,11 @@ export default {
             this.$el.querySelector('.js-link').addEventListener('click', () => {
                 this.$el.classList.add('is-active');
             });
+        },
+        projectClickHandler() {
+            if (document.querySelector('html').classList.contains('isLoading')) return;
+            document.querySelector('html').classList.add('isLoading');
+            this.state = 'is-active isInView';
         }
     },
     mounted() {

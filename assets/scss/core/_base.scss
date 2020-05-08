@@ -13,6 +13,7 @@ html, body {
 
     &.isLoading {
         cursor: wait !important;
+        pointer-events: none !important;
     }
     
     color: $white;

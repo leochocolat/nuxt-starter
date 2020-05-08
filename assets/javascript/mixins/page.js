@@ -33,6 +33,7 @@ export default {
           scrollPosition: ['scroll/position'],
           session: ['session/session'],
           currentPage: ['page/current'],
+          previousPage: ['page/previous'],
         }),
     },
     beforeDestroy() {

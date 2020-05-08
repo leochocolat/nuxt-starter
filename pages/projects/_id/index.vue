@@ -4,7 +4,7 @@
         <div class="main__content">
             <div class="container page-project__container">
                 <div class="page-project__content">
-                    <Arrow class="page-project__arrow" :direction="`left`" :color="`black`" :link="'/'" />
+                    <Arrow class="page-project__arrow" :direction="`left`" :color="`black`" :link="'back'" />
                     <div class="page-project__description-container">
                         <h1 class="page-project__title">
                             {{ project.fields.name }}
@@ -14,7 +14,6 @@
                         </h1>
                         <div :class="`page-project__description paragraph paragraph--small rich-text js-scroll-paragraph ${this.state}`">
                             <CustomRichTextRenderer :document="getDescription()" />
-                            <!-- <CustomRichTextRenderer :document="project.fields.description" /> -->
                         </div>
                     </div
                     ><div class="page-project__video-wrapper">

@@ -1,6 +1,7 @@
 export const state = () => ({
     pages: [],
-    current: null
+    current: null,
+    previous: null
 });
 
 export default state;

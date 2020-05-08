@@ -6,6 +6,10 @@ export const actions = {
     setCurrent({ commit }, current) {
         commit('SET_CURRENT', current);
     },
+
+    setPrevious({ commit }, previous) {
+        commit('SET_PREVIOUS', previous);
+    }
 }
 
 export default actions;

@@ -6,6 +6,10 @@ export const getters = {
 	current(state) {
 		return state.current;
 	},
+
+	previous(state) {
+		return state.previous;
+	}
 }
 
 export default getters

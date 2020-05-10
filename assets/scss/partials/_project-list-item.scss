@@ -49,10 +49,10 @@
         }
 
         .project-list-item__project-name, .project-list-item__project-infos {
-            transform: translateY(0) rotateX(0deg);
+            transform: translateY(0);
             opacity: 1;
 
-            transition: 1.8s $Power3Out;
+            transition: transform 0.8s $Power3Out;
             transition-property: transform, opacity;
         }
 
@@ -62,48 +62,83 @@
         }
     }
 
-    &.is-active {
-        @media (hover:hover) and (min-width: 1180px) {
-            .project-list-item__project-name {
-                transform: translateX(200px);
+    &:hover, &.is-active {
+        @media (hover:hover) and (min-width: 680px) {
+            @media (min-width: 500px) {
+                .project-list-item__project-name {
+                    transform: translateX(200px);
+        
+                    transition: transform 0.7s $Power3Out;
+                }
     
-                transition: transform 0.7s $Power3Out;
-            }
+                .project-list-item__image-container {
+                    width: 180px;
+        
+                    transition: width 0.7s $Power3Out;
+                }
+        
+                .project-list-item__image {
+                    transform: translateX(-50%);
+        
+                    transition: transform 0.8s $Power3Out;
+                }
+                
+                @media (max-width: 1180px) and (min-width: 980px) {
+                    .project-list-item__project-infos {
+                        transform: translateX(50%);
+                    }
+                } 
+                @media (max-width: 979px) {
+                    .project-list-item__image-container {
+                        width: 100px;
+                    }
 
-            .project-list-item__image-container {
-                width: 180px;
-    
-                transition: width 0.7s $Power3Out;
-            }
-    
-            .project-list-item__image {
-                transform: translateX(-50%);
-    
-                transition: transform 0.8s $Power3Out;
+                    .project-list-item__project-name {
+                        transform: translateX(120px);
+                    }
+
+                    .project-list-item__project-infos {
+                        transform: translateX(40%);
+                    }
+                }
+                @media (max-width: 870px) and (min-width: $bp-regular + 1) {
+                    .project-list-item__image-container {
+                        width: 0;
+                    }
+
+                    .project-list-item__project-name {
+                        transform: translateX(0);
+                    }
+
+                    .project-list-item__project-infos {
+                        transform: translateX(0);
+                    }
+                }
+                @media (max-width: $bp-regular) {
+                    .project-list-item__project-name {
+                        transform: translateX(200px);
+            
+                        transition: transform 0.7s $Power3Out;
+                    }
+        
+                    .project-list-item__image-container {
+                        width: 180px;
+            
+                        transition: width 0.7s $Power3Out;
+                    }
+            
+                    .project-list-item__image {
+                        transform: translateX(-50%);
+            
+                        transition: transform 0.8s $Power3Out;
+                    }
+                }
             }
         }
     }
 
     &:hover {
-        @media (hover:hover) and (min-width: 1180px) {
-            .project-list-item__project-name {
-                transform: translateX(200px);
-    
-                transition: transform 0.7s $Power3Out;
-            }
-
-            .project-list-item__image-container {
-                width: 180px;
-    
-                transition: width 0.7s $Power3Out;
-            }
-    
-            .project-list-item__image {
-                transform: translateX(-50%);
-    
-                transition: transform 0.8s $Power3Out;
-            }
-        }
+        // @media (hover:hover) and (min-width: 1180px) {}
 
         svg {
             transform: rotate(45deg);

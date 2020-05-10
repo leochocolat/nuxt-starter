@@ -32,9 +32,9 @@
                 <span class="header-home__dates-item">
                     <span class="header-home__animated-line-wrapper js-animated-line-wrapper">
                         <span class="animated-line-right js-animated-line-right">
-                            2019<span class="and-char">&</span>
+                            {{ data.fields.startingWorkYear }}<span class="and-char">&</span>
                             <span class="tiny-word js-tiny-word">
-                                Selected
+                                {{ data.fields.workYearTinyText }}
                             </span>
                         </span>
                     </span>
@@ -42,7 +42,7 @@
                 <span class="header-home__dates-item">
                     <span class="header-home__animated-line-wrapper js-animated-line-wrapper">
                         <span class="animated-line-right js-animated-line-right">
-                            2020    
+                            {{ data.fields.lastWorkYear }}    
                         </span>
                     </span>
                 </span>

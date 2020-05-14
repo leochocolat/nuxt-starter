@@ -6,8 +6,12 @@ import bindAll from '../utils/bindAll';
 import lerp from '../utils/lerp';
 import { TweenLite } from 'gsap';
 
-//TODO : 
-//ADD STICKY OPTION
+
+/**
+ * TODO:
+ * * add Sticky option
+ * * Find out how to improve perf by using workers (maybe getTransform)
+ */
 
 class ScrollTriggerManager extends EventDispatcher {
     constructor(options) {

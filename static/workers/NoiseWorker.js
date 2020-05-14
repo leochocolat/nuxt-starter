@@ -1,12 +1,13 @@
 const DATA_AMOUNT = 4;
-const ALPHA = 15;
-// const INTENSITY_MIN = 80;
-const INTENSITY_MIN = 0;
+const ALPHA = 11;
+const INTENSITY_MIN = 80;
+// const INTENSITY_MIN = 0;
 
 let offscreenCanvas, context;
 let width, height = 0;
 let deltaAlpha = 0;
 let pixelSize = 1;
+let readyState = false;
 
 onmessage = function(e) {
     if (e.data.name === 'start') {
@@ -32,6 +33,10 @@ function start() {
     update();
 }
 
+function sendReadyMessage() {
+    self.postMessage({ name: 'ready' }, []);
+}
+
 function createImageData() {
     const imageData = context.createImageData(width/pixelSize, height/pixelSize);
 
@@ -47,6 +52,10 @@ function createImageData() {
         // const y = Math.floor((i/4) / imageData.width) * pixelSize;
     }
 
+    if (!readyState) {
+        readyState = true;
+        sendReadyMessage();
+    }
 
     return imageData;
 }

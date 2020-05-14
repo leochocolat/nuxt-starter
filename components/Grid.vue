@@ -21,19 +21,25 @@ export default {
 
   },
   methods: {
-
-  },
-  mounted() {
-    window.addEventListener('keydown', (e) => {
+    setupEventListeners() {
+      window.addEventListener('keydown', (e) => {
         if (e.key === 'Control') {
             document.querySelector('.grid').classList.add('enable')
         }
-    });
-    window.addEventListener('keyup', (e) => {
-        if (e.key === 'Control') {
-            document.querySelector('.grid').classList.remove('enable')
-        }
-    });
+      });
+      window.addEventListener('keyup', (e) => {
+          if (e.key === 'Control') {
+              document.querySelector('.grid').classList.remove('enable')
+          }
+      });
+    }
+  },
+  mounted() {
+    if (process.env.NODE_ENV === 'development') {
+      this.setupEventListeners();
+    } else {
+      this.$el.remove();
+    }
   },
 }
 </script>

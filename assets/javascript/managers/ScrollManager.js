@@ -9,6 +9,12 @@ import { gsap } from 'gsap';
 const SMOOTH = 0.15;
 const THROTTLE_VALUE = 300;
 
+/**
+ * TODO:
+ * * improse scrollTo() for Edge/Safari iOS...
+ * * Find out how to improve perf by using workers
+ */
+
 class ScrollManager extends EventDispatcher {
     constructor(options = {}) {
         super(options);
@@ -30,6 +36,12 @@ class ScrollManager extends EventDispatcher {
     }
 
     _setup() {
+        /**
+         * Can't setup directly because here 
+         * we don't have access to the window 
+         * yet...
+         */
+
         // this._updateValues();
         // this._setupEventListeners();
     }

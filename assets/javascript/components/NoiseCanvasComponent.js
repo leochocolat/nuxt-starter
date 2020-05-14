@@ -1,5 +1,5 @@
 import Emitter from '../events/Emitter';
-import { gsap, TweenLite, Power3 } from 'gsap';
+import { gsap, TweenLite, Power3, Power1 } from 'gsap';
 import bindAll from '../utils/bindAll';
 
 const DATA_AMOUNT = 4;
@@ -57,6 +57,12 @@ class NoiseCanvasComponent {
             width: this._width, 
             height: this._height,
         }, [this._offscreenCanvas]);
+
+        this._worker.addEventListener('message', this._noiseReadyHandler);
+    }
+
+    _transitionIn() {
+        TweenLite.to(this._canvas, 1, { autoAlpha: 1, ease: Power1.easeInOut });
     }
 
     _setupCanvas() {
@@ -132,7 +138,8 @@ class NoiseCanvasComponent {
             '_tickHandler',
             '_pageLeaveHandler',
             '_pageReturnHandler',
-            '_throttleHandler'
+            '_throttleHandler',
+            '_noiseReadyHandler'
         );
     }
 
@@ -144,6 +151,10 @@ class NoiseCanvasComponent {
         gsap.ticker.add(this._tickHandler);
 
         if (this._isOffscreenCanvasAvailable) return;
+    }
+
+    _noiseReadyHandler() {
+        this._transitionIn();
     }
 
     _removeEventListeners() {
@@ -158,26 +169,26 @@ class NoiseCanvasComponent {
 
         if (!this._isOffscreenCanvasAvailable) return;
         
-        TweenLite.to(this._noise, 1.5, { 
-            deltaAlpha: 0,
-            ease: Power3.easeOut,
-            onUpdate: () => {
-            this._worker.postMessage({
-                name: 'noise',
-                deltaAlpha: this._noise.deltaAlpha
-            }, [])
-        } });
+        // TweenLite.to(this._noise, 1.5, { 
+        //     deltaAlpha: 0,
+        //     ease: Power3.easeOut,
+        //     onUpdate: () => {
+        //     this._worker.postMessage({
+        //         name: 'noise',
+        //         deltaAlpha: this._noise.deltaAlpha
+        //     }, [])
+        // } });
     }
 
     _pageLeaveHandler() {
         this._pageLeave = true;
 
-        this._noise.deltaAlpha = NOISE_ANIMATED_VALUE;
+        // this._noise.deltaAlpha = NOISE_ANIMATED_VALUE;
 
-        this._worker.postMessage({
-            name: 'noise',
-            deltaAlpha: this._noise.deltaAlpha
-        }, []);
+        // this._worker.postMessage({
+        //     name: 'noise',
+        //     deltaAlpha: this._noise.deltaAlpha
+        // }, []);
     }
 
     _resizeHandler(e) {

@@ -14,7 +14,7 @@ export default ({ store }) => {
             }),
             client.getEntries({
                 'content_type': 'home',
-              }),
+            }),
         ];
 
         Promise.all(promises).then(([projects, home]) => {

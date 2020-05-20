@@ -63,6 +63,12 @@
     }
 
     &:hover, &.is-active {
+        svg {
+            transform: rotate(45deg);
+            transition-duration: 0.8s;
+            transition-timing-function: $Power3Out;
+        }
+
         @media (hover:hover) and (min-width: 680px) {
             @media (min-width: 500px) {
                 .project-list-item__project-name {
@@ -134,16 +140,6 @@
                     }
                 }
             }
-        }
-    }
-
-    &:hover {
-        // @media (hover:hover) and (min-width: 1180px) {}
-
-        svg {
-            transform: rotate(45deg);
-            transition-duration: 0.8s;
-            transition-timing-function: $Power3Out;
         }
     }
 }

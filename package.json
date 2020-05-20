@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@nuxtjs/google-analytics": "^2.2.3",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
     "raw-loader": "^4.0.1",

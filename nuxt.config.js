@@ -94,7 +94,7 @@ export default {
     lang: 'en',
     background_color: '#b0b0b0',
     theme_color: '#121111'
-  }
+  },
   /*
   ** Nuxt.js modules
   */

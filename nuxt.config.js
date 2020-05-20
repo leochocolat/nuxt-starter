@@ -69,7 +69,17 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    '@nuxtjs/pwa',
+    ['@nuxtjs/pwa', {
+        manifest: {
+          name: 'Léo Mouraire | Folio 2020',
+          short_name: "Léo Mouraire",
+          description: "I'm front end developer based in Paris. Currently studying at Gobelins Paris and working at Purée Maison. Looking for a new traineeship for my next degree at Gobelins!",
+          lang: 'en',
+          background_color: '#b0b0b0',
+          theme_color: '#121111'
+        }
+      }
+    ]
     ['@nuxtjs/google-analytics', {
       id: 'UA-165917651-1'
     }]
@@ -77,24 +87,16 @@ export default {
   /*
   ** PWA
   */
-  pwa: {
-    manifest: {
-      name: 'Léo Mouraire | Folio 2020',
-      short_name: "Léo Mouraire",
-      description: "I'm front end developer based in Paris. Currently studying at Gobelins Paris and working at Purée Maison. Looking for a new traineeship for my next degree at Gobelins!",
-      lang: 'en',
-      background_color: '#b0b0b0',
-      theme_color: '#121111'
-    }
-  },
-  manifest: {
-    name: 'Léo Mouraire | Folio 2020',
-    short_name: "Léo Mouraire",
-    description: "I'm front end developer based in Paris. Currently studying at Gobelins Paris and working at Purée Maison. Looking for a new traineeship for my next degree at Gobelins!",
-    lang: 'en',
-    background_color: '#b0b0b0',
-    theme_color: '#121111'
-  },
+  // pwa: {
+  //   manifest: {
+  //     name: 'Léo Mouraire | Folio 2020',
+  //     short_name: "Léo Mouraire",
+  //     description: "I'm front end developer based in Paris. Currently studying at Gobelins Paris and working at Purée Maison. Looking for a new traineeship for my next degree at Gobelins!",
+  //     lang: 'en',
+  //     background_color: '#b0b0b0',
+  //     theme_color: '#121111'
+  //   }
+  // },
   /*
   ** Nuxt.js modules
   */

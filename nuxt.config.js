@@ -113,7 +113,8 @@ export default {
 
           return routes;
       });
-    }
+    },
+    fallback: '200.html'
   },
   /*
   ** Build configuration

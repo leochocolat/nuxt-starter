@@ -1,10 +1,10 @@
 <template>
   <div class="video-player">
-    <!-- <video class="video-player__video js-video" muted autoplay playsinline>
+    <video class="video-player__video js-video" muted autoplay playsinline>
         <source src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.webm" type="video/webm">
         <source src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.mp4" type="video/mp4">
         <p>This browser does not support the video element.</p>
-    </video> -->
+    </video>
     <picture class="video-player__picture js-poster">
         <source type="image/webp"
             :srcset="`${images[0].fields.file.url} 2000w,
@@ -18,14 +18,14 @@
             :alt="images[0].fields.title"
         >
     </picture>
-    <!-- <div class="video-player__progress-container js-progress-bar">
+    <div class="video-player__progress-container js-progress-bar">
         <div class="video-player__progress js-progress"></div>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
-// import VideoPlayerComponent from '~/assets/javascript/components/VideoPlayerComponent';
+import VideoPlayerComponent from '~/assets/javascript/components/VideoPlayerComponent';
 
 export default {
   props: {
@@ -39,15 +39,18 @@ export default {
       },
   },
   methods: {
-      setup() {
-        //   this._videoplayerComponent = new VideoPlayerComponent({ el: this.$el })
-      }
+    setup() {
+      this._videoplayerComponent = new VideoPlayerComponent({ el: this.$el })
+      setTimeout(() => {
+        this._videoplayerComponent.enableControls();
+      }, 2000);
+    }
   },
   mounted() {
     this.setup();
   },
   beforeDestroy() {
-    //   this._videoplayerComponent.close();
+    this._videoplayerComponent.close();
   }
 }
 </script>

@@ -1,11 +1,11 @@
-import DeviceUtils from '../utils/DeviceUtils';
-import ResizeManager from '../managers/ResizeManager';
+import Emitter from '../events/Emitter';
 import bindAll from '../utils/bindAll';
 import { gsap, TweenLite } from 'gsap';
 
 class VideoPlayerComponent {
     constructor(options) {
         this.el = options.el;
+
         this.ui = {
             video: this.el.querySelector('.js-video'),
             progressBar: this.el.querySelector('.js-progress-bar'),
@@ -21,6 +21,36 @@ class VideoPlayerComponent {
         this._removeEventListeners();
     }
 
+    play() {
+        this._isPlaying = true;
+        this.ui.video.play();
+    }
+
+    pause() {
+        this._isPlaying = false;
+        this.ui.video.pause();
+    }
+
+    enableControls() {
+        this._getContainerPosition();
+    }
+
+    _setup() {
+        this._setupEventListeners();
+    }
+
+    _getContainerPosition() {
+        const { x, width } = this.el.getBoundingClientRect();
+
+        this._offsetLeft = x;
+        this._width = width;
+    }
+
+    _updateProgess() {
+        this._progress = (this.ui.video.currentTime/this._duration).toFixed(3);
+        TweenLite.set(this.ui.progress, { scaleX: this._progress });
+    }
+
     _bindAll() {
         bindAll(
             this,
@@ -34,35 +64,18 @@ class VideoPlayerComponent {
         );
     }
 
-    _setup() {
-        this._getContainerPosition();
-        this._setupEventListeners();
-    }
-
-    _getContainerPosition() {
-        const { x, width } = this.el.getBoundingClientRect();
-
-        this._offsetLeft = x;
-        this._width = width;
-    }
-
-    play() {
-        this._isPlaying = true;
-        this.ui.video.play();
-    }
-
-    pause() {
-        this._isPlaying = false;
-        this.ui.video.pause();
-    }
-
     _setupEventListeners() {
-        this.ui.video.addEventListener('canplaythrough', this._canplayHandler);
+        if (this.ui.video.readyState === 4) {
+            this._canplayHandler();
+        } else {
+            this.ui.video.addEventListener('canplaythrough', this._canplayHandler);
+        }
+
         this.ui.video.addEventListener('ended', this._endedHandler);
         this.ui.video.addEventListener('playing', this._playingHandler);
         this.ui.progressBar.addEventListener('click', this._clickProgressHandler);
         this.ui.video.addEventListener('click', this._clickHandler);
-        ResizeManager.addEventListener('resize:end', this._resizeHandler);
+        Emitter.on('RESIZE:END', this._resizeHandler);
 
         gsap.ticker.add(this._tickHandler);
     }
@@ -73,7 +86,7 @@ class VideoPlayerComponent {
         this.ui.video.removeEventListener('playing', this._playingHandler);
         this.ui.progressBar.removeEventListener('click', this._clickProgressHandler);
         this.el.removeEventListener('click', this._clickHandler);
-        ResizeManager.removeEventListener('resize:end', this._resizeHandler);
+        Emitter.removeListener('RESIZE:END', this._resizeHandler);
 
         gsap.ticker.remove(this._tickHandler);
     }
@@ -83,6 +96,7 @@ class VideoPlayerComponent {
 
         if (this.ui.poster.classList.contains('is-video-ready')) return;
         this.ui.poster.classList.add('is-video-ready');
+
     }
 
     _endedHandler() {
@@ -103,8 +117,7 @@ class VideoPlayerComponent {
         if (!this._duration) return;
         if (!this._isPlaying) return;
 
-        this._progress = (this.ui.video.currentTime/this._duration).toFixed(3);
-        TweenLite.set(this.ui.progress, { scaleX: this._progress });
+        this._updateProgess();
     }
 
     _clickProgressHandler(e) {
@@ -112,7 +125,10 @@ class VideoPlayerComponent {
 
         const posX = e.clientX;
         const targetProgress = ((posX - this._offsetLeft) / this._width) * this._duration;
+        
+        if (!targetProgress) return;
         this.ui.video.currentTime = targetProgress;
+        this._updateProgess();
     }
 
     _clickHandler() {

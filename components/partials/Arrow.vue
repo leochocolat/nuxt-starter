@@ -33,12 +33,13 @@ export default {
   },
   methods: {
     goBack() {
+      this.clickHandler();
       this.$router.back();
-      this.state = 'is-active';
+      this.linkClickHandler();
     },
     linkClickHandler(e) {
       this.state = 'is-active';
-    }
+    },
   },
   computed: {
     ...mapGetters({

@@ -1,6 +1,7 @@
 <template>
     <div :class="`project-list-item ${state}`" data-scroll data-scroll-offset="70">
         <nuxt-link :to="`/projects/${index}`" @click.native="projectClickHandler" class="project-list-item__link js-link">
+        <!-- <nuxt-link :to="`/projects/${project.fields.slug}`" @click.native="projectClickHandler" class="project-list-item__link js-link"> -->
             {{ project.fields.name }}
         </nuxt-link>
         <div class="project-list-item__content">

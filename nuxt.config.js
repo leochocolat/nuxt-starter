@@ -109,6 +109,7 @@ export default {
           let routes = [];
           for (let i = 0; i < res.items.length; i++) {
             routes.push(`/projects/${i}`);
+            // routes.push(`/projects/${res.items[i].fields.slug}`);
           }
 
           return routes;

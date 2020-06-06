@@ -33,7 +33,6 @@ export default {
   },
   methods: {
     goBack() {
-      this.clickHandler();
       this.$router.back();
       this.linkClickHandler();
     },

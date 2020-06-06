@@ -1,8 +1,8 @@
 <template>
   <div class="video-player">
-    <video class="video-player__video js-video" muted autoplay playsinline>
-        <source src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.webm" type="video/webm">
-        <source src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.mp4" type="video/mp4">
+    <video v-if="videos" class="video-player__video js-video" muted autoplay playsinline>
+        <source :src="getVideoSources()[0]" type="video/mp4">
+        <source :src="getVideoSources()[1]" type="video/webm">
         <p>This browser does not support the video element.</p>
     </video>
     <picture class="video-player__picture js-poster">
@@ -18,38 +18,61 @@
             :alt="images[0].fields.title"
         >
     </picture>
-    <div class="video-player__progress-container js-progress-bar">
+    <div v-if="videos" class="video-player__progress-container js-progress-bar">
         <div class="video-player__progress js-progress"></div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import breakpoints from '~/assets/javascript/variables/breakpoints';
 import VideoPlayerComponent from '~/assets/javascript/components/VideoPlayerComponent';
 
 export default {
   props: {
-      images: {
-          type: Array,
-          required: false
-      },
-      videos: {
-          type: Array,
-          required: false
-      },
+    images: {
+      type: Array,
+      required: false
+    },
+    videos: {
+      type: Array,
+      required: false
+    },
   },
   methods: {
     setup() {
-      this._videoplayerComponent = new VideoPlayerComponent({ el: this.$el })
+      if (!this.videos) return;
+
+      this._videoplayerComponent = new VideoPlayerComponent({ el: this.$el });
+
       setTimeout(() => {
         this._videoplayerComponent.enableControls();
       }, 2000);
+      
+    },
+    getVideoSources() {
+      let videos = this.videos;
+
+      if (this.viewport.width < breakpoints.regular) {
+        videos = [this.videos[2], this.videos[3]];
+      }
+
+      if (!this.videos) return ['', ''];
+
+      return videos
     }
+  },
+  computed: {
+    ...mapGetters({
+      viewport: ['device/viewportSize'],
+    }),
   },
   mounted() {
     this.setup();
   },
   beforeDestroy() {
+    if (!this._videoplayerComponent) return;
     this._videoplayerComponent.close();
   }
 }

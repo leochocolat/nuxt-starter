@@ -45,7 +45,7 @@
         }
     }
 
-    &:hover {
+    &:hover, &.is-active {
         svg {
             animation: arrow 0.8s $Power3InOut forwards;
         }

@@ -1,6 +1,4 @@
-import DeviceUtils from '../utils/DeviceUtils';
 import Emitter from '../events/Emitter';
-// import ResizeManager from '../managers/ResizeManager';
 import bindAll from '../utils/bindAll';
 import { gsap, TweenLite } from 'gsap';
 

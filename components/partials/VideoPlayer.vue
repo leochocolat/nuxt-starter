@@ -1,8 +1,8 @@
 <template>
   <div class="video-player">
     <video v-if="videos" class="video-player__video js-video" muted autoplay playsinline>
-        <source :src="getVideoSources()[0]" type="video/mp4">
-        <source :src="getVideoSources()[1]" type="video/webm">
+        <source :src="getVideoSources()[0].fields.file.url" type="video/mp4">
+        <source :src="getVideoSources()[1].fields.file.url" type="video/webm">
         <p>This browser does not support the video element.</p>
     </video>
     <picture class="video-player__picture js-poster">

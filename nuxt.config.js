@@ -5,7 +5,7 @@ const contentful = require('contentful');
 
 const client = contentful.createClient({
   space: config.CTF_SPACE_ID,
-  accessToken: config.CTF_CDA_ACCESS_TOKEN
+  accessToken: process.env.NODE_ENV === 'development' ? config.CTF_CDA_ACCESS_TOKEN : process.env.CONTENTFUL_TOKEN
 });
 
 export default {
@@ -141,6 +141,7 @@ export default {
   },
   env: {
     BASE_URL: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://leomouraire.com',
+    CONTENTFUL_TOKEN: process.env.CONTENTFUL_TOKEN,
     /*
     ** Contenful
     */

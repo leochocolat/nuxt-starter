@@ -91,3 +91,6 @@ sw.*
 
 #pwa
 sw.*
+
+#contentful token
+.contentful.json

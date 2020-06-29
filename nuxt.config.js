@@ -141,11 +141,10 @@ export default {
   },
   env: {
     BASE_URL: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://leomouraire.com',
-    CONTENTFUL_TOKEN: process.env.CONTENTFUL_TOKEN,
     /*
     ** Contenful
     */
     CTF_SPACE_ID: config.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN,
+    CTF_CDA_ACCESS_TOKEN: process.env.NODE_ENV === 'development' ? config.CTF_CDA_ACCESS_TOKEN : process.env.CONTENTFUL_TOKEN,
   }
 }

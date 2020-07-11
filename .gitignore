@@ -94,3 +94,6 @@ sw.*
 
 #contentful token
 .contentful.json
+
+#youtube token
+.youtube.json

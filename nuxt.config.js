@@ -1,12 +1,14 @@
-const config = require('./.contentful.json');
+const contentfulConfig = require('./.contentful.json');
+const youtubeConfig = require('./.youtube.json');
 const webpack = require('webpack');
 
 const contentful = require('contentful');
 
 const client = contentful.createClient({
-  space: config.CTF_SPACE_ID,
-  accessToken: process.env.NODE_ENV === 'development' ? config.CTF_CDA_ACCESS_TOKEN : process.env.CONTENTFUL_TOKEN
+  space: contentfulConfig.CTF_SPACE_ID,
+  accessToken: process.env.NODE_ENV === 'development' ? contentfulConfig.CTF_CDA_ACCESS_TOKEN : process.env.CONTENTFUL_TOKEN
 });
+
 
 export default {
   mode: 'universal',
@@ -64,6 +66,10 @@ export default {
   plugins: [
     '~/plugins/listeners.client',
     '~/plugins/contentful.client',
+    /*
+    ** Youtube API
+    */
+    // '~/plugins/youtube.server',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -144,7 +150,11 @@ export default {
     /*
     ** Contenful
     */
-    CTF_SPACE_ID: config.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: process.env.NODE_ENV === 'development' ? config.CTF_CDA_ACCESS_TOKEN : process.env.CONTENTFUL_TOKEN,
+    CTF_SPACE_ID: contentfulConfig.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: process.env.NODE_ENV === 'development' ? contentfulConfig.CTF_CDA_ACCESS_TOKEN : process.env.CONTENTFUL_TOKEN,
+    /*
+    ** Youtube
+    */
+    YOUTUBE_TOKEN: process.env.NODE_ENV === 'development' ? youtubeConfig.YOUTUBE_TOKEN : process.env.YOUTUBE_TOKEN,
   }
 }

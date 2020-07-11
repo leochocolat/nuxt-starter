@@ -17,7 +17,11 @@
     "contentful": "^7.14.2",
     "contentful-rich-text-vue-renderer": "^1.1.5",
     "events": "^3.1.0",
+    "google-auth-library": "^6.0.4",
+    "googleapis": "^52.1.0",
     "gsap": "^3.2.6",
+    "install": "^0.13.0",
+    "npm": "^6.14.6",
     "three": "^0.114.0"
   },
   "devDependencies": {

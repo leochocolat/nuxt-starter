@@ -71,7 +71,7 @@ export default {
     setup() {
       setTimeout(() => {
         this.setupScrollParagraph();
-      }, 500);
+      }, 1000);
     },
     setupScrollParagraph() {
       let scrollParagraph = this.$el.querySelector('.js-scroll-paragraph');

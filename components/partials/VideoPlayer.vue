@@ -5,7 +5,17 @@
         <source :src="getVideoSources()[1].fields.file.url" type="video/webm">
         <p>This browser does not support the video element.</p>
     </video>
-    <img src="/thumbnail-test.jpg" alt="" class="video-player__image js-thumbnail">
+    <picture class="video-player__picture js-thumbnail">
+        <source type="image/webp"
+            :srcset="`${thumbnails[0].fields.file.url}`"
+        >
+        <img class="video-player__image"
+            :src="thumbnails[1].fields.file.url"
+            :width="images[1].fields.file.details.image.width"
+            :height="images[1].fields.file.details.image.height"
+            :alt="images[0].fields.title"
+        >
+    </picture>
     <picture class="video-player__picture js-poster">
         <source type="image/webp"
             :srcset="`${images[0].fields.file.url} 2000w,
@@ -34,6 +44,10 @@ import VideoPlayerComponent from '~/assets/javascript/components/VideoPlayerComp
 export default {
   props: {
     images: {
+      type: Array,
+      required: false
+    },
+    thumbnails: {
       type: Array,
       required: false
     },
@@ -69,7 +83,7 @@ export default {
       const thumbnail = this.$el.querySelector('.js-thumbnail');
 
       let tl = new TimelineLite();
-      tl.fromTo(el, 0.5, { autoAlpha: 0 }, { autoAlpha: 1, ease: Power3.easeOut });
+      tl.fromTo(el, 1, { autoAlpha: 0 }, { autoAlpha: 1, ease: Power3.easeOut });
       tl.set(thumbnail, { autoAlpha: 0, display: 'none' });
     }
   },

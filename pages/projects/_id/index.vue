@@ -17,7 +17,7 @@
                         </div>
                     </div
                     ><div class="page-project__video-wrapper">
-                        <VideoPlayer :class="`${this.state}`" :images="project.fields.images" :videos="project.fields.videos" />
+                        <VideoPlayer :class="`${this.state}`" :images="project.fields.images" :thumbnails="project.fields.thumbnails" :videos="project.fields.videos" />
                     </div>
                 </div>
                 <FooterProject :class="`${this.state}`" :project="project.fields" />

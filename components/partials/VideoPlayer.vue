@@ -5,13 +5,14 @@
         <source :src="getVideoSources()[1].fields.file.url" type="video/webm">
         <p>This browser does not support the video element.</p>
     </video>
+    <img src="/thumbnail-test.jpg" alt="" class="video-player__image js-thumbnail">
     <picture class="video-player__picture js-poster">
         <source type="image/webp"
             :srcset="`${images[0].fields.file.url} 2000w,
                     ${images[1].fields.file.url}  1000w,
                     ${images[2].fields.file.url}  500w`"
         >
-        <img class="video-player__image"
+        <img class="video-player__image" @load="imageLoadHandler"
             :src="images[3].fields.file.url"
             :width="images[1].fields.file.details.image.width"
             :height="images[1].fields.file.details.image.height"
@@ -25,6 +26,7 @@
 </template>
 
 <script>
+import { TimelineLite, Power3 } from 'gsap';
 import { mapGetters } from 'vuex';
 import breakpoints from '~/assets/javascript/variables/breakpoints';
 import VideoPlayerComponent from '~/assets/javascript/components/VideoPlayerComponent';
@@ -61,6 +63,14 @@ export default {
       if (!this.videos) return ['', ''];
 
       return videos
+    },
+    imageLoadHandler(e) {
+      const el = e.currentTarget;
+      const thumbnail = this.$el.querySelector('.js-thumbnail');
+
+      let tl = new TimelineLite();
+      tl.fromTo(el, 0.5, { autoAlpha: 0 }, { autoAlpha: 1, ease: Power3.easeOut });
+      tl.set(thumbnail, { autoAlpha: 0, display: 'none' });
     }
   },
   computed: {

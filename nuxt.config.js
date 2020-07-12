@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const contentful = require('contentful');
 
 const contentfulConfig = require('./.contentful.json');
-const youtubeConfig = require('./.youtube.json');
+// const youtubeConfig = require('./.youtube.json');
 
 const client = contentful.createClient({
   space: contentfulConfig.CTF_SPACE_ID,
@@ -155,6 +155,6 @@ export default {
     /*
     ** Youtube
     */
-    YOUTUBE_TOKEN: process.env.NODE_ENV === 'development' ? youtubeConfig.YOUTUBE_TOKEN : process.env.YOUTUBE_TOKEN,
+    // YOUTUBE_TOKEN: process.env.NODE_ENV === 'development' ? youtubeConfig.YOUTUBE_TOKEN : process.env.YOUTUBE_TOKEN,
   }
 }

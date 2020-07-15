@@ -58,8 +58,10 @@ export default {
     },
     methods: {
         setup() {
-            this.setupScrollParagraph();
-
+            setTimeout(() => {
+                this.setupScrollParagraph();
+            }, 200);
+            
             setTimeout(() => {
                 this.state = 'isInView';
             }, 100);

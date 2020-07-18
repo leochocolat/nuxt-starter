@@ -10,10 +10,19 @@
               </div
               ><ul class="section-about__socials" data-scroll>
                   <li class="section-about__socials-item">
-                      <a target="_blank" rel="noopener" :href="`mailto:${email}`" class="section-about__socials-link">
+                    <button class="section-about__socials-link section-about__socials-link--clipboard" @click="copyToClipBoard">
+                      <div class="section-about__socials-link-label">
+                        <span>e</span><span>m</span><span>a</span><span>i</span><span>l</span>
+                      </div>
+                      <div class="section-about__socials-link-label-hover">
+                        <span>c</span><span>o</span><span>p</span><span>y</span>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384.67 384.67"><g data-name="Layer 2"><path fill="#fff" fill-rule="evenodd" d="M0 45.26l276.05 276.05H22.63v63.36h362.04V22.63h-63.36v253.42L45.26 0 0 45.26z" data-name="Layer 1"/></g></svg>
+                    </button>
+                      <!-- <a target="_blank" rel="noopener" :href="`mailto:${email}`" class="section-about__socials-link">
                         Email
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384.67 384.67"><g data-name="Layer 2"><path fill="#fff" fill-rule="evenodd" d="M0 45.26l276.05 276.05H22.63v63.36h362.04V22.63h-63.36v253.42L45.26 0 0 45.26z" data-name="Layer 1"/></g></svg>
-                      </a>
+                      </a> -->
                   </li>
                   <li class="section-about__socials-item">
                       <a target="_blank" rel="noopener" :href="twitter" class="section-about__socials-link">
@@ -95,6 +104,17 @@ export default {
       lines[lines.length - 1].addEventListener('transitionend', () => {
         scrollParagraph.innerHTML = splits.originalHTML;
       });
+    },
+    copyToClipBoard() {
+      let input = document.createElement('input');
+      input.setAttribute('type', 'text');
+      input.setAttribute('value', this.email);
+      input.style.position = 'absolute';
+      input.style.opacity = 0;
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      document.body.removeChild(input);
     }
   },
   mounted() {

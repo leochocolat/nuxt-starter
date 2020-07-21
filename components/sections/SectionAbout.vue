@@ -10,12 +10,9 @@
               </div
               ><ul class="section-about__socials" data-scroll>
                   <li class="section-about__socials-item">
-                    <button class="section-about__socials-link section-about__socials-link--clipboard" @click="copyToClipBoard">
+                    <button data-content="copy" class="section-about__socials-link section-about__socials-link--clipboard" @click="copyToClipBoard">
                       <div class="section-about__socials-link-label">
-                        <span>e</span><span>m</span><span>a</span><span>i</span><span>l</span>
-                      </div>
-                      <div class="section-about__socials-link-label-hover">
-                        <span>c</span><span>o</span><span>p</span><span>y</span>
+                        Email
                       </div>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384.67 384.67"><g data-name="Layer 2"><path fill="#fff" fill-rule="evenodd" d="M0 45.26l276.05 276.05H22.63v63.36h362.04V22.63h-63.36v253.42L45.26 0 0 45.26z" data-name="Layer 1"/></g></svg>
                     </button>
@@ -25,14 +22,18 @@
                       </a> -->
                   </li>
                   <li class="section-about__socials-item">
-                      <a target="_blank" rel="noopener" :href="twitter" class="section-about__socials-link">
-                        Twitter
+                      <a data-content="twitter" target="_blank" rel="noopener" :href="twitter" class="section-about__socials-link">
+                        <div class="section-about__socials-link-label">
+                          Twitter
+                        </div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384.67 384.67"><g data-name="Layer 2"><path fill="#fff" fill-rule="evenodd" d="M0 45.26l276.05 276.05H22.63v63.36h362.04V22.63h-63.36v253.42L45.26 0 0 45.26z" data-name="Layer 1"/></g></svg>
                       </a>
                   </li>
                   <li class="section-about__socials-item">
-                      <a target="_blank" rel="noopener" :href="linkedin" class="section-about__socials-link">
-                        Linkedin
+                      <a data-content="Linkedin" target="_blank" rel="noopener" :href="linkedin" class="section-about__socials-link">
+                        <div class="section-about__socials-link-label">
+                          Linkedin
+                        </div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384.67 384.67"><g data-name="Layer 2"><path fill="#fff" fill-rule="evenodd" d="M0 45.26l276.05 276.05H22.63v63.36h362.04V22.63h-63.36v253.42L45.26 0 0 45.26z" data-name="Layer 1"/></g></svg>
                       </a>
                   </li>

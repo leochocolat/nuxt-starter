@@ -92,7 +92,6 @@
 
     display: inline-block;
 
-    height: 100%;
     padding-right: 15px;
 
     text-transform: uppercase;
@@ -117,8 +116,19 @@
         }
     }
 
-    &--clipboard {
-        
+    &:before {
+        content: attr(data-content);
+
+        display: inline-block;
+
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        transform: translateY(130%);
+        opacity: 0;
+
+        transition: transform 0.6s $Power3Out, opacity 0.3s $Power3Out;
     }
 
     &:hover {
@@ -134,6 +144,17 @@
         .section-about__socials-link-label {
             transform: translateY(-120%);
             opacity: 0;
+        }
+
+        &:before {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    &:active {
+        &:before {
+
         }
     }
 }

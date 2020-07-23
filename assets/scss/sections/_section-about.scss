@@ -151,12 +151,22 @@
             opacity: 1;
         }
     }
+}
 
-    &:active {
-        &:before {
+.section-about__clipboard-icon {
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
 
-        }
-    }
+    margin: auto;
+
+    width: 10px;
+    height: 10px;
+
+    border: solid 1px $white;
+
+    opacity: 0;
 }
 
 .section-about__socials-link-label {

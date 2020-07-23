@@ -10,6 +10,7 @@
               </div
               ><ul class="section-about__socials" data-scroll>
                   <li class="section-about__socials-item">
+                    <div class="section-about__clipboard-icon js-clipboard-icon"></div>
                     <button data-content="copy" class="section-about__socials-link section-about__socials-link--clipboard" @click="copyToClipBoard">
                       <div class="section-about__socials-link-label">
                         Email
@@ -44,6 +45,7 @@
 </template>
 
 <script>
+import { TweenLite, Power3, Power4, Power1, TimelineLite } from 'gsap';
 import CustomRichTextRenderer from '~/components/partials/CustomRichTextRenderer';
 
 import SplitText from '~/assets/javascript/vendors/SplitText.js';
@@ -116,6 +118,16 @@ export default {
       input.select();
       document.execCommand('copy');
       document.body.removeChild(input);
+
+      // let icons = this.$el.querySelector('.js-clipboard-icon');
+
+      // let tl = new TimelineLite();
+      // const duration = 0.5;
+      // const translateX = -20;
+      
+      // tl.to(icons, duration/2, { autoAlpha: 1, y: translateX/2, ease: Power1.easeIn })
+      // tl.to(icons, duration/2, { autoAlpha: 0, y: translateX, ease: Power3.easeOut })
+      // tl.set(icons, { autoAlpha: 0, y: 0 })
     }
   },
   mounted() {

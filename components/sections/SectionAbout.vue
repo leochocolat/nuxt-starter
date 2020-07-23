@@ -10,12 +10,10 @@
               </div
               ><ul class="section-about__socials" data-scroll>
                   <li class="section-about__socials-item">
-                    <button class="section-about__socials-link section-about__socials-link--clipboard" @click="copyToClipBoard">
+                    <div class="section-about__clipboard-icon js-clipboard-icon"></div>
+                    <button data-content="copy" class="section-about__socials-link section-about__socials-link--clipboard" @click="copyToClipBoard">
                       <div class="section-about__socials-link-label">
-                        <span>e</span><span>m</span><span>a</span><span>i</span><span>l</span>
-                      </div>
-                      <div class="section-about__socials-link-label-hover">
-                        <span>c</span><span>o</span><span>p</span><span>y</span>
+                        Email
                       </div>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384.67 384.67"><g data-name="Layer 2"><path fill="#fff" fill-rule="evenodd" d="M0 45.26l276.05 276.05H22.63v63.36h362.04V22.63h-63.36v253.42L45.26 0 0 45.26z" data-name="Layer 1"/></g></svg>
                     </button>
@@ -25,14 +23,18 @@
                       </a> -->
                   </li>
                   <li class="section-about__socials-item">
-                      <a target="_blank" rel="noopener" :href="twitter" class="section-about__socials-link">
-                        Twitter
+                      <a data-content="twitter" target="_blank" rel="noopener" :href="twitter" class="section-about__socials-link">
+                        <div class="section-about__socials-link-label">
+                          Twitter
+                        </div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384.67 384.67"><g data-name="Layer 2"><path fill="#fff" fill-rule="evenodd" d="M0 45.26l276.05 276.05H22.63v63.36h362.04V22.63h-63.36v253.42L45.26 0 0 45.26z" data-name="Layer 1"/></g></svg>
                       </a>
                   </li>
                   <li class="section-about__socials-item">
-                      <a target="_blank" rel="noopener" :href="linkedin" class="section-about__socials-link">
-                        Linkedin
+                      <a data-content="Linkedin" target="_blank" rel="noopener" :href="linkedin" class="section-about__socials-link">
+                        <div class="section-about__socials-link-label">
+                          Linkedin
+                        </div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384.67 384.67"><g data-name="Layer 2"><path fill="#fff" fill-rule="evenodd" d="M0 45.26l276.05 276.05H22.63v63.36h362.04V22.63h-63.36v253.42L45.26 0 0 45.26z" data-name="Layer 1"/></g></svg>
                       </a>
                   </li>
@@ -43,6 +45,7 @@
 </template>
 
 <script>
+import { TweenLite, Power3, Power4, Power1, TimelineLite } from 'gsap';
 import CustomRichTextRenderer from '~/components/partials/CustomRichTextRenderer';
 
 import SplitText from '~/assets/javascript/vendors/SplitText.js';
@@ -115,6 +118,16 @@ export default {
       input.select();
       document.execCommand('copy');
       document.body.removeChild(input);
+
+      // let icons = this.$el.querySelector('.js-clipboard-icon');
+
+      // let tl = new TimelineLite();
+      // const duration = 0.5;
+      // const translateX = -20;
+      
+      // tl.to(icons, duration/2, { autoAlpha: 1, y: translateX/2, ease: Power1.easeIn })
+      // tl.to(icons, duration/2, { autoAlpha: 0, y: translateX, ease: Power3.easeOut })
+      // tl.set(icons, { autoAlpha: 0, y: 0 })
     }
   },
   mounted() {

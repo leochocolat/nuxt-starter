@@ -1,6 +1,7 @@
 const DATA_AMOUNT = 4;
 const ALPHA = 11;
 const INTENSITY_MIN = 80;
+const DRAW_INTERVAL = 100;
 // const INTENSITY_MIN = 0;
 
 let offscreenCanvas, context;
@@ -8,6 +9,7 @@ let width, height = 0;
 let deltaAlpha = 0;
 let pixelSize = 1;
 let readyState = false;
+let allowNoiseDraw = true;
 
 onmessage = function(e) {
     if (e.data.name === 'start') {
@@ -31,6 +33,9 @@ onmessage = function(e) {
 
 function start() {
     update();
+    setInterval(() => {
+        allowNoiseDraw = true;
+    }, DRAW_INTERVAL)
 }
 
 function sendReadyMessage() {
@@ -60,15 +65,20 @@ function createImageData() {
     return imageData;
 }
 
-function update() {
-    context.clearRect(0, 0, width, height);
+function draw() {
+    if (!allowNoiseDraw) return;
+    allowNoiseDraw = false;
 
+    context.clearRect(0, 0, width, height);
+    context.putImageData(createImageData(), 0, 0);
+}
+
+function update() {
     context.msImageSmoothingEnabled = false;
     context.mozImageSmoothingEnabled = false;
     context.webkitImageSmoothingEnabled = false;
     context.imageSmoothingEnabled = false;
 
-    context.putImageData(createImageData(), 0, 0);
-
+    draw();
     requestAnimationFrame(update);
 }

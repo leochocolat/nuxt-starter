@@ -1,8 +1,7 @@
 const DATA_AMOUNT = 4;
 const ALPHA = 11;
 const INTENSITY_MIN = 80;
-const DRAW_INTERVAL = 100;
-// const INTENSITY_MIN = 0;
+const DRAW_INTERVAL = 10;
 
 let offscreenCanvas, context;
 let width, height = 0;
@@ -11,25 +10,27 @@ let pixelSize = 1;
 let readyState = false;
 let allowNoiseDraw = true;
 
-onmessage = function(e) {
-    if (e.data.name === 'start') {
-        offscreenCanvas = e.data.canvas;
-        width = e.data.width;
-        height = e.data.height;
-
-        context = offscreenCanvas.getContext('2d');
-
-        start();
-    } else if (e.data.name === 'resize') {
-        width = e.data.width;
-        height = e.data.height;
-
-        offscreenCanvas.width = width;
-        offscreenCanvas.height = height;
-    } else if (e.data.name === 'noise') {
-        deltaAlpha = e.data.deltaAlpha;
-    }
-};
+if (typeof self === 'object') {
+    onmessage = function(e) {
+        if (e.data.name === 'start') {
+            offscreenCanvas = e.data.canvas;
+            width = e.data.width;
+            height = e.data.height;
+    
+            context = offscreenCanvas.getContext('2d');
+    
+            start();
+        } else if (e.data.name === 'resize') {
+            width = e.data.width;
+            height = e.data.height;
+    
+            offscreenCanvas.width = width;
+            offscreenCanvas.height = height;
+        } else if (e.data.name === 'noise') {
+            deltaAlpha = e.data.deltaAlpha;
+        }
+    };
+}
 
 function start() {
     update();
@@ -52,9 +53,6 @@ function createImageData() {
         imageData.data[i + 2] = r;
         imageData.data[i + 3] = ALPHA + deltaAlpha;
         // imageData.data[i + 3] = 255;
-
-        // const x = Math.floor((i/4) % imageData.width) * pixelSize;
-        // const y = Math.floor((i/4) / imageData.width) * pixelSize;
     }
 
     if (!readyState) {

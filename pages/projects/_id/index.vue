@@ -60,11 +60,10 @@ export default {
         setup() {
             setTimeout(() => {
                 this.setupScrollParagraph();
-            }, 200);
-            
+            }, 100);
             setTimeout(() => {
                 this.state = 'isInView';
-            }, 100);
+            }, 150);
         },
         getDescription() {
             let description = '';

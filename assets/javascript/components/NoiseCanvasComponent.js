@@ -1,7 +1,7 @@
 import Emitter from '../events/Emitter';
 import { gsap, TweenLite, Power3, Power1 } from 'gsap';
 import bindAll from '../utils/bindAll';
-import Worker from '../workers/noise.worker.js';
+// import Worker from '../workers/noise.worker.js';
 
 const DATA_AMOUNT = 4;
 const ALPHA = 16;
@@ -44,7 +44,8 @@ class NoiseCanvasComponent {
         this._canvas = this.el;
         this._offscreenCanvas = this._canvas.transferControlToOffscreen();
 
-        this._worker = new Worker();
+        // this._worker = new Worker();
+        this._worker = new Worker(`${process.env.BASE_URL}/workers/NoiseWorker.js`);
 
         this._worker.postMessage({
             name: 'start',

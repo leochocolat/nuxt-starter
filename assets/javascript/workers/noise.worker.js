@@ -1,8 +1,8 @@
 const DATA_AMOUNT = 4;
-// const ALPHA = 11;
-const ALPHA = 255;
+const ALPHA = 11;
+// const ALPHA = 255;
 const INTENSITY_MIN = 80;
-const DRAW_INTERVAL = 0;
+const DRAW_INTERVAL = 100;
 
 let offscreenCanvas, context;
 let width, height = 0;
@@ -35,9 +35,9 @@ if (typeof self === 'object') {
 
 function start() {
     update();
-    // setInterval(() => {
-    //     allowNoiseDraw = true;
-    // }, DRAW_INTERVAL)
+    setInterval(() => {
+        allowNoiseDraw = true;
+    }, DRAW_INTERVAL)
 }
 
 function sendReadyMessage() {
@@ -65,8 +65,8 @@ function createImageData() {
 }
 
 function draw() {
-    // if (!allowNoiseDraw) return;
-    // allowNoiseDraw = false;
+    if (!allowNoiseDraw) return;
+    allowNoiseDraw = false;
 
     context.putImageData(createImageData(), 0, 0);
 }

@@ -25,6 +25,7 @@ if (typeof self === 'object') {
 function setup(e) {
     setupCanvas(e);
     setupThreeScene(e);
+    sendReadyMessage(e);
     tick();
 }
 
@@ -39,6 +40,10 @@ function setupCanvas(e) {
 
 function setupThreeScene() {
     threeScene = new ThreeNoise(canvas, width, height);
+}
+
+function sendReadyMessage() {
+    self.postMessage({ name: 'ready' }, []);
 }
 
 function tick() {

@@ -25,6 +25,7 @@ class ThreeNoise {
         this._camera.updateProjectionMatrix();
 
         this._plane.scale.set(this.width, this.height, 1);
+        this._uniforms.iResolution.value.set(this.width, this.height, 1);
     }
 
     update() {

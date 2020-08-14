@@ -1,13 +1,11 @@
 #define ITERATIONS 1
 
-
 uniform vec3 iResolution;
 uniform float iTime;
 uniform float iTimeDelta;
 uniform float iFrame;
 
-uniform sampler2D iChannel0;
-uniform sampler2D iChannel1;
+uniform float u_alpha;
 
 varying vec2 vUv;
 
@@ -165,9 +163,9 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
         a += hash12(pos);
     }
     vec3 noise = vec3(a);
-    vec4 noiseText = vec4(noise, 1.0);
+    vec4 noiseText = vec4(noise, u_alpha);
 
-	fragColor = mix(texture2D(iChannel0, vUv), noiseText, 0.1);
+	fragColor = mix(vec4(0.0, 0.0, 0.0, 0.0), noiseText, 0.05);
 }
 
 void main()

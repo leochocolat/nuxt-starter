@@ -3,12 +3,6 @@ import { gsap, TweenLite, Power3, Power1 } from 'gsap';
 import bindAll from '../utils/bindAll';
 // import Worker from '../workers/noise.worker.js';
 
-const DATA_AMOUNT = 4;
-const ALPHA = 16;
-const INTENSITY_MIN = 120;
-const NOISE_ANIMATED_VALUE = 80;
-const LEAVE_SCREEN_THROTTLE_VALUE = 500;
-
 class NoiseCanvasComponent {
     constructor(options) {
         this.el = options.el;

@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const contentful = require('contentful');
 
 const contentfulConfig = require('./.contentful.json');
-// const youtubeConfig = require('./.youtube.json');
 
 const client = contentful.createClient({
   space: contentfulConfig.CTF_SPACE_ID,
@@ -66,10 +65,6 @@ export default {
   plugins: [
     '~/plugins/listeners.client',
     '~/plugins/contentful.client',
-    /*
-    ** Youtube API
-    */
-    // '~/plugins/youtube.server',
   ],
   /*
   ** Nuxt.js dev-modules

@@ -1,21 +1,9 @@
 const webpack = require('webpack');
-const contentful = require('contentful');
-
-const contentfulConfig = require('./.contentful.json');
-
-const client = contentful.createClient({
-  space: contentfulConfig.CTF_SPACE_ID,
-  accessToken: process.env.NODE_ENV === 'development' ? contentfulConfig.CTF_CDA_ACCESS_TOKEN : process.env.CONTENTFUL_TOKEN
-});
-
 
 export default {
   mode: 'universal',
-  /*
-  ** Headers of the page
-  */
   head: {
-    title: 'Work In Progress - Stay Tuned',
+    title: 'Nuxt Starter',
     htmlAttrs: {
       lang: 'en',
     },
@@ -25,11 +13,11 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: "I'm front end developer based in Paris. Currently studying at Gobelins Paris and working at Purée Maison. Looking for a new traineeship for my next degree at Gobelins!"
+        content: ""
       },
       {
         name: 'msapplication-TileColor',
-        content: '#817674'
+        content: '#ffffff'
       },
       {
         name: 'theme-color',
@@ -39,53 +27,33 @@ export default {
     ],
     link: [
       /*
-      ** Favicon
+      ** Favicons
       */
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'apple-touch-icon', sizes:"180x180", type: 'image/png', href: '/apple-touch-icon.png' },
-      { rel: 'icon', sizes:"32x32", type: 'image/png', href: '/favicon-32x32.png' },
-      { rel: 'icon', sizes:"16x16", type: 'image/png', href: '/favicon-16x16.png' },
-      { rel: 'manifest', href: '/site.webmanifest' },
-      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#817674' },
+      // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      // { rel: 'apple-touch-icon', sizes:"180x180", type: 'image/png', href: '/apple-touch-icon.png' },
+      // { rel: 'icon', sizes:"32x32", type: 'image/png', href: '/favicon-32x32.png' },
+      // { rel: 'icon', sizes:"16x16", type: 'image/png', href: '/favicon-16x16.png' },
+      // { rel: 'manifest', href: '/site.webmanifest' },
+      // { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#817674' },
     ]
   },
   /*
-  ** Customize the progress-bar color
+  ** Customize the progress-bar
   */
-  loading: { color: '#fff', height: 0 },
+  loading: { color: 'transparent', height: 0 },
   /*
   ** Global CSS
   */
   css: [
     '@/assets/scss/app.scss'
   ],
-  /*
-  ** Plugins to load before mounting the App
-  */
   plugins: [
     '~/plugins/listeners.client',
-    '~/plugins/contentful.client',
   ],
   /*
   ** Nuxt.js dev-modules
   */
-  buildModules: [
-    // '@nuxtjs/pwa',
-    ['@nuxtjs/google-analytics', {
-      id: 'UA-165917651-1'
-    }]
-  ],
-  /*
-  ** PWA
-  */
-  // pwa: {
-  //   manifest: {
-  //     name: 'Léo Mouraire | Folio 2020',
-  //     short_name: "Léo Mouraire",
-  //     description: "I'm front end developer based in Paris. Currently studying at Gobelins Paris and working at Purée Maison. Looking for a new traineeship for my next degree at Gobelins!",
-  //     lang: 'en',
-  //   }
-  // },
+  buildModules: [],
   /*
   ** Nuxt.js modules
   */
@@ -95,26 +63,16 @@ export default {
   ** Server
   */
   server: {
-    port: 3000, // par défaut: 3000
-    host: 'localhost' // par défaut: localhost
+    port: 3000, // default: 3000
+    host: 'localhost' // default: localhost
   },
   /*
   ** Generate
   */
   generate: {
     routes() {
-      return client.getEntries({
-          'content_type': 'project',
-          order: 'sys.createdAt'
-      }).then((res) => {
-          let routes = [];
-          for (let i = 0; i < res.items.length; i++) {
-            routes.push(`/projects/${i}`);
-            // routes.push(`/projects/${res.items[i].fields.slug}`);
-          }
-
-          return routes;
-      });
+      let routes = [''];
+      return routes;
     },
     fallback: '200.html'
   },
@@ -125,14 +83,7 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    resolve: {
-      three: 'node_modules/three/build/three.min.js',
-    },
-    plugins: [
-      new webpack.ProvidePlugin({
-        THREE: 'three',
-      }),
-    ],
+    plugins: [],
     extend (config, ctx) {
       config.module.rules.push({
         test: /\.(glsl|vs|fs)$/,
@@ -148,15 +99,6 @@ export default {
     }
   },
   env: {
-    BASE_URL: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://leomouraire.com',
-    /*
-    ** Contenful
-    */
-    CTF_SPACE_ID: contentfulConfig.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: process.env.NODE_ENV === 'development' ? contentfulConfig.CTF_CDA_ACCESS_TOKEN : process.env.CONTENTFUL_TOKEN,
-    /*
-    ** Youtube
-    */
-    // YOUTUBE_TOKEN: process.env.NODE_ENV === 'development' ? youtubeConfig.YOUTUBE_TOKEN : process.env.YOUTUBE_TOKEN,
+    BASE_URL: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : ''
   }
 }

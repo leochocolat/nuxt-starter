@@ -6,21 +6,7 @@
 
 <script>
 export default {
-  props: {
-
-  },
-  components: {
-
-  },
-  computed: {
-
-  },
-  methods: {
-
-  },
-  mounted() {
-    
-  },
+  
 }
 </script>
 

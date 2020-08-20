@@ -2,8 +2,6 @@
   <div>
     <nuxt />
     <Grid />
-    <NoiseCanvas />
-    <!-- <ThreeCanvas /> -->
   </div>
 </template>
 
@@ -11,16 +9,9 @@
 </style>
 
 <script>
-import NoiseCanvas from '~/components/NoiseCanvas';
-
 export default {
   components: {
-    NoiseCanvas,
-    // ThreeCanvas: () => import('~/components/ThreeCanvas'),
-    Grid: () => import('~/components/Grid'),
+    Grid: () => import('~/components/utils/Grid'),
   },
-  mounted() {
-    
-  }
 }
 </script>

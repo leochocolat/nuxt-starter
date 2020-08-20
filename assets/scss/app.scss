@@ -11,41 +11,27 @@
 @import './core/base';
 @import './core/typography';
 @import './core/layout';
-@import './core/transition';
 
 /**
 * Partials
 */
-@import './partials/arrow';
-@import './partials/navbar';
-@import './partials/project-list-item';
-@import './partials/footer';
-@import './partials/footer-project';
-@import './partials/loader';
-@import './partials/three-canvas';
-@import './partials/video-player';
-@import './partials/noise-canvas';
+
 
 /**
 * Headers
 */
-@import './headers/header-home';
-@import './headers/header-home__animation';
+
 
 /**
 * Sections
 */
-@import './sections/section-projects';
-@import './sections/section-about';
+
 
 /**
  * Pages
  */
-@import './pages/page-home';
-@import './pages/page-project';
-@import './pages/page-error';
 
 /**
  * Utils
  */
-@import './partials/grid';
+@import './utils/grid';

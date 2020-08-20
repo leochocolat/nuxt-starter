@@ -1,102 +1,40 @@
 <template>
-  <div class="main page-home js-scroll-container">
-    <div class="js-scroll-content">
-      <div class="main__content">
-        <HeaderHome :data="home" />
-        <SectionProjects :projects="projects" />
-        <SectionAbout :title="home.fields.descriptionTitle" :description="home.fields.description" :email="home.fields.email" :twitter="home.fields.twitter" :linkedin="home.fields.linkedin" />
-        <Footer :name="'home'" :position="'top'" :first="home.fields.footerCredits" :second="home.fields.footerMessage" :third="home.fields.footerDesignCredits"  />
-      </div>
-    </div>
-    <div class="transition-overlay js-transition-overlay"></div>
-    <Loader />
+  <div :class="`page-${namespace}`">
   </div>
 </template>
 
 <script>
 //vendors
-import { createClient } from '~/plugins/contentful.js';
-const client = createClient();
 
 //mixins
 import page from '~/assets/javascript/mixins/page';
 
 //modules
-import ScrollModule from '~/assets/javascript/modules/ScrollModule';
-import { transitionOutHome, transitionInHome, beforeLeaveState, afterLeaveState } from '~/assets/javascript/transitions/transition';
-import LoaderComponent from '~/assets/javascript/components/LoaderComponent';
 
 //components
-import Loader from '~/components/partials/Loader';
-import HeaderHome from '~/components/headers/HeaderHome';
-import SectionProjects from '~/components/sections/SectionProjects';
-import SectionAbout from '~/components/sections/SectionAbout';
-import Footer from '~/components/partials/Footer';
+
+//transition
+import { transitionIn, transitionOut } from '~/assets/javascript/transitions/transition';
 
 export default {
-  data () { return { name: 'home' } },
+  data () { return { namespace: 'home' } },
   mixins: [ page ],
   components: {
-    Loader,
-    HeaderHome,
-    SectionProjects,
-    SectionAbout,
-    Footer,
+
   },
   methods: {
     setup() {
-      this.setupLoading();
-      this.setupSmoothScroll();
-      this.setupStore();
-    },
-    setupLoading() {
-      this.loader = new LoaderComponent({ el: this.$el });
-    },
-    setupSmoothScroll() {
-      let scrollModule = new ScrollModule({
-        container: this.$el,
-        content: this.$el.querySelector('.js-scroll-content'),
-        smooth: true,
-        smoothValue: 0.1
-      });
-      scrollModule.start();
-      scrollModule.scrollTo(this.scrollPosition.y);
-    },
-    setupStore() {
-      this.$store.dispatch('projects/setProjects', this.projects);
-    },
-    startLoading() {
-      this.loader.init();
-      this.loader.start();
-    },
-    removeLoading() {
-      this.loader.remove();
+      
     }
   },
   transition: {
     mode: 'out-in',
     name: 'home',
-    leave(el, done) { transitionOutHome(el, done) },
-    enter(el, done) { transitionInHome(el, done) },
-    beforeLeave(el, done) { beforeLeaveState(el, done) },
-    afterLeave(el, done) { afterLeaveState(el, done) },
-  },
-  asyncData () {
-    return Promise.all([
-      client.getEntries({
-        'content_type': 'project',
-        order: 'sys.createdAt'
-      }),
-      client.getEntries({
-        'content_type': 'home',
-      }),
-    ]).then(([projects, home]) => {
-      return {
-        projects: projects.items,
-        home: home.items[0]
-      }
-    }).catch(console.error)
-  },
+    leave(el, done) { transitionOut(el, done) },
+    enter(el, done) { transitionIn(el, done) },
+    beforeLeave(el, done) { done() },
+    afterLeave(el, done) { done() },
+  }
 }
 </script>
 

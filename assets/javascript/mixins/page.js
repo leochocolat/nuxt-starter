@@ -3,19 +3,20 @@ import { mapGetters } from 'vuex';
 export default {
     mounted() {
         this.setup();
-        this.setupSession();
-        this.setupCurrentPage();
+
+        this._setupSession();
+        this._setupCurrentPage();
     },
     methods: {
-        setupSession() {
+        _setupSession() {
             if (!this.session) {
                 this.$store.dispatch('session/setSession', Date.now());
             }
         },
-        setupCurrentPage() {
-            this.$store.dispatch('page/setCurrent', this.name);
-            document.querySelector('html').classList.add(`${this.name}`);
-            document.body.classList.add(`${this.name}`);
+        _setupCurrentPage() {
+            this.$store.dispatch('page/setCurrent', this.namespace);
+            document.documentElement.classList.add(`${this.namespace}`);
+            document.body.classList.add(`${this.namespace}`);
         }
     },
     computed: {
@@ -26,7 +27,7 @@ export default {
         }),
     },
     beforeDestroy() {
-        document.querySelector('html').classList.remove(`${this.name}`);
-        document.body.classList.remove(`${this.name}`);
+        document.querySelector('html').classList.remove(`${this.namespace}`);
+        document.body.classList.remove(`${this.namespace}`);
     },
 }

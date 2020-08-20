@@ -1,9 +1,9 @@
-function transitionIn() {
-
+function transitionIn(el, done) {
+    done();
 }
 
-function transitionOut() {
-
+function transitionOut(el, done) {
+    done();
 }
 
 export {

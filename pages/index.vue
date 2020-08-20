@@ -16,20 +16,18 @@ import page from '~/assets/javascript/mixins/page';
 //transition
 import { transitionIn, transitionOut } from '~/assets/javascript/transitions/transition';
 
-export default {
-  data () { return { namespace: 'home' } },
-  mixins: [ page ],
-  components: {
+const NAMESPACE = 'home';
 
-  },
+export default {
+  data () { return { namespace: NAMESPACE } },
+  mixins: [ page ],
+  components: {},
   methods: {
-    setup() {
-      
-    }
+    setup() {}
   },
   transition: {
     mode: 'out-in',
-    name: 'home',
+    name: NAMESPACE,
     leave(el, done) { transitionOut(el, done) },
     enter(el, done) { transitionIn(el, done) },
     beforeLeave(el, done) { done() },

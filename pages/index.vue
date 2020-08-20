@@ -1,9 +1,12 @@
 <template>
   <div :class="`page-${namespace}`">
+    <h1 style="font-size: 20px; font-family: arial; margin: 20px 20px">Nuxt Starter</h1>
   </div>
 </template>
 
 <script>
+const NAMESPACE = 'home';
+
 //vendors
 
 //mixins
@@ -15,8 +18,6 @@ import page from '~/assets/javascript/mixins/page';
 
 //transition
 import { transitionIn, transitionOut } from '~/assets/javascript/transitions/transition';
-
-const NAMESPACE = 'home';
 
 export default {
   data () { return { namespace: NAMESPACE } },

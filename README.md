@@ -1,6 +1,6 @@
-# leomouraire
+# Nuxt Starter
 
-> portfolio website
+> Personal starter with nuxt and some custom utils
 
 ## Build Setup
 

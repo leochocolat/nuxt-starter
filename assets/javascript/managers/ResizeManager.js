@@ -3,7 +3,7 @@ import EventDispatcher from '../events/EventDispatcher';
 import bindAll from '../utils/bindAll';
 
 const THROTTLE_VALUE = 300;
-const MIN_HEIGHT_RESIZE = 100;
+const MIN_HEIGHT_RESIZE = 0;
 
 class ResizeManager extends EventDispatcher {
     constructor() {
